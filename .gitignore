@@ -36,6 +36,8 @@
 *.mw
 *.cut
 lwarp_mathjax.txt
+
+
 # folders specific for me, perhaps upload handouts to drive and not github
 /Mega/
 /Textbooks/
