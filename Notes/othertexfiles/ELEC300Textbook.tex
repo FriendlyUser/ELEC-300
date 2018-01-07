@@ -1,0 +1,9 @@
+\documentclass{report}
+%% Added for bibilography and title page
+\usepackage[backend=bibtex,sorting=none]{biblatex}	% Sort by citation order
+\addbibresource{../textbooks.bib}		% Load bibliography
+\usepackage{hyperref}
+\begin{document}
+\nocite{*}
+\printbibliography[heading=none]
+\end{document}

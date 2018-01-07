@@ -1,0 +1,425 @@
+
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<meta charset="UTF-8" />
+<meta name="author" content="David Li" />
+<meta name="generator" content="LaTeX lwarp package" />
+<meta name="description" content="A list of cheatsheets some diagrams" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<!--[if lt IE 9]>
+<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+<title>ELEC 300 Notes — Testing Lwarp</title>
+<link rel="stylesheet" href="prism.css" type="text/css">
+<script src="prism.js" type="text/javascript"> </script>
+<link rel="stylesheet" type="text/css" href="lwarp.css" />
+
+<!-- https://groups.google.com/forum/#!topic/
+                               mathjax-users/jUtewUcE2bY -->
+<script type="text/x-mathjax-config">
+MathJax.Hub.Register.StartupHook("TeX AMSmath Ready",function () {
+    var seteqsectionDefault = {name: "", num: 0};
+    var seteqsections = {}, seteqsection = seteqsectionDefault;
+    var TEX = MathJax.InputJax.TeX, PARSE = TEX.Parse;
+    var AMS = MathJax.Extension["TeX/AMSmath"];
+    TEX.Definitions.Add({
+    macros: {
+        seteqsection: "mySection",
+        seteqnumber: "mySetEqNumber"
+    }
+    });
+
+    PARSE.Augment({
+    mySection: function (name) {
+        seteqsection.num = AMS.number;
+        var n = this.GetArgument(name);
+        if (n === "") {
+        seteqsection = seteqsectionDefault;
+        } else {
+        if (!seteqsections["_"+n])
+            seteqsections["_"+n] = {name:n, num:0};
+        seteqsection = seteqsections["_"+n];
+        }
+        AMS.number = seteqsection.num;
+    },
+    mySetEqNumber: function (name) {
+        var n = this.GetArgument(name);
+        if (!n || !n.match(/^ *[0-9]+ *$/))
+            n = ""; else n = parseInt(n)-1;
+        <!-- $ syntax highlighting -->
+        if (n === "" || n < 1)
+            TEX.Error
+            ("Argument to "+name+" should be a positive integer");
+        AMS.number = n;
+    }
+    });
+    MathJax.Hub.Config({
+    TeX: {
+        equationNumbers: {
+        formatTag: function (n)
+            {return "("+(seteqsection.name+"."+n).replace(/^\./,"")+")"},
+        formatID: function (n) {
+            n = (seteqsection.name+'.'+n).replace
+                 (/[:"'<>&]/g,"").replace(/^\./,"");
+            return 'mjx-eqn-' + n;
+        }
+        }
+    }
+    });
+});
+</script>
+
+<!-- http://docs.mathjax.org/en/latest/options/ThirdParty.html -->
+<script type="text/x-mathjax-config">
+  MathJax.Ajax.config.path["Contrib"] =
+    "https://cdn.mathjax.org/mathjax/contrib";
+</script>
+
+<!-- https://github.com/burnpanck/MathJax-siunitx -->
+
+<script type="text/x-mathjax-config">
+ MathJax.Hub.Config({
+   extensions: ["tex2jax.js","[siunitx]/siunitx.js"],
+   jax: ["input/TeX","output/HTML-CSS"],
+   tex2jax: {inlineMath: [["$","$"],["\\(","\\)"]]},
+   TeX: {extensions: ["AMSmath.js","AMSsymbols.js", "sinuitx.js"]}
+ });
+ MathJax.Ajax.config.path['siunitx'] = 'http://rawgit.com/burnpanck/MathJax-siunitx/master/';
+ </script>
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    TeX: {
+    equationNumbers: {
+        autoNumber: "AMS"
+    }
+    }
+});
+</script>
+
+<!-- Alternative CDN provider: -->
+<script type="text/javascript" async
+src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS_HTML-full">
+</script>
+
+<!-- No longer supported after April 30, 2017: -->
+<!--
+<script
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML-full">
+</script>
+-->
+
+</head>
+<body>
+
+
+<nav class="topnavigation"><a href="index.html" class="linkhome"
+>Home</a></nav>
+
+<header>
+
+</header>
+
+<h1>ELEC 300 Notes</h1>
+<nav class="sidetoc">
+
+<div class="sidetoctitle">
+
+<p>Contents</p>
+
+
+</div>
+
+<div class="sidetoccontents">
+
+<p><a href="index.html" class="linkhome"
+>Home</a></p>
+
+
+<p></p>
+
+
+</div>
+
+</nav>
+
+<section class="textbody">
+
+<h3 id="autosec-131"> <span class="sectionnumber">6&#x2001;</span>Testing Lwarp</h3><a id="autopage-131"></a>
+
+<figure id="autoid-33" class="figure">
+
+<p><span id="lateximage28" class="lateximagesource">
+<!--
+             R1   φ1              R3
+         +        −           +        −
+             F1                   F3
+                       +                   +
+
+NI   +       φ2   F2       R2     φ3   Fg      Rg
+     −
+
+                       − φ2                − φ3
+                                  F4
+                              −        +
+                                  R4
+-->
+<img src="lateximages\lateximage-28.svg" alt="image" style="" class="lateximage"></span></p>
+
+
+<figcaption>
+
+<p><a id="autoid-33"></a>Figure 6.1:&nbsp;Electric Circuits</p>
+
+
+
+</figcaption>
+
+</figure>
+
+<figure id="autoid-34" class="figure">
+
+<p><span id="lateximage29" class="lateximagesource">
+<!--
+Zref               I    k    Z
+       KD s + KP
+   −                   ms2
+-->
+<img src="lateximages\lateximage-29.svg" alt="image" style="" class="lateximage"></span></p>
+
+
+<figcaption>
+
+<p><a id="autoid-34"></a>Figure 6.2:&nbsp;Proportional-derivative control.</p>
+
+
+
+</figcaption>
+
+</figure>
+<h4 id="autosec-136"> <span class="sectionnumber">6.1&#x2001;</span>Testing out images</h4><a id="autopage-136"></a>
+
+<figure id="autoid-35" class="figure">
+
+<p><span id="lateximage30" class="lateximagesource">
+<!--
+Zref   s+pc               I    k    Z
+              KD s + KP
+   −   s+zc                   ms2
+-->
+<img src="lateximages\lateximage-30.svg" alt="image" style="" class="lateximage"></span></p>
+
+
+<figcaption>
+
+<p><a id="autoid-35"></a>Figure 6.3:&nbsp;Lag compensation in series with PD control.</p>
+
+
+
+</figcaption>
+
+</figure>
+
+<figcaption>
+
+
+</figcaption>
+<pre><code class = "language-matlab">
+          % M - file : prob7_17 .m
+          % M - file create a plot of the i n d u c e d torque power
+          % c o n v e r t e d power out and e f f i c i e n c y of the i n d u c t i o n
+          % motor of P r o b l e m 7 -14 as a f u n c t i o n of slip .
+          % First , i n i t i a l i z e the values needed in this p r o g r a m .
+          r1 = 0.075; % Stator r e s i s t a n c e
+          x1 = 0.170; % Stator r e a c t a n c e
+          r2 = 0.065; % Rotor r e s i s t a n c e
+          x2 = 0.170; % Rotor r e a c t a n c e
+          xm = 7.2; % M a g n e t i z a t i o n branch r e a c t a n c e
+           v_phase = 440 / sqrt (3); % Phase voltage
+           n_sync = 3000; % Synchronous speed ( r / min )
+           w_sync = 314.2; % Synchronous speed ( rad / s )
+           p_mech = 1000; % Mechanical losses (W)
+           p_core = 1100; % Core losses (W)
+           p_misc = 150; % Miscellaneous losses (W)
+          % Calculate the Thevenin voltage and impedance from Equations
+          % 7 -41 a and 7 -43.
+           v_th = v _ p h a s e * ( xm / sqrt ( r1 ^2 + ( x1 + xm )^2) );
+           z_th = (( j * xm ) * ( r1 + j * x1 )) / ( r1 + j *( x1 + xm ));
+           r_th = real ( z_th );
+           x_th = imag ( z_th );
+</code>
+</pre>
+
+<figcaption>
+
+</figcaption>
+
+<p>Another test</p>
+
+
+<figure id="autoid-36" class="figure">
+
+<p><span id="lateximage31" class="lateximagesource">
+<!--
+Zref   s+pc               I    k    Z
+              KD s + KP
+   −   s+zc                   ms2
+-->
+<img src="lateximages\lateximage-31.svg" alt="image" style="" class="lateximage"></span></p>
+
+
+<figcaption>
+
+<p><a id="autoid-36"></a>Figure 6.4:&nbsp;This will be a good image</p>
+
+
+
+</figcaption>
+
+</figure>
+
+<p>The references used for this course are listed in the next page.<br />
+</p>
+
+
+<p><span id="lateximage32" class="lateximagesource">
+<!--
+Matlab Output 6.1:
+
+</p>
+
+<pre><code class = "language-matlab">
+       % M-file: prob7_17 .m
+       % M-file create a plot of the induced torque power
+       % converted power out and efficiency of the induction
+       % motor of Problem 7-14 as a function of slip.
+       % First , initialize the values needed in this
+          program.
+       r1 = 0.075; % Stator resistance
+       x1 = 0.170; % Stator reactance
+       r2 = 0.065; % Rotor resistance
+       x2 = 0.170; % Rotor reactance
+       xm = 7.2; % Magnetization branch reactance
+       v_phase = 440 / sqrt (3); % Phase voltage
+       n_sync = 3000; % Synchronous speed (r/min)
+       w_sync = 314.2; % Synchronous speed (rad/s)
+       p_mech = 1000; % Mechanical losses (W)
+       p_core = 1100; % Core losses (W)
+       p_misc = 150; % Miscellaneous losses (W)
+       % Calculate the Thevenin voltage and impedance from
+          Equations
+       % 7-41a and 7 -43.
+       v_th = v_phase * ( xm / sqrt(r1^2 + (x1 + xm)^2) );
+       z_th = ((j*xm) * (r1 + j*x1)) / (r1 + j*(x1 + xm));
+       r_th = real(z_th);
+       x_th = imag(z_th);
+</code>
+</pre>
+
+-->
+<img src="lateximages\lateximage-32.svg" alt="image" style="" class="lateximage"></span></p>
+
+
+<ul style="list-style-type:none">
+<div class="amsthmbodyplain">
+<p>    <span class="amsthmnameplain">Theorem</span><span class="amsthmnumberplain"> <span
+class="textup">6.1.1</span></span>.&nbsp; Testing out the theorems </p>
+
+
+</div>
+
+</ul>
+<pre><code class = "language-latex">
+pdflatex file
+pdflatex file_html.tex
+lwarpmk limages
+lwarpmk html
+lwarpmk pdftohtml
+</code>
+</pre>
+
+
+<ul style="list-style-type:none">
+<div class="amsthmbodyremark">
+<p>    <span class="amsthmnameremark">Example</span><span class="amsthmnumberremark"> <span
+class="textup">6.1.1</span></span>.&nbsp; Testing out the examples</p>
+pdflatex
+<pre     file
+     class="verbatim" >
+pdflatex file_html.tex
+lwarpmk limages
+lwarpmk html
+lwarpmk pdftohtml
+</code>
+</pre>
+
+
+</div>
+
+</ul>
+
+<ul style="list-style-type:none">
+<div class="amsthmbodyplain">
+<p>    <span class="amsthmnameplain">Theorem</span><span class="amsthmnumberplain"> <span
+class="textup">6.1.2</span></span>.&nbsp; Let \(f\) be a function whose derivative exists in every point, then \(f\) is a
+continuous function. </p>
+
+
+</div>
+
+</ul>
+
+<ul style="list-style-type:none">
+<div class="amsthmbodyplain">
+<p>     <span class="amsthmnameplain">Theorem</span><span class="amsthmnumberplain"> <span
+class="textup">6.1.3</span></span><span class="amsthmnoteplain"> (Pythagorean theorem)</span>.&nbsp; <a
+id="pythagorean"></a> This is a theorema about right triangles and can be summarised in the next equation </p>
+
+
+<p>\[ x^2 + y^2 = z^2 \]</p>
+
+
+</div>
+
+</ul>
+
+<p>And a consequence of theorem <a href="Testing-Lwarp.html#pythagorean">6.1.3</a> is the statement in the next
+corollary.</p>
+
+
+<ul style="list-style-type:none">
+<div class="amsthmbodyplain">
+<p>    <span class="amsthmnameplain">Corollary</span><span class="amsthmnumberplain"> <span
+class="textup">6.1.3.1</span></span>.&nbsp; There’s no right rectangle whose sides measure 3cm, 4cm, and 6cm. </p>
+
+
+</div>
+
+</ul>
+
+<p>You can reference theorems such as <a href="Testing-Lwarp.html#pythagorean">6.1.3</a> when a label is assigned.</p>
+
+
+<ul style="list-style-type:none">
+<div class="amsthmbodydefinition">
+<p>     <span class="amsthmnamedefinition">Lemma</span><span class="amsthmnumberdefinition"> <span
+class="textup">6.1.4</span></span>.&nbsp; Given two line segments whose lengths are \(a\) and \(b\) respectively there
+is a real number \(r\) such that \(b=ra\). </p>
+
+
+</div>
+
+</ul>
+
+</section>
+
+<footer>
+
+</footer>
+
+<nav class="botnavigation"><a href="index.html" class="linkhome"
+>Home</a></nav>
+
+</body>
+</html>

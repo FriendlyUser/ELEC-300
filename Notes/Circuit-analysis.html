@@ -1,0 +1,370 @@
+
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<meta charset="UTF-8" />
+<meta name="author" content="David Li" />
+<meta name="generator" content="LaTeX lwarp package" />
+<meta name="description" content="A list of cheatsheets some diagrams" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<!--[if lt IE 9]>
+<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+<title>ELEC 300 Notes — Circuit analysis</title>
+<link rel="stylesheet" type="text/css" href="lwarp.css" />
+
+<!-- https://groups.google.com/forum/#!topic/
+                               mathjax-users/jUtewUcE2bY -->
+<script type="text/x-mathjax-config">
+MathJax.Hub.Register.StartupHook("TeX AMSmath Ready",function () {
+    var seteqsectionDefault = {name: "", num: 0};
+    var seteqsections = {}, seteqsection = seteqsectionDefault;
+    var TEX = MathJax.InputJax.TeX, PARSE = TEX.Parse;
+    var AMS = MathJax.Extension["TeX/AMSmath"];
+    TEX.Definitions.Add({
+    macros: {
+        seteqsection: "mySection",
+        seteqnumber: "mySetEqNumber"
+    }
+    });
+
+    PARSE.Augment({
+    mySection: function (name) {
+        seteqsection.num = AMS.number;
+        var n = this.GetArgument(name);
+        if (n === "") {
+        seteqsection = seteqsectionDefault;
+        } else {
+        if (!seteqsections["_"+n])
+            seteqsections["_"+n] = {name:n, num:0};
+        seteqsection = seteqsections["_"+n];
+        }
+        AMS.number = seteqsection.num;
+    },
+    mySetEqNumber: function (name) {
+        var n = this.GetArgument(name);
+        if (!n || !n.match(/^ *[0-9]+ *$/))
+            n = ""; else n = parseInt(n)-1;
+        <!-- $ syntax highlighting -->
+        if (n === "" || n < 1)
+            TEX.Error
+            ("Argument to "+name+" should be a positive integer");
+        AMS.number = n;
+    }
+    });
+    MathJax.Hub.Config({
+    TeX: {
+        equationNumbers: {
+        formatTag: function (n)
+            {return "("+(seteqsection.name+"."+n).replace(/^\./,"")+")"},
+        formatID: function (n) {
+            n = (seteqsection.name+'.'+n).replace
+                 (/[:"'<>&]/g,"").replace(/^\./,"");
+            return 'mjx-eqn-' + n;
+        }
+        }
+    }
+    });
+});
+</script>
+
+<!-- http://docs.mathjax.org/en/latest/options/ThirdParty.html -->
+<script type="text/x-mathjax-config">
+  MathJax.Ajax.config.path["Contrib"] =
+    "https://cdn.mathjax.org/mathjax/contrib";
+</script>
+
+<!-- https://github.com/burnpanck/MathJax-siunitx -->
+
+<script type="text/x-mathjax-config">
+ MathJax.Hub.Config({
+   extensions: ["tex2jax.js","[siunitx]/siunitx.js"],
+   jax: ["input/TeX","output/HTML-CSS"],
+   tex2jax: {inlineMath: [["$","$"],["\\(","\\)"]]},
+   TeX: {extensions: ["AMSmath.js","AMSsymbols.js", "sinuitx.js"]}
+ });
+ MathJax.Ajax.config.path['siunitx'] = 'http://rawgit.com/burnpanck/MathJax-siunitx/master/';
+ </script>
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    TeX: {
+    equationNumbers: {
+        autoNumber: "AMS"
+    }
+    }
+});
+</script>
+
+<!-- Alternative CDN provider: -->
+<script type="text/javascript" async
+src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS_HTML-full">
+</script>
+
+<!-- No longer supported after April 30, 2017: -->
+<!--
+<script
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML-full">
+</script>
+-->
+
+</head>
+<body>
+
+
+<nav class="topnavigation"><a href="index.html" class="linkhome"
+>Home</a></nav>
+
+<header>
+
+</header>
+
+<h1>ELEC 300 Notes</h1>
+<nav class="sidetoc">
+
+<div class="sidetoctitle">
+
+<p>Contents</p>
+
+
+</div>
+
+<div class="sidetoccontents">
+
+<p><a href="index.html" class="linkhome"
+>Home</a></p>
+
+
+<p></p>
+
+
+</div>
+
+</nav>
+
+<section class="textbody">
+
+<h3 id="autosec-49"> <span class="sectionnumber">4&#x2001;</span>Circuit analysis</h3><a id="autopage-49"></a>
+<h4 id="autosec-50"> <span class="sectionnumber">4.1&#x2001;</span>Thevenin equivalent circuits</h4><a
+id="autopage-50"></a>
+
+<p>Say we have an capacitor circuit to analyze:</p>
+
+
+<figure id="autoid-6" class="figure">
+
+<p><span id="lateximage1" class="lateximagesource">
+<!--
+         R1        R2
+
+
+                             +
+     −
+VS   +        R3        vC       C
+
+                             −
+-->
+<img src="lateximages\lateximage-1.svg" alt="image" style="" class="lateximage"></span></p>
+
+
+<figcaption>
+
+<p><a id="autoid-6"></a>Figure 4.1:&nbsp;Capacitor Circuit</p>
+
+
+
+</figcaption>
+
+</figure>
+
+<p>Since this is a linear network, we can simplify it by calculating its <em>Thevenin equivalent</em>. Consider the network
+as seen from the port where the capacitor is attached:</p>
+
+
+<figure id="autoid-7" class="figure">
+
+<p><span id="lateximage2" class="lateximagesource">
+<!--
+         R1        R2
+
+                        −
+
+     −
+VS   +        R3        VT H
+
+
+                        +
+-->
+<img src="lateximages\lateximage-2.svg" alt="image" style="" class="lateximage"></span></p>
+
+
+<figcaption>
+
+<p><a id="autoid-7"></a>Figure 4.2:&nbsp;Thevenin Equivalent</p>
+
+
+
+</figcaption>
+
+</figure>
+
+<p>\(V_{TH}\), the open circuit voltage, will be given by the voltage divider formed by \(R_3\) and \(R_1\):</p>
+
+
+<p>\[ V_{TH} = \frac {R_3}{R_1 + R_3} \cdot V_S \]</p>
+
+
+<p>Since no current flows at the port (for the <em>open circuit</em> voltage!), \(R_2\) doesn’t contribute at all.</p>
+
+
+<p>We also want to measure the resistance “looking in” to this port; this will be the Thevenin resistance \(R_{TH}\). To
+do this, we turn off all <em>independant</em> voltage and current sources, by replacing all current sources with
+<em>opens</em> and all voltage sources with <em>short circuits</em>.<br />
+Leave dependant sources in the circuit!</p>
+
+
+<figure id="autoid-8" class="figure">
+
+<p><span id="lateximage3" class="lateximagesource">
+<!--
+R1        R2
+
+
+
+
+     R3
+-->
+<img src="lateximages\lateximage-3.svg" alt="image" style="" class="lateximage"></span></p>
+
+
+<figcaption>
+
+<p><a id="autoid-8"></a>Figure 4.3:&nbsp;Thevenin Equivalent II</p>
+
+
+
+</figcaption>
+
+</figure>
+
+<p>\[ R_{TH} = R_2 + (R_1 || R_3) = R_2 + \frac {R_1 \cdot R_3}{R_1 + R_3} \]</p>
+
+
+<p>Now that we know the Thevenin voltage \(V_{TH}\) and the Thevenin resistance \(R_{TH}\), we can replace the
+circuit with a voltage source of voltage \(V_{TH}\) volts in series with a resistor of value \(R_{TH}\) ohm, and place the
+capacitor back into the circuit:</p>
+
+
+<figure id="autoid-9" class="figure">
+
+<p><span id="lateximage4" class="lateximagesource">
+<!--
+           RT H
+
+
+                       +
+       −
+VT H   +          vC       C
+
+                       −
+-->
+<img src="lateximages\lateximage-4.svg" alt="image" style="" class="lateximage"></span></p>
+
+
+<figcaption>
+
+<p><a id="autoid-9"></a>Figure 4.4:&nbsp;Thevenin Equivalent III</p>
+
+
+
+</figcaption>
+
+</figure>
+
+<p>Our previous circuit has now turned into a simple RC circuit, which is easier to analyze. See the chapter on RC
+circuits.<br />
+</p>
+
+
+<p>As a side note, another way of measuring the Thevenin resistance is to short circuit the output node, calculate/measure
+the short-circuit current (with all sources left intact, of course), and calculate \(R_{TH}\) as \(\frac
+{V_{TH}}{I_{SC}}\).<br />
+</p>
+
+
+<p>In summary:</p>
+
+
+<p>\(\bullet \) Calculate/measure the open circuit voltage \(V_{TH}\) at the port<br />
+\(\bullet \) Turn off all independent sources (make short circuits of voltage sources, and open circuits of current sources),
+but leave dependant sources intact<br />
+\(\bullet \) Calculate/measure the resistance \(R_{TH}\) at the port terminal pair<br />
+\(\bullet \) Replace the original circuit with a series circuit of a voltage source (voltage \(V_{TH}\) volts), a resistor
+(resistance \(R_{TH}\) ohm) and the element you want to analyze.</p>
+<h4 id="autosec-59"> <span class="sectionnumber">4.2&#x2001;</span>Norton equivalent circuits</h4><a
+id="autopage-59"></a>
+
+<p>Nortan equivalent circuits are very similar to Thevenin equivalents, but use a <em>current source</em> in
+<em>parallel</em> with a resistor rather than a <em>voltage source</em> in <em>series</em> with a resistor.</p>
+
+
+<p>To convert a circuit to its Norton equivalent:</p>
+
+
+<p>\(\bullet \) Calcurate/measure the <em>short circuit current</em>, i.e. the current that would flow through the output
+port if we were to short-circuit it. The result is the Norton current \(I_N\).<br />
+\(\bullet \) Turn off all independent sources (make short circuits of voltage sources, and open circuits of current sources),
+but leave dependant sources intact.<br />
+\(\bullet \) Calculate/measure the resistance at the port terminal pair; the result is the Norton resistance \(R_N\).<br />
+\(\bullet \) Replace the original circuit with a parallel circuit of a current source (current \(I_N\) amperes), a resistor
+(resistance \(R_N\) ohm) and the element you want to analyze.<br />
+</p>
+
+
+<figure id="autoid-10" class="figure">
+
+<p><span id="lateximage5" class="lateximagesource">
+<!--
+IN             +
+
+     RN   vC       C
+
+               −
+-->
+<img src="lateximages\lateximage-5.svg" alt="image" style="" class="lateximage"></span></p>
+
+
+<figcaption>
+
+<p><a id="autoid-10"></a>Figure 4.5:&nbsp;Norton Circuit</p>
+
+
+
+</figcaption>
+
+</figure>
+
+<p>Note that since the method for calculating the equivalent resistance is identical for the Thevenin and Norton methods,
+\(R_N = R_{TH}\). It is easy to convert between one and the other:</p>
+
+
+<p>\[ R_N = R_{TH} \]</p>
+
+
+<p>\[ I_N = \frac {V_{TH}}{R_{TH}} \]</p>
+
+
+<p>\[ V_{TH} = I_N \cdot R_N \]</p>
+
+
+</section>
+
+<footer>
+
+</footer>
+
+<nav class="botnavigation"><a href="index.html" class="linkhome"
+>Home</a></nav>
+
+</body>
+</html>

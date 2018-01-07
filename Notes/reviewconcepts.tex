@@ -1,0 +1,270 @@
+\section{Components in series and parallel}
+
+Series resistances add:
+
+\[ R_s = R_1 + R_2 + R_3 + \cdots \]
+
+Parallel resistances diminish:
+
+\[ R_p = \frac{1}{ \frac{1}{R_1} + \frac{1}{R_2} + \frac{1}{R_3} + \cdots} \]
+
+Impedances behave like resistances.\\
+
+Series capacitances diminish:
+
+\[ C_s = \frac{1}{ \frac{1}{C_1} + \frac{1}{C_2} + \frac{1}{C_3} + \cdots} \]
+
+Parallel capacitances add:
+
+\[ C_p = C_1 + C_2 + C_3 + \cdots \]
+
+Series inductances add:
+
+\[ L_s = L_1 + L_2 + L_3 + \cdots \]
+
+Parallel inductances diminish:
+
+\[ L_p = \frac{1}{ \frac{1}{L_1} + \frac{1}{L_2} + \frac{1}{L_3} + \cdots} \]
+
+For the special case of two components of the diminshing type (x being a dummy variable):
+
+\[ \frac{1}{ \frac{1}{x_1} + \frac{1}{x_2} } = \frac{x_1 \cdot x_2}{x_1 + x_2} \]
+
+\section{State devices / energy storage devices}
+This section assumes time-invariant devices, i.e. capacitance/inductance is a fixed value, and not a function of time.
+
+\subsection{Capacitors}
+
+The current through a capacitor is a function of the \emph{rate of change} of voltage:
+
+\[ i(t) = C \frac{dv(t)}{dt} \]
+
+To find the voltage over a capacitor, we need to know its full history:
+
+\[ v(t) = \frac{1}{C} \int_{-\infty}^{t} i(t) dt \]
+
+... or we can simply do it by knowing the current through it between $t_1$ and $t_2$, plus the initial voltage:
+
+\[ v(t_2) = \frac{1}{C} \int_{t_1}^{t_2} i(t) dt + v(t_1) \]
+
+The energy stored in a capacitor is:
+
+\[ E = \frac{1}{2} C v^2 \]
+
+\subsection{Inductors}
+
+The voltage over an inductor is a function of the \emph{rate of change} of current:
+
+\[ v(t) = L \frac{di(t)}{dt} \]
+
+To find the current through an inductor, we need to know its full history:
+
+\[ i(t) = \frac{1}{L} \int_{-\infty}^t v(t) dt \]
+
+... or we can simply do it by knowing the voltage over it between $t_1$ and $t_2$, plus the initial current through it:
+
+\[ i(t_2) = \frac{1}{L} \int_{t_1}^{t_2} v(t) dt + i(t_1) \]
+
+The energy stored in an inductor is:
+
+\[ E = \frac{1}{2} L i^2 \]
+
+\section{First order circuits}
+
+General equation for an increasing/decaying exponential in a RC/RL circuit:
+
+\[ v = V_S + (V_0 - V_S) e^{-t/RC} \]
+\[ i = \frac{V_S}{R} + (i_0 - \frac{V_S}{R}) e^{-Rt/L} \]
+
+where v = the voltage across the capacitor. For RL circuits, replace $V_S$ by the maximum current and $V_0$ by the initial current through the inductor. Above is for a thevenin equivalent circuit.\\
+
+ZIR / Zero Input Response, same as above with $V_S = 0$:
+
+\[ V_0 e^{-t/RC} \]
+
+ZSR / Zero State Response, same as above with $V_0 = 0$:
+
+\[ V_S(1 - e^{-t/RC}) \]
+
+\newpage
+
+\section{Second order circuits, impedance, filters}
+
+Canonical form of the characteristic equation for second-order circuits; use this to match up the values of $\alpha$ and $\omega_0$ for a circuit:
+
+\[ s^2 + 2\alpha s + {\omega_0}^2 = 0 \]
+
+\subsection{For all LC and RLC circuits:}
+
+\[ \text{Natural/undamped resonant radian frequency: } \omega_0 \text{ (rad/s)} \]
+\[ \text{Damping factor: } \alpha \text{ (rad/s)} \]
+
+Note that zeta ($\zeta$) is used as a damping factor in many texts; it is defined as
+\[ \zeta = \frac{\alpha}{\omega_0} \text{ (dimensionless)} \]
+
+The bandwidth $\Delta \omega$, i.e. the \emph{width} of the frequency \emph{band} that is above $\displaystyle \frac{1}{\sqrt{2}}$ times the input amplitude, is given by
+
+\[ \Delta \omega = 2 \alpha \text{ (rad/s) (measured at } \frac{1}{\sqrt{2}} \text{ points)} \]
+
+\[ \text{Quality factor: } Q = \frac{\omega_0}{2\alpha} \text{ (dimensionless)} \]
+
+RLC circuits can be underdamped, overdamped, or critically damped.
+
+\[ \text{Underdamped: } \omega_0 > \alpha \text{ or, equivalently, } Q > \frac{1}{2} \text { or, equivalently, } \zeta < 1 \]
+\[ \text{Overdamped: } \omega_0 < \alpha \text{ or, equivalently, } Q < \frac{1}{2} \text { or, equivalently, } \zeta > 1 \]
+\[ \text{Critically damped: } \omega_0 = \alpha \text{ or, equivalently, } Q = \frac{1}{2} \text { or, equivalently, } \zeta = 1 \]
+
+When they are \emph{underdamped}, the \emph{damped resonant frequency} $\omega_d$ is given by
+\[ \omega_d = \sqrt{{\omega_0}^2 - \alpha^2} \]
+The naming here might be confusing; the \emph{damped} frequency is used for \emph{underdamped} systems. The reason is that the \emph{undamped} frequency is used for systems with no damping whatsoever, i.e. LC circuits with no resistor.\\
+Underdamped RLC circuits are the only kind that oscillate, so the natural frequency is less interesting for overdamped circuits.
+
+\subsection{Series RLC circuits}
+
+\[ \omega_0 = \frac{1}{\sqrt{LC}} \text{ rad/s} \]
+\[ f_0 = \frac{1}{2\pi \sqrt{LC}} \text { Hz} \]
+\[ \alpha = \frac{R}{2L} \text{ rad/s} \]
+\[ \Delta \omega = 2\alpha = \frac{R}{L} \text { rad/s} \]
+\[ \text{Period: } \frac{2\pi}{\omega_0} = 2\pi \sqrt{LC} \text { seconds} \]
+\[ Q = \frac{\omega_0}{2\alpha} = \frac{L}{R\sqrt{LC}} \text { (dimensionless)} \]
+
+\subsection{Parallel RLC circuits}
+
+\[ \omega_0 = \frac{1}{\sqrt{LC}} \text{ rad/s} \]
+\[ f_0 = \frac{1}{2\pi \sqrt{LC}} \text { Hz} \]
+\[ \alpha = \frac{1}{2RC} \text{ rad/s} \]
+\[ \Delta \omega = 2\alpha = \frac{1}{RC} \text { rad/s} \]
+\[ \text{Period: } \frac{2\pi}{\omega_0} = 2\pi \sqrt{LC} \text { seconds} \]
+\[ Q = \frac{\omega_0}{2\alpha} = \frac{RC}{\sqrt{LC}} \text { (dimensionless)} \]
+
+\subsection{Frequency- to time-domain conversion}
+You can find the time-domain behavior of a circuit to sinusoidal input from nothing but a complex amplitude of the form $V_x$:
+\[ v_X(t) = |V_x| \cos{(\omega t + \angle V_x)} \]
+See below for information about how to calculate the magnitude $|z|$ and the angle $\angle z$ of a complex number.
+
+\subsection{Complex algebra}
+A few properties of complex numbers that are necessary to know:
+
+\[ |a + jb| = \sqrt{a^2 + b^2} \]
+\[ \angle (a + jb) = \arctan{(\frac{b}{a})} \text{ or, preferably, } \text{atan2}(a, b) \]
+
+\[ |a + j0| = a \text { if $a > 0$; otherwise, the magnitude is just the absolute value } |a| \]
+\[ |0 + jb| = b \]
+\[ |0 - jb| = b \]
+
+\[ \angle (a + j0) = 0 \]
+\[ \angle (0 + jb) = \frac{\pi}{2} \]
+\[ \angle (0 - jb) = -\frac{\pi}{2} \]
+
+\[ |z_1 \cdot z_2| = |z_1| \cdot |z_2| \]
+\[ \left| \frac{z_1}{z_2} \right| = \frac{|z_1|}{|z_2|} \]
+
+\[ \angle (z_1 \cdot z_2) = \angle z_1 + \angle z_2 \]
+\[ \angle \left( \frac{z_1}{z_2} \right) = \angle z_1 - \angle z_2 \]
+
+\subsection{Impedances}
+
+\[ \text{Resistor: } Z_R = R \]
+\[ \text{Capacitor: } Z_C = \frac{1}{j\omega C} \]
+\[ \text{Inductor: } Z_L = j\omega L \]
+
+%%%%%%%%%%%%%%%%%%%%%%%%
+%%% Circuit analysis %%%
+%%%%%%%%%%%%%%%%%%%%%%%%
+
+\chapter{Circuit analysis}
+
+\section{Thevenin equivalent circuits}
+
+Say we have an capacitor circuit to analyze:
+
+\begin{figure} \begin{lateximage} \begin{circuitikz}[scale=1.2]
+	\draw (0,0) node [ground] {} to [V=$V_S$] (0,3)
+	to [R=$R_1$]  (3,3)
+	to [R=$R_2$]  (6,3)
+	to [C=$C$, v=$v_C$]   (6,0);
+	
+	\draw (3,3)                  to [R=$R_3$]  (3,0);
+	\draw (0,0)                  to           (6,0);
+\end{circuitikz} \end{lateximage} \caption{Capacitor Circuit} \end{figure}
+
+Since this is a linear network, we can simplify it by calculating its \emph{Thevenin equivalent}. Consider the network as seen from the port where the capacitor is attached:
+
+\begin{figure} \begin{lateximage} \begin{circuitikz}[scale=1.2]
+	\draw (0,0) node [ground] {} to [V=$V_S$] (0,3)
+	to [R=$R_1$]  (3,3)
+	to [R=$R_2$, -o]  (6,3);
+	
+	\draw (3,3)                  to [R=$R_3$]  (3,0);
+	\draw (0,0)                  to [short, -o]         (6,0);
+	\draw (6,0)                  to [open, v>=$V_{TH}$] (6,3);
+\end{circuitikz} \end{lateximage} \caption{Thevenin Equivalent} \end{figure}
+
+$V_{TH}$, the open circuit voltage, will be given by the voltage divider formed by $R_3$ and $R_1$:
+
+\[ V_{TH} = \frac{R_3}{R_1 + R_3} \cdot V_S \]
+
+Since no current flows at the port (for the \emph{open circuit} voltage!), $R_2$ doesn't contribute at all.
+
+We also want to measure the resistance ``looking in'' to this port; this will be the Thevenin resistance $R_{TH}$. To do this, we turn off all \emph{independant} voltage and current sources, by replacing all current sources with \emph{opens} and all voltage sources with \emph{short circuits}.\\
+Leave dependant sources in the circuit!
+
+\begin{figure} \begin{lateximage} \begin{circuitikz}[scale=1.2]
+	\draw (0,0)                  to [short] (0,3)
+	to [R=$R_1$]  (3,3)
+	to [R=$R_2$, -o]  (6,3);
+	
+	\draw (3,3)                  to [R=$R_3$]  (3,0);
+	\draw (0,0)                  to [short, -o]         (6,0);
+	\draw (6,0)                  to [open] (6,3);
+\end{circuitikz} \end{lateximage} \caption{Thevenin Equivalent II} \end{figure}
+
+\[ R_{TH} = R_2 + (R_1 || R_3) = R_2 + \frac{R_1 \cdot R_3}{R_1 + R_3} \]
+
+Now that we know the Thevenin voltage $V_{TH}$ and the Thevenin resistance $R_{TH}$, we can replace the circuit with a voltage source of voltage $V_{TH}$ volts in series with a resistor of value $R_{TH}$ ohm, and place the capacitor back into the circuit:
+
+\begin{figure} \begin{lateximage} \begin{circuitikz}[scale=1.2]
+	\draw (0,0) node [ground] {} to [V=$V_{TH}$] (0,3)
+	to [R=$R_{TH}$] (3,3)
+	to [C=$C$, v=$v_C$]      (3,0);
+	\draw (0,0)                  to              (3,0);
+\end{circuitikz} \end{lateximage} \caption{Thevenin Equivalent III} \end{figure}
+
+Our previous circuit has now turned into a simple RC circuit, which is easier to analyze. See the chapter on RC circuits.\\
+
+As a side note, another way of measuring the Thevenin resistance is to short circuit the output node, calculate/measure the short-circuit current (with all sources left intact, of course), and calculate $R_{TH}$ as $\frac{V_{TH}}{I_{SC}}$.\\
+
+In summary:
+
+$\bullet$ Calculate/measure the open circuit voltage $V_{TH}$ at the port\\
+$\bullet$ Turn off all independent sources (make short circuits of voltage sources, and open circuits of current sources), but leave dependant sources intact\\
+$\bullet$ Calculate/measure the resistance $R_{TH}$ at the port terminal pair\\
+$\bullet$ Replace the original circuit with a series circuit of a voltage source (voltage $V_{TH}$ volts), a resistor (resistance $R_{TH}$ ohm) and the element you want to analyze.
+
+\newpage
+
+\section{Norton equivalent circuits}
+Nortan equivalent circuits are very similar to Thevenin equivalents, but use a \emph{current source} in \emph{parallel} with a resistor rather than a \emph{voltage source} in \emph{series} with a resistor.
+
+To convert a circuit to its Norton equivalent:
+
+$\bullet$ Calcurate/measure the \emph{short circuit current}, i.e. the current that would flow through the output port if we were to short-circuit it. The result is the Norton current $I_N$.\\
+$\bullet$ Turn off all independent sources (make short circuits of voltage sources, and open circuits of current sources), but leave dependant sources intact.\\
+$\bullet$ Calculate/measure the resistance at the port terminal pair; the result is the Norton resistance $R_N$.\\
+$\bullet$ Replace the original circuit with a parallel circuit of a current source (current $I_N$ amperes), a resistor (resistance $R_N$ ohm) and the element you want to analyze.\\
+
+\begin{figure} \begin{lateximage} \begin{circuitikz}[scale=1.2]
+	\draw (0,0) node [ground] {} to [I=$I_N$] (0,3);
+	\draw (0,3) to (3,3);
+	\draw (3,3) to [R=$R_N$] (3,0);
+	\draw (6,3) to [C=$C$, v=$v_C$] (6,0);
+	\draw (6,0) to (0,0);
+	\draw (6,3) to (3,3);
+\end{circuitikz} \end{lateximage} \caption{Norton Circuit} \end{figure}
+
+Note that since the method for calculating the equivalent resistance is identical for the Thevenin and Norton methods, $R_N = R_{TH}$.
+It is easy to convert between one and the other:
+
+\[ R_N = R_{TH} \]
+\[ I_N = \frac{V_{TH}}{R_{TH}} \]
+\[ V_{TH} = I_N \cdot R_N \]

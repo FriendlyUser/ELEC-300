@@ -1,0 +1,406 @@
+
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<meta charset="UTF-8" />
+<meta name="author" content="David Li" />
+<meta name="generator" content="LaTeX lwarp package" />
+<meta name="description" content="A list of cheatsheets some diagrams" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<!--[if lt IE 9]>
+<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+<title>ELEC 300 Notes — Course Information</title>
+<link rel="stylesheet" type="text/css" href="lwarp.css" />
+
+<!-- https://groups.google.com/forum/#!topic/
+                               mathjax-users/jUtewUcE2bY -->
+<script type="text/x-mathjax-config">
+MathJax.Hub.Register.StartupHook("TeX AMSmath Ready",function () {
+    var seteqsectionDefault = {name: "", num: 0};
+    var seteqsections = {}, seteqsection = seteqsectionDefault;
+    var TEX = MathJax.InputJax.TeX, PARSE = TEX.Parse;
+    var AMS = MathJax.Extension["TeX/AMSmath"];
+    TEX.Definitions.Add({
+    macros: {
+        seteqsection: "mySection",
+        seteqnumber: "mySetEqNumber"
+    }
+    });
+
+    PARSE.Augment({
+    mySection: function (name) {
+        seteqsection.num = AMS.number;
+        var n = this.GetArgument(name);
+        if (n === "") {
+        seteqsection = seteqsectionDefault;
+        } else {
+        if (!seteqsections["_"+n])
+            seteqsections["_"+n] = {name:n, num:0};
+        seteqsection = seteqsections["_"+n];
+        }
+        AMS.number = seteqsection.num;
+    },
+    mySetEqNumber: function (name) {
+        var n = this.GetArgument(name);
+        if (!n || !n.match(/^ *[0-9]+ *$/))
+            n = ""; else n = parseInt(n)-1;
+        <!-- $ syntax highlighting -->
+        if (n === "" || n < 1)
+            TEX.Error
+            ("Argument to "+name+" should be a positive integer");
+        AMS.number = n;
+    }
+    });
+    MathJax.Hub.Config({
+    TeX: {
+        equationNumbers: {
+        formatTag: function (n)
+            {return "("+(seteqsection.name+"."+n).replace(/^\./,"")+")"},
+        formatID: function (n) {
+            n = (seteqsection.name+'.'+n).replace
+                 (/[:"'<>&]/g,"").replace(/^\./,"");
+            return 'mjx-eqn-' + n;
+        }
+        }
+    }
+    });
+});
+</script>
+
+<!-- http://docs.mathjax.org/en/latest/options/ThirdParty.html -->
+<script type="text/x-mathjax-config">
+  MathJax.Ajax.config.path["Contrib"] =
+    "https://cdn.mathjax.org/mathjax/contrib";
+</script>
+
+<!-- https://github.com/burnpanck/MathJax-siunitx -->
+
+<script type="text/x-mathjax-config">
+ MathJax.Hub.Config({
+   extensions: ["tex2jax.js","[siunitx]/siunitx.js"],
+   jax: ["input/TeX","output/HTML-CSS"],
+   tex2jax: {inlineMath: [["$","$"],["\\(","\\)"]]},
+   TeX: {extensions: ["AMSmath.js","AMSsymbols.js", "sinuitx.js"]}
+ });
+ MathJax.Ajax.config.path['siunitx'] = 'http://rawgit.com/burnpanck/MathJax-siunitx/master/';
+ </script>
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    TeX: {
+    equationNumbers: {
+        autoNumber: "AMS"
+    }
+    }
+});
+</script>
+
+<!-- Alternative CDN provider: -->
+<script type="text/javascript" async
+src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS_HTML-full">
+</script>
+
+<!-- No longer supported after April 30, 2017: -->
+<!--
+<script
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML-full">
+</script>
+-->
+
+</head>
+<body>
+
+
+<nav class="topnavigation"><a href="index.html" class="linkhome"
+>Home</a></nav>
+
+<header>
+
+</header>
+
+<h1>ELEC 300 Notes</h1>
+<nav class="sidetoc">
+
+<div class="sidetoctitle">
+
+<p>Contents</p>
+
+
+</div>
+
+<div class="sidetoccontents">
+
+<p><a href="index.html" class="linkhome"
+>Home</a></p>
+
+
+<p></p>
+
+
+</div>
+
+</nav>
+
+<section class="textbody">
+
+<h3 id="autosec-24"> <span class="sectionnumber">2&#x2001;</span>Course Information</h3><a id="autopage-24"></a>
+
+<ul style="list-style-type:none">
+<div class="amsthmbodyplain">
+<p>    <span class="amsthmnameplain">Theorem</span><span class="amsthmnumberplain"> <span
+class="textup">2.0.1</span></span>.&nbsp; Testing my life </p>
+
+
+</div>
+
+</ul>
+
+<ul style="list-style-type:none">
+<div class="amsthmbodydefinition">
+<p>    <span class="amsthmnamedefinition">Definition</span><span class="amsthmnumberdefinition"> <span
+class="textup">2.0.1</span></span>.&nbsp; Another test </p>
+
+
+</div>
+
+</ul>
+
+<ul style="list-style-type:none">
+<div class="amsthmbodyremark">
+<p>    <span class="amsthmnameremark">Example</span><span class="amsthmnumberremark"> <span
+class="textup">2.0.1</span></span>.&nbsp; example </p>
+
+
+</div>
+
+</ul>
+
+<ul style="list-style-type:none">
+<div class="amsthmbodyplain">
+<p>    <span class="amsthmnameplain">Corollary</span><span class="amsthmnumberplain"> <span
+class="textup">2.0.1.1</span></span>.&nbsp; More testing </p>
+
+
+</div>
+
+</ul>
+
+<ul style="list-style-type:none">
+<div class="amsthmbodyremark">
+<p> <span class="amsthmnameremark">Remark</span>.&nbsp;   Hopefully this course will not be too hard </p>
+
+
+</div>
+
+</ul>
+<div class="amsthmproof">
+
+<ul style="list-style-type:none">
+
+
+<li>
+
+<p>      <span class="amsthmproofname">Proof.</span>   </p>
+
+
+<p>\[Good at math.\]</p>
+
+
+<p><span class="theoremendmark">&#x2001;&#x2001;&#x2001;&#x25A1;</span></p>
+
+
+</li>
+
+</ul>
+
+</div>
+<h4 id="autosec-31"> <span class="sectionnumber">2.1&#x2001;</span>Expectations</h4><a id="autopage-31"></a>
+
+<p><b>Course Objectives</b></p>
+
+
+<p>To introduce students to more advanced concepts pertaining to network analysis in the time and frequency domain,
+including the treatment of active circuits.</p>
+
+
+<p><b>Learning Outcomes</b></p>
+
+
+<p>At the end of the course, students will be able to &#x2026;</p>
+
+
+<ul style="list-style-type:none">
+
+<li>
+
+<p>                •     demonstrate functionality of circuits containing operational amplifiers</p>
+
+</li>
+<li>
+<p>                •     assess the performance of circuits that have time dependent responses</p>
+
+</li>
+<li>
+<p>                •     use Laplace transforms to find the response of linear circuits to time varying inputs</p>
+
+</li>
+<li>
+<p>                •     solve for zero input and forced response as a function of time using node or mesh analysis</p>
+
+</li>
+<li>
+<p>                •     design circuits which have specified transfer functions and meet other specified constraints</p>
+
+</li>
+<li>
+<p>                •     evaluate the frequency response of linear circuits and make straight line Bode gain and phase
+plots</p>
+
+</li>
+<li>
+<p>                •     design a cascade of active or passive filter circuits to achieve a desired transfer function</p>
+
+</li>
+<li>
+<p>                •     analyze circuits containing coupled inductors and ideal transformers</p>
+
+</li>
+<li>
+<p>                •     evaluate sinusoidal steady state response of linear circuits using phasors</p>
+
+</li>
+<li>
+<p>                •     evaluate two port parameters of linear circuits and find the response of two ports to external
+input</p>
+
+</li>
+</ul>
+
+<p><b>Syllabus</b></p>
+<blockquote>
+
+<p>Appr. No of Classes</p>
+
+
+<p>Introduction
+&#x2026;&#x2026;&#x2026;&#x2026;&#x2026;&#x2026;&#x2026;&#x2026;.&#x2026;&#x2026;&#x2026;&#x2026;&#x2026;&#x2026;&#x2026;&#x2026;&#x2026;&#x2026;&#x2026;&#x2026;&#x2026;&#x2026;&#x2026;&#x2026;&#x2026;&#x2026;&#x2026;&#x2026;&#x2026;&#x2026;&#x2026;&#x2026;&#x2026;&#x2026;.
+1</p>
+
+
+<p>Basic Circuit Laws (review)
+&#x2026;&#x2026;&#x2026;&#x2026;&#x2026;&#x2026;&#x2026;&#x2026;&#x2026;&#x2026;&#x2026;&#x2026;&#x2026;&#x2026;&#x2026;&#x2026;&#x2026;&#x2026;&#x2026;&#x2026;&#x2026;&#x2026;&#x2026;&#x2026;&#x2026;&#x2026;.
+2</p>
+
+
+<p>Operational Amplifiers
+&#x2026;&#x2026;&#x2026;&#x2026;&#x2026;&#x2026;&#x2026;&#x2026;&#x2026;&#x2026;&#x2026;&#x2026;&#x2026;&#x2026;&#x2026;&#x2026;&#x2026;&#x2026;&#x2026;&#x2026;&#x2026;&#x2026;&#x2026;&#x2026;&#x2026;&#x2026;&#x2026;&#x2026;&#x2026;2</p>
+
+
+<p>Transfer Functions
+&#x2026;&#x2026;&#x2026;&#x2026;&#x2026;&#x2026;&#x2026;&#x2026;&#x2026;&#x2026;&#x2026;&#x2026;&#x2026;&#x2026;&#x2026;&#x2026;&#x2026;&#x2026;&#x2026;&#x2026;&#x2026;&#x2026;&#x2026;&#x2026;&#x2026;&#x2026;&#x2026;&#x2026;&#x2026;&#x2026;&#x2026;.
+1</p>
+
+
+<p>Bode Plots
+&#x2026;&#x2026;&#x2026;&#x2026;&#x2026;&#x2026;&#x2026;&#x2026;&#x2026;&#x2026;&#x2026;&#x2026;&#x2026;&#x2026;&#x2026;&#x2026;&#x2026;&#x2026;&#x2026;&#x2026;&#x2026;&#x2026;&#x2026;&#x2026;&#x2026;&#x2026;&#x2026;&#x2026;&#x2026;&#x2026;&#x2026;&#x2026;&#x2026;&#x2026;&#x2026;&#x2026;
+4</p>
+
+
+<p>Serial and Parallel Resonance
+&#x2026;&#x2026;&#x2026;&#x2026;&#x2026;&#x2026;&#x2026;&#x2026;&#x2026;&#x2026;&#x2026;&#x2026;&#x2026;&#x2026;&#x2026;&#x2026;&#x2026;&#x2026;&#x2026;&#x2026;&#x2026;&#x2026;&#x2026;&#x2026;&#x2026;
+1</p>
+
+
+<p>Filters
+&#x2026;&#x2026;&#x2026;&#x2026;&#x2026;&#x2026;&#x2026;&#x2026;&#x2026;&#x2026;&#x2026;&#x2026;&#x2026;&#x2026;&#x2026;&#x2026;&#x2026;&#x2026;&#x2026;&#x2026;&#x2026;&#x2026;&#x2026;&#x2026;&#x2026;&#x2026;&#x2026;&#x2026;&#x2026;&#x2026;&#x2026;&#x2026;&#x2026;&#x2026;&#x2026;&#x2026;&#x2026;&
+2</p>
+
+
+<p>Coupled inductors and transformers
+&#x2026;&#x2026;&#x2026;&#x2026;&#x2026;&#x2026;&#x2026;&#x2026;&#x2026;&#x2026;&#x2026;&#x2026;&#x2026;&#x2026;&#x2026;&#x2026;&#x2026;&#x2026;&#x2026;&#x2026;..
+1</p>
+
+
+<p>Laplace Transforms for Circuits
+&#x2026;&#x2026;&#x2026;&#x2026;&#x2026;&#x2026;&#x2026;&#x2026;&#x2026;&#x2026;&#x2026;&#x2026;&#x2026;&#x2026;&#x2026;&#x2026;&#x2026;&#x2026;&#x2026;&#x2026;&#x2026;&#x2026;&#x2026;&#x2026;
+4</p>
+
+
+<p>Two-Port Networks
+&#x2026;&#x2026;&#x2026;&#x2026;&#x2026;&#x2026;&#x2026;&#x2026;&#x2026;&#x2026;&#x2026;&#x2026;&#x2026;&#x2026;&#x2026;&#x2026;&#x2026;&#x2026;&#x2026;&#x2026;&#x2026;&#x2026;&#x2026;&#x2026;&#x2026;&#x2026;&#x2026;&#x2026;&#x2026;&#x2026;..
+4</p>
+
+
+</blockquote>
+
+<figure id="autoid-5" class="table">
+<table>
+<tr class="tbrule">
+<td class="tdat"></td>
+<td class="tdl">Sub Total</td>
+<td class="tdl">22</td>
+<td class="tdat"></td>
+</tr>
+<tr>
+<td class="tdat"></td>
+<td class="tdl">Midterm Test</td>
+<td class="tdl">1</td>
+<td class="tdat"></td>
+</tr>
+<tr>
+<td class="tdat"></td>
+<td class="tdl">Review</td>
+<td class="tdl">1</td>
+<td class="tdat"></td>
+</tr>
+<tr>
+<td class="tdat"></td>
+<td class="tdl">Total</td>
+<td class="tdl">24</td>
+<td class="tdat"></td>
+</tr>
+<tr class="tbrule">
+<td class="tdat"></td>
+<td class="tdl"></td>
+<td class="tdl"></td>
+<td class="tdat"></td>
+</tr>
+</table>
+</figure>
+
+<p>Some of the textbooks used in this course include:   </p>
+
+
+<ul style="list-style-type:none">
+
+<li>
+
+<p>                —   <a href="References.html#ref-book:nilEC">Nilsson</a></p>
+
+</li>
+<li>
+<p>                —   <a href="References.html#ref-book:nilECSol">Nilsson ISM</a></p>
+
+</li>
+<li>
+<p>                —   <a href="References.html#ref-book:alexEC">Alexander</a></p>
+
+</li>
+<li>
+<p>                —   <a href="References.html#ref-book:alexECSol">Alexander ISM</a></p>
+
+</li>
+</ul>
+
+</section>
+
+<footer>
+
+</footer>
+
+<nav class="botnavigation"><a href="index.html" class="linkhome"
+>Home</a></nav>
+
+</body>
+</html>

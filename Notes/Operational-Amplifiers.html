@@ -1,0 +1,1848 @@
+
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<meta charset="UTF-8" />
+<meta name="author" content="David Li" />
+<meta name="generator" content="LaTeX lwarp package" />
+<meta name="description" content="A list of cheatsheets some diagrams" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<!--[if lt IE 9]>
+<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+<title>ELEC 300 Notes — Operational Amplifiers</title>
+<link rel="stylesheet" type="text/css" href="lwarp.css" />
+
+<!-- https://groups.google.com/forum/#!topic/
+                               mathjax-users/jUtewUcE2bY -->
+<script type="text/x-mathjax-config">
+MathJax.Hub.Register.StartupHook("TeX AMSmath Ready",function () {
+    var seteqsectionDefault = {name: "", num: 0};
+    var seteqsections = {}, seteqsection = seteqsectionDefault;
+    var TEX = MathJax.InputJax.TeX, PARSE = TEX.Parse;
+    var AMS = MathJax.Extension["TeX/AMSmath"];
+    TEX.Definitions.Add({
+    macros: {
+        seteqsection: "mySection",
+        seteqnumber: "mySetEqNumber"
+    }
+    });
+
+    PARSE.Augment({
+    mySection: function (name) {
+        seteqsection.num = AMS.number;
+        var n = this.GetArgument(name);
+        if (n === "") {
+        seteqsection = seteqsectionDefault;
+        } else {
+        if (!seteqsections["_"+n])
+            seteqsections["_"+n] = {name:n, num:0};
+        seteqsection = seteqsections["_"+n];
+        }
+        AMS.number = seteqsection.num;
+    },
+    mySetEqNumber: function (name) {
+        var n = this.GetArgument(name);
+        if (!n || !n.match(/^ *[0-9]+ *$/))
+            n = ""; else n = parseInt(n)-1;
+        <!-- $ syntax highlighting -->
+        if (n === "" || n < 1)
+            TEX.Error
+            ("Argument to "+name+" should be a positive integer");
+        AMS.number = n;
+    }
+    });
+    MathJax.Hub.Config({
+    TeX: {
+        equationNumbers: {
+        formatTag: function (n)
+            {return "("+(seteqsection.name+"."+n).replace(/^\./,"")+")"},
+        formatID: function (n) {
+            n = (seteqsection.name+'.'+n).replace
+                 (/[:"'<>&]/g,"").replace(/^\./,"");
+            return 'mjx-eqn-' + n;
+        }
+        }
+    }
+    });
+});
+</script>
+
+<!-- http://docs.mathjax.org/en/latest/options/ThirdParty.html -->
+<script type="text/x-mathjax-config">
+  MathJax.Ajax.config.path["Contrib"] =
+    "https://cdn.mathjax.org/mathjax/contrib";
+</script>
+
+<!-- https://github.com/burnpanck/MathJax-siunitx -->
+
+<script type="text/x-mathjax-config">
+ MathJax.Hub.Config({
+   extensions: ["tex2jax.js","[siunitx]/siunitx.js"],
+   jax: ["input/TeX","output/HTML-CSS"],
+   tex2jax: {inlineMath: [["$","$"],["\\(","\\)"]]},
+   TeX: {extensions: ["AMSmath.js","AMSsymbols.js", "sinuitx.js"]}
+ });
+ MathJax.Ajax.config.path['siunitx'] = 'http://rawgit.com/burnpanck/MathJax-siunitx/master/';
+ </script>
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    TeX: {
+    equationNumbers: {
+        autoNumber: "AMS"
+    }
+    }
+});
+</script>
+
+<!-- Alternative CDN provider: -->
+<script type="text/javascript" async
+src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS_HTML-full">
+</script>
+
+<!-- No longer supported after April 30, 2017: -->
+<!--
+<script
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML-full">
+</script>
+-->
+
+</head>
+<body>
+
+
+<nav class="topnavigation"><a href="index.html" class="linkhome"
+>Home</a></nav>
+
+<header>
+
+</header>
+
+<h1>ELEC 300 Notes</h1>
+<nav class="sidetoc">
+
+<div class="sidetoctitle">
+
+<p>Contents</p>
+
+
+</div>
+
+<div class="sidetoccontents">
+
+<p><a href="index.html" class="linkhome"
+>Home</a></p>
+
+
+<p></p>
+
+
+</div>
+
+</nav>
+
+<section class="textbody">
+
+<h3 id="autosec-63"> <span class="sectionnumber">5&#x2001;</span>Operational Amplifiers</h3><a
+id="autopage-63"></a>
+<p><span class="paragraph" id="autosec-64"> Intro</span><a id="autopage-64"></a> <em>Operational Amplifiers</em>, or
+<em>op amps</em>, are an amplifier abstraction; that is, we can use it without knowing about its insides.</p>
+
+
+<p>The schematic symbol looks like this:<br />
+</p>
+
+
+<figure id="autoid-11" class="figure">
+
+<p><span id="lateximage6" class="lateximagesource">
+<!--
+     12 V
+v−   −
+            vo
+v+   +
+-->
+<img src="lateximages\lateximage-6.svg" alt="image" style="" class="lateximage"></span></p>
+
+
+<figcaption>
+
+<p><a id="autoid-11"></a>Figure 5.1:&nbsp;Basic Op Amp</p>
+
+
+
+</figcaption>
+
+</figure>
+
+<p>Above is a <em>single-supply</em> op amp, that can output voltages between 0 and 12 volts, with respect to ground.
+<em>Dual-supply</em> op amps are also common; in that case, you’d replace the ground above with -12 volts, and have the
+ground (which is then not directly connected to the op amp) where the two rails “meet”, i.e. output range is from 12 volts
+above ground all the way down to 12 volts below ground.<br />
+That way, the op amp can output negative voltages (again with respect to the circuit ground), which is often required when
+dealing with signals such as audio, which are ground referenced and symmetric around the 0 volt axis.<br />
+</p>
+
+
+<p>The ideal op amp has infinite input impedance, and zero output impedance. Thus, no current flows into the input
+terminals; all current from the output terminal comes from the power terminals.</p>
+
+
+<p>In many cases, we don’t really care about showing the supply connection explicitly, and instead use the following
+symbol:<br />
+</p>
+
+
+<figure id="autoid-12" class="figure">
+
+<p><span id="lateximage7" class="lateximagesource">
+<!--
+v−   −
+         vo
+v+   +
+-->
+<img src="lateximages\lateximage-7.svg" alt="image" style="" class="lateximage"></span></p>
+
+
+<figcaption>
+
+<p><a id="autoid-12"></a>Figure 5.2:&nbsp;Annotated Op Amp</p>
+
+
+
+</figcaption>
+
+</figure>
+
+<p>This document will use the latter symbol from now on.<br />
+</p>
+
+
+<p>Op amps use a <em>differential</em> input. That is to say, neither of the two input connections is necessarily ground,
+and the amplifier amplifies the <em>difference</em> between the two input ports. That is, ideally,</p>
+
+
+<p>\[ v_o = A (v_+ - v_-) \]</p>
+
+
+<p>where \(A\) is the amplifier’s voltage gain. In the ideal op amp model, \(A \to \infty \). In real op amps, A is often on
+the order of 100,000 or more. Needless to say, most of the time, we don’t want to amplify a signal that much - even a input
+voltage difference as tiny as \(12 \mu \)V would be enough to drive the output to the maximum 12 V (\(12 \mu V \cdot
+10^6 = 12 V\)) for an amplifier with \(A = 10^6\), which most certainly exist on the market.<br />
+</p>
+
+
+<p>So, to summarize what we’ve seen so far:    </p>
+
+
+<ul style="list-style-type:none">
+
+<li>
+
+<p>                 1.   The op amp is a <em>differential</em> amplifier ...</p>
+
+</li>
+<li>
+<p>                 2.   ... that outputs a ground-referenced voltage.</p>
+
+</li>
+<li>
+<p>                 3. Its gain is extremely high (ideally infinite), often on the order of \(10000\) to a million, or even
+higher. If we want less gain, we’ll have to take care of that outside the abstract “amplifier box” that is the op amp.</p>
+
+</li>
+<li>
+<p>                4. Op amps can be powered by a single supply (a positive voltage and ground) or a dual supply (a
+positive and a negative voltage, with ground being in between the two). There are op amps made specifically for either of
+these two, though many works in either configuration.</p>
+
+</li>
+</ul>
+
+<p>To analyze circuits with ideal op amps, we model them as a VCVS, that is, a voltage-controlled voltage source. Again,
+no current flows into the input terminals, so we model them as open circuits.<br />
+</p>
+
+
+<figure id="autoid-13" class="figure">
+
+<p><span id="lateximage8" class="lateximagesource">
+<!--
+     i+ ≈ 0       +
+v+
+              −    vo
+     i− ≈ 0
+              +   −
+v−
+-->
+<img src="lateximages\lateximage-8.svg" alt="image" style="" class="lateximage"></span></p>
+
+
+<figcaption>
+
+<p><a id="autoid-13"></a>Figure 5.3:&nbsp;Op Amp with VCVS</p>
+
+
+
+</figcaption>
+
+</figure>
+
+<p>Since real-life op amps are powered by a power supply (rather than being ideal sources themselves), they can never
+output a voltage that is higher than that of the power supply. Thus, when the difference between the inputs is greater than
+\(\displaystyle \frac {\text {Power supply voltage}}{\text {Gain}}\), the op amp <em>saturates</em>, and the output
+stays close to the power supply rail.<br />
+Here’s a plot of an op amp’s transfer function, with a gain of \(10^6\):</p>
+
+
+<p>Note the extreme difference in scale between the axes: the \(v_i\) axis is in microvolts, while the \(v_o\) axis is in
+volts. The op amp behaves linearly as long as the gain multiplied by the input voltage difference is less than the power
+supply voltage (we call this the <em>active region</em>, or sometimes the linear region), but <em>saturates</em> whenever
+the voltage difference is greater.<br />
+</p>
+
+
+<p>Most op amps can’t bring the output very close to either power supply rail; an op amp powered by a \(\pm 12\) V
+supply can usually swing between roughly -11 and +11 volts, or thereabouts. Therefore, an op amp will generally saturate
+before it the power supply voltage. Op amps which can output very close (usually within a few millivolts) of the power rails
+are called <em>rail-to-rail output</em> op amps. There are also <em>rail-to-rail input</em> and <em>rail-to-rail
+input/output</em> (RRIO) op amps.</p>
+<p><span class="paragraph" id="autosec-71"> Noninverting amplifier</span><a id="autopage-71"></a> Let’s use an op amp
+to build a noninverting amplifier, one of the simpler (and perhaps more common) uses of an op amp. This configuration
+uses a resistive divider between the output and the \(v_-\) terminal to limit the gain to more usable values. This also has
+the huge advantage of making the op amp very stable, as opposed to its “raw” form, where the gain \(A\) can vary
+extremely much for pretty much no discernable reason.<br />
+It looks something like this:<br />
+</p>
+
+
+<figure id="autoid-14" class="figure">
+
+<p><span id="lateximage9" class="lateximagesource">
+<!--
+        +
+      v+
+                  vo
+      v− −
+             R1
++
+ vI
+−            v−
+
+             R2
+-->
+<img src="lateximages\lateximage-9.svg" alt="image" style="" class="lateximage"></span></p>
+
+
+<figcaption>
+
+<p><a id="autoid-14"></a>Figure 5.4:&nbsp;Noninverting Op Amp</p>
+
+
+
+</figcaption>
+
+</figure>
+
+<p><br />
+</p>
+
+
+<p>As always, \(v_o\) is ground-referenced, though that will not be shown explicitly here or in future circuit diagrams.<br
+/>
+Let’s analyze this circuit. First, we know that the op amp input/output relation is, always,</p>
+
+
+<p>\[ v_o = A(v_+ - v_-) \]</p>
+
+
+<p>Let’s find the values of \(v_+\) and \(v_-\) for this circuit.<br />
+\(v_+\) is simply our input voltage \(v_I\).<br />
+\(v_-\) is given by a simple voltage divider between \(v_o\) and ground, so</p>
+
+
+<p>\[ v_- = v_o \cdot \frac {R_2}{R_1 + R_2} \]</p>
+
+
+<p>(Remember that \(v_-\) is an open circuit; the input impedance is infinite, and the connection there doesn’t affect the
+voltage divider ratio.)<br />
+</p>
+
+
+<p>Let’s substitute these values back into the first equation, and get:</p>
+
+
+<p>\[ v_o = A(v_I - v_o \cdot \frac {R_2}{R_1 + R_2}) \]</p>
+
+
+<p>\[ v_o = Av_I - A v_o \cdot \frac {R_2}{R_1 + R_2} \]</p>
+
+
+<p>We have \(v_o\) terms on both sides; let’s collect all \(v_o\) terms on the left-hand side:</p>
+
+
+<p>\[ v_o + A v_o \cdot \frac {R_2}{R_1 + R_2} = A v_I \]</p>
+
+
+<p>\[ v_o(1 + A \cdot \frac {R_2}{R_1 + R_2}) = A v_I \]</p>
+
+
+<p>Now we can simply divide both sides by the expression multiplying \(v_o\) and we’re pretty much done:</p>
+
+
+<p>\[ v_o = \frac {A v_I}{1 + A \cdot \frac {R_2}{R_1 + R_2}} \]</p>
+
+
+<p>Note that if \(\displaystyle A \cdot \frac {R_2}{R_1 + R_2} \gg 1\), we can ignore the \(1\) term without losing
+any noteworthy amount of precision. For example, if \(A = 10^6\), \(R_1 = 3000\) and \(R_2 = 1000\), which gives a
+gain of 3.999984, the value we get using the approximation (ignoring the \(1\)) is exactly \(4\). Such tiny errors don’t
+really matter to us, so we can say that</p>
+
+
+<p>\[ v_o \approx \frac {A v_I}{A \cdot \frac {R_2}{R_1 + R_2}} \]</p>
+
+
+<p>Note that we can now cancel out the \(A\) terms!</p>
+
+
+<p>\[ v_o \approx \frac {v_I}{\frac {R_2}{R_1 + R_2}} = v_I \cdot \frac {R_1 + R_2}{R_2} \]</p>
+
+
+<p>Therefore, this configuration gives a voltage gain of almost exactly \(\displaystyle \frac {R_1 + R_2}{R_2} = 1 +
+\frac {R_1}{R_2}\), as long as we make sure that \(\displaystyle A \cdot \frac {R_2}{R_1 + R_2} \gg 1\) is true, by
+making sure we never make \(R_1\) much, much bigger than \(R_2\). However, even when \(R_1\) is <em>1000
+times</em> greater than \(R_2\), the approximation works out quite well: for \(A = 10^6\), \(R_1 = 10^6\) \(\Omega \)
+and \(R_2 = 1000\) \(\Omega \) the error is about 0.1%. Such a configuration would give a gain of roughly 1000.<br />
+</p>
+
+
+<p>So, this circuit works! It gives as a gain we can set via simple resistor values, and thus the op amp gain \(A\) is
+virtually irrelevant to this circuit, as long as it’s very large.<br />
+The question is, though, <em>how</em> does it work? The answer is that the resistor divider connected to the inverting
+input creates a <em>negative feedback</em> loop.</p>
+<p><span class="paragraph" id="autosec-74"> Negative feedback</span><a id="autopage-74"></a> Negative feedback is a
+quite simple concept. This explanation may be a bit confusing at first, but think it through carefully and you should get it
+- and when you do, you’ll agree that it’s simple! I’ll copy the schematic from above for convenience:<br />
+</p>
+
+
+<figure id="autoid-15" class="figure">
+
+<p><span id="lateximage10" class="lateximagesource">
+<!--
+        +
+      v+
+                  vo
+      v− −
+             R1
++
+ vI
+−            v−
+
+             R2
+-->
+<img src="lateximages\lateximage-10.svg" alt="image" style="" class="lateximage"></span></p>
+
+
+<figcaption>
+
+<p><a id="autoid-15"></a>Figure 5.5:&nbsp;Negative feedback Op Amp</p>
+
+
+
+</figcaption>
+
+</figure>
+
+<p><br />
+</p>
+
+
+<p>Let’s think about how this circuit works. Say \(v_I\) is a static value of 5 volts, and \(R_1 = R_2\) (in which case
+their actual values won’t matter). The node voltage \(v_-\) will be exactly half of \(v_o\). \(v_o\), in turn, will be
+(according to the gain equation we found) \(\displaystyle v_I \cdot \frac {R + R}{R} = 2\cdot v_I\).<br />
+So, to begin with, we have</p>
+
+
+<p>\[ v_I = v_+ = 5 V \]</p>
+
+
+<p>\[ v_o = 2\cdot v_I = 10 V \]</p>
+
+
+<p>\[ v_- = \frac {v_o}{2} = 5 V \]</p>
+
+
+<p>... Well, \(v_+ \neq v_-\), but they’re very, very close to equal. If they were exactly equal, \(v_o\) would be the gain
+times 0 (\(A(v_+ - v_-) = 10^6(5 - 5) = 0\)), which clearly isn’t the case here. The difference depends on the op amp’s
+gain \(A\), but will be on the order of microvolts for a gain of \(10^6\). For now, we’ll consider them equal, to drive home
+the point of negative feedback. In reality, \(v_o\) is just ever so slightly different than \(2 \cdot v_I\).<br />
+</p>
+
+
+<p>So, right now, \(v_+ = v_- = 5 V\), and \(v_o = 10 V\). Now, let’s think about what would happen if, for whatever
+reason (op amp instability, external noise, etc.) the voltage at node \(v_o\) suddenly increased to, say, 12 volts, without a
+change in the input.<br />
+Clearly, the voltage \(v_+\) would remain unchanged; it will always stay at 5 volts due to the voltage source being directly
+connected there.<br />
+\(v_-\), on the other hand, is half of \(v_o\), and so that node would become \(6\) volts.<br />
+So now, after this output voltage bump, we have \(v_+ = 5\), \(v_- = 6\) and \(v_o = 12\). What happens then?<br />
+</p>
+
+
+<p>Well, again, we have the op amp equation: \(v_o = A(v_+ - v_-) = A(5 - 6) = -A\). In words, the op amp would try,
+as best it could, to drive the voltage \(v_o\) down to \(-10^6\) volts (using the gain \(A=10^6\) we’ve been using so far).
+Needless to say it couldn’t, due to the limited power supply, but it would try really hard to bring the voltage at the output
+node down.<br />
+Let’s say it managed to drive the output down to 8 volts in a short time period. At that point, \(v_+ = 5V\),
+\(\displaystyle v_- = \frac {8}{2} = 4V\), which means the op amp would try to drive the output <em>up</em> really
+hard, since \(v_+ &gt; v_-\), and so on.<br />
+In practice, the output wouldn’t fluctuate this much; rather, the reaction would be fast enough that the change virtually
+doesn’t happen in the first place. This <em>can</em> certainly lead to unwanted oscillations, but that topic is a bit too
+advanced for this section and chapter.<br />
+</p>
+
+
+<p>The important point here is that the negative feedback loop causes the op amp to do whatever it can on the output to
+keep the two inputs very close to each other. If the output rises too high, causing \(v_-\) to increase above \(v_+\), it
+tries to reduce the output voltage to compensate. If the output drops too low, causing \(v_-\) to drop below \(v_+\), it
+tries to increase the output voltage to compensate.<br />
+This is a <em>negative feedback loop</em>, a concept which can be applied to many situations, including many not in
+electronics.</p>
+
+
+<p>In negative feedback, a gap between the output and expected output will be used to <em>reduce</em> this gap, and bring
+the output closer to the expected value. Therefore negative feedback helps the system become stable.<br />
+</p>
+
+
+<p>Positive feedback is, as one might expect, the opposite. With positive feedback, a small gap between the expected and
+actual values will be used to create an even bigger gap, which in turn will increase the amount of feedback, and make the
+gap larger yet, etc. A common example is when a microphone picks up sound from a nearby speaker, causing the sound
+from the microphone to be sent to the speaker, which leads to more sound being picked up by the microphone, increasing
+the volume in a loop until only an extremely loud noise remains.</p>
+<p><span class="paragraph" id="autosec-77"> Virtual short/virtual ground</span><a id="autopage-77"></a></p>
+
+
+<p>When we have an op amp with negative feedback (and <em>only</em> when we have negative feedback!), the feedback
+causes \(v_-\) to be almost equal to \(v_+\). We can show this by rearranging the gain equation:</p>
+
+
+<p>\[ v_o = A(v_+ - v_-) \]</p>
+
+
+<p>\[ v_+ - v_- = \frac {v_o}{A} \]</p>
+
+
+<p>If we have a typical op amp with a very high gain, let’s continue assuming \(10^6\), this means that for \(v_o\) in the
+typical range of \(\pm 20V\) or less, the difference between \(v_+\) and \(v_-\) will never be larger than on the order of
+\(\displaystyle \frac {20V}{10^6} = 20 \mu V\).<br />
+Since a short circuit means a zero (or, with wires that have resistances, just a very small) voltage difference, this is referred
+to as a <em>virtual short</em>, or (especially when \(v_+\) is tied to ground) as a <em>virtual ground</em>.</p>
+
+
+<p>This leads to us having three useful constraints when dealing with op amp circuits with negative feedback:</p>
+
+
+<p>\[ i_+ \approx 0 \]</p>
+
+
+<p>\[ i_- \approx 0 \]</p>
+
+
+<p>\[ v_+ \approx v_- \]</p>
+
+
+<p>When combined, these constraints give rise to a new, very easy method of analysis for these circuits, as we’ll see in the
+following sections.</p>
+<p><span class="paragraph" id="autosec-78"> Op amps as buffers</span><a id="autopage-78"></a></p>
+
+
+<p>Let’s see what happens if we take the noninverting amplifier in the section above, and instead of coupling \(v_o\) to
+\(v_-\) through a voltage divider, we simply connect them with a wire.<br />
+Since this connection provides negative feedback, we can analyze it extremely easily using the virtual short method outlined
+above.<br />
+</p>
+
+
+<figure id="autoid-16" class="figure">
+
+<p><span id="lateximage11" class="lateximagesource">
+<!--
+        +
+      v+
+                  vo
+      v− −
+
++
+ vI
+−            v−
+-->
+<img src="lateximages\lateximage-11.svg" alt="image" style="" class="lateximage"></span></p>
+
+
+<figcaption>
+
+<p><a id="autoid-16"></a>Figure 5.6:&nbsp;Op Amps Voltage Divider</p>
+
+
+
+</figcaption>
+
+</figure>
+
+<p><br />
+</p>
+
+
+<p>First, we note that \(v_+ = v_I\). Via the virtual short, this means that \(v_- \approx v_I\). Since \(v_o = v_-\)
+via the wire they share, we draw the conclusion that \(v_o \approx v_I\). Well, that was quick!<br />
+</p>
+
+
+<p>This circuit is known as a buffer, or source follower. It presents a very large (ideally infinite) impedance towards the
+input \(v_I\), so that only a very small current is drawn. However, the op amp’s output can deliver an ideally infinite
+current (which is very far from true in practice, as signal op amps, as opposed to power op amps, are often limited to less
+than 50 or so milliamps).<br />
+However, even if the op amp were to be limited to a 10 mA output current, the buffer could still be useful, as many voltage
+sources such as sensitive sensors may be unable to provide even 1 mA without negative effects. Thus, even a trivial task
+such as connecting the sensor to some reader, perhaps an ADC (analog-to-digital converter) in a microcontroller, may not
+work without buffering the voltage first.<br />
+</p>
+
+
+<p>We can also build inverting buffers; see the next section.</p>
+<p><span class="paragraph" id="autosec-81"> Inverting amplifier</span><a id="autopage-81"></a></p>
+
+
+<p>Another amplifier topology that uses negative feedback is the <em>inverting</em> amplifier, which causes e.g. a 1 volt
+signal to become \(-1 \cdot G\) at the output, where \(G\) is the circuit’s gain, set by \(R_1\) and \(R_2\).</p>
+
+
+<figure id="autoid-17" class="figure">
+
+<p><span id="lateximage12" class="lateximagesource">
+<!--
+                        R1
+              v−             i
+                   + v       −
+         R2           R1
+              i
+                    −
+     −                           vo
+vI   +              +
+-->
+<img src="lateximages\lateximage-12.svg" alt="image" style="" class="lateximage"></span></p>
+
+
+<figcaption>
+
+<p><a id="autoid-17"></a>Figure 5.7:&nbsp;Inverting amplifier</p>
+
+
+
+</figcaption>
+
+</figure>
+
+<p><br />
+Since this circuit also uses negative feedback, we can use the virtual short method to analyze it quickly.<br />
+First, we note that \(v_+\) is tied to ground, i.e. 0 volts. Therefore, by the virtual short constraint, \(v_-\) will be
+approximately 0 volts. Since by our definitions no current flows into the inverting input (\(i_- = 0\)), and we take \(v_- =
+0\), the current \(i\) through \(R_2\) must be simply \(\displaystyle \frac {v_I - 0}{R_2}\). Since, again, no current
+flows into the inverting input, the same current \(i\) must flow through \(R_1\) as they are then in series.<br />
+Therefore, the voltage drop across \(R_1\) is that current times the resistance, or</p>
+
+
+<p>\[ v_{R1} = \frac {v_I}{R_2} \cdot R_1 \]</p>
+
+
+<p>The current flows left to right (because of \(v_I\) being the driver towards the inverting input at 0 volts), which means
+the <em>positive</em> side of the drop is to the left of \(R_1\) (see the above circuit). Therefore, the node \(v_o\) is equal
+to the voltage at \(v_-\) minus that resistor drop:</p>
+
+
+<p>\[ v_o = 0 - \frac {v_I}{R_2} \cdot R_1 = -v_I \cdot \frac {R_1}{R_2} \]</p>
+
+
+<p>That concludes our analysis! The circuit is indeed inverting, and the (negative) gain is simply \(\displaystyle \frac
+{R_1}{R_2}\).</p>
+
+
+<p>For the record, the full expression that governs the behavior of this circuit, without the simplifications, is</p>
+
+
+<p>\[ v_o = -\frac {A v_I R_1}{R_1 + R_2 + A R_2} \]</p>
+
+
+<p>... from an analysis that was performed, but was not outlined in these notes.<br />
+As \(A \to \infty \), the \(R_1 + R_2\) term in the denominator becomes irrelevant, and expression reduces down to one
+where we can cancel out the As:</p>
+
+
+<p>\[ v_o \approx -\frac {\cancel {A} v_I R_1}{\cancel {A} R_2} = -v_I \cdot \frac {R_1}{R_2} \]</p>
+
+
+<p><br />
+Note that if \(R_1 = R_2\), this circuit simply inverts the input, and is therefore an <em>inverting buffer</em>, or
+<em>unity gain inverting amplifier</em>, which can certainly be useful.<br />
+</p>
+
+
+<p>The input impedance of this circuit, that is, \(\displaystyle \frac {v_I}{i_I}\), where \(i_I\) is the current flowing
+from the input voltage source, is</p>
+
+
+<p>\[ R_i = \frac {R_1}{A + 1} + R_2 \]</p>
+
+
+<p>Thus, as \(A \to \infty \) (or just becomes “very large”), the first term is generally irrelevant, and we can say that
+\(R_i \approx R_2\).</p>
+<p><span class="paragraph" id="autosec-84"> Op amp subtractor</span><a id="autopage-84"></a> Let’s analyze this
+circuit:</p>
+
+
+<figure id="autoid-18" class="figure">
+
+<p><span id="lateximage13" class="lateximagesource">
+<!--
+                                  R2
+                        v−             i
+                             + v       −
+              R1                R2
+                        i
+                              −
+     −             R1                      vo
+v2   +                        +
+
+
+
+              −
+         v1   +         R2
+-->
+<img src="lateximages\lateximage-13.svg" alt="image" style="" class="lateximage"></span></p>
+
+
+<figcaption>
+
+<p><a id="autoid-18"></a>Figure 5.8:&nbsp;Op Amp subtractor</p>
+
+
+
+</figcaption>
+
+</figure>
+
+<p><br />
+As with the rest of the op amp circuits we’ve analyzed, this one uses negative feedback (see \(R_2\)), so we will again use
+the virtual short method to analyze it. However, this analysis is slightly more complex than the previous ones, due to more
+algebra at the end.<br />
+Anyway, let’s get started.<br />
+</p>
+
+
+<p>Since the noninverting (\(+\)) input doesn’t draw any current, the voltage at \(v_+\) is given by the voltage divider
+formed by the \(v_1\) - \(R_1\) - \(R_2\) series circuit:</p>
+
+
+<p>\[ v_+ = v_1 \cdot \frac {R_2}{R_1 + R_2} \]</p>
+
+
+<p>By the virtual short method, \(v_- = v_+\):</p>
+
+
+<p>\[ v_- = v_+ \]</p>
+
+
+<p>Therefore, since we know \(v_-\) and \(v_2\), we can calculate the current through \(R_1\), which we’ll simply call
+\(i\):</p>
+
+
+<p>\[ i = \frac {v_2 - v_-}{R_1} \]</p>
+
+
+<p>Note that, since the inverting (\(-\)) input draws no current, all of this current must flow through \(R_2\) as well (see
+the circuit diagram). Therefore, the we can easily calculate the voltage drop across \(R_2\) as current times resistance,
+or</p>
+
+
+<p>\[ v_{R2} = \frac {v_2 - v_-}{R_1} \cdot R_2 \]</p>
+
+
+<p>By know, we know \(v_-\), and we know the voltage drop across \(R_2\). Since that voltage drop is positive “towards
+the left”, \(v_o\) will be \(v_-\) <em>minus</em> the drop across \(R_2\):</p>
+
+
+<p>\[ v_o = v_- - v_{R2} \]</p>
+
+
+<p>\[ v_o = v_- - \frac {v_2 - v_-}{R_1} \cdot R_2 \]</p>
+
+
+<p>Let’s gather the \(v_-\) terms together:</p>
+
+
+<p>\[ v_o = v_-(1 + \frac {R_2}{R_1}) - \frac {v_2}{R_1} \cdot R_2 \]</p>
+
+
+<p>\[ v_o = v_-(1 + \frac {R_2}{R_1}) - v_2 \cdot \frac {R_2}{R_1} \]</p>
+
+
+<p>Let’s substitute in \(v_-\); remember, it’s equal to the expression we have for \(v_+\):</p>
+
+
+<p>\[ v_o = (v_1 \cdot \frac {R_2}{R_1 + R_2}) (1 + \frac {R_2}{R_1}) - v_2 \cdot \frac {R_2}{R_1} \]</p>
+
+
+<p>What a mess. Let’s rewrite \(\displaystyle 1 + \frac {R_2}{R_1}\):</p>
+
+
+<p>\[ v_o = (v_1 \cdot \frac {R_2}{R_1 + R_2}) (\frac {R_1 + R_2}{R_1}) - v_2 \cdot \frac {R_2}{R_1} \]</p>
+
+
+<p>Aha! Now we can cancel out those \(R_1 + R_2\) terms:</p>
+
+
+<p>\[ v_o = v_1 \cdot \frac {R_2}{R_1} - v_2 \cdot \frac {R_2}{R_1} \]</p>
+
+
+<p>\[ v_o = \frac {R_2}{R_1} \left (v_1 - v_2 \right ) \]</p>
+
+
+<p>As promised in the section title, this is an op amp <em>subtractor</em> circuit. It calculates \(v_1 - v_2\), scaled by
+the ratio of \(R_2\) to \(R_1\).</p>
+<p><span class="paragraph" id="autosec-87"> Summing amplifier</span><a id="autopage-87"></a> Since the previous
+section covered an op amp subtractor, let’s cover an adder, usually called a <em>summing amplifier</em>:<br />
+</p>
+
+
+<figure id="autoid-19" class="figure">
+
+<p><span id="lateximage14" class="lateximagesource">
+<!--
+                                     RF
+                            v−
+                       RS
+                                 −
+                  RI
+                                          vo
+                                 +
+     −        −   RI
+v1   +   v2   +
+-->
+<img src="lateximages\lateximage-14.svg" alt="image" style="" class="lateximage"></span></p>
+
+
+<figcaption>
+
+<p><a id="autoid-19"></a>Figure 5.9:&nbsp;Summing amplifier</p>
+
+
+
+</figcaption>
+
+</figure>
+
+<p><br />
+Yet again, this circuit uses negative feedback, so we can use the virtual short method.<br />
+First, we can figure out \(v_+\). Since no current passes through the noninverting (\(+\)) input, we can find \(v_+\) by
+analysing the \(v_1\) - \(R_I\) - \(R_I\) - \(v_2\) subcircuit.<br />
+Since it’s linear, we can use superposition, and figure out the voltage due to \(v_1\) acting alone (\(v_{+1}\)) and
+\(v_2\) acting alone (\(v_{+2}\)). To use superposition, we “set one source to zero” at a time, which for voltage sources
+means shorting it out. For \(v_1\):</p>
+
+
+<p>\[ v_{+1} = v_1 \cdot \frac {R_I}{R_I + R_I} = \frac {v_1}{2} \]</p>
+
+
+<p>(since the resistors have the same value.)<br />
+</p>
+
+
+<p>Similarly, for \(v_2\):</p>
+
+
+<p>\[ v_{+2} = v_2 \cdot \frac {R_I}{R_I + R_I} = \frac {v_2}{2} \]</p>
+
+
+<p>So, the sum of the responses will be \(v_+\):</p>
+
+
+<p>\[ v_+ = \frac {v_1 + v_2}{2} \]</p>
+
+
+<p>By the way, note that if the resistors had unequal values, the above would change. Not only would they not be divided
+by exactly two, but we would get a <em>weighted average</em>, since the top resistor in this schematic is in the numerator
+for the \(v_2\) divider, while the bottom resistor is in the numerator for \(v_1\).<br />
+If we relabel the top resistor \(R_1\) and the bottom resistor \(R_2\), and set \(R_1 = 1000\), \(R_2 = 3000\):</p>
+
+
+<p>\[ v_+ = v_1 \cdot \frac {R_2}{R_1 + R_2} + v_2 \cdot \frac {R_1}{R_1 + R_2} = \frac {3 v_1}{4} + \frac
+{v_2}{4} \]</p>
+
+
+<p><br />
+After that aside, let’s get back on track. We found \(v_+\), and via the virtual short method, \(v_- = v_+\).<br />
+</p>
+
+
+<p>There are several ways to find \(v_o\) from here, but the node method gives a solution with only minor algebra. We set
+up a node equation for \(v_-\):</p>
+
+
+<p>\[ \frac {v_-}{R_S} + \frac {v_- - v_o}{R_F} = 0 \]</p>
+
+
+<p>Move \(v_o\) to the right-hand side and multiply both sides by \(R_F\):</p>
+
+
+<p>\[ \frac {R_F v_-}{R_S} + v_- = v_o \]</p>
+
+
+<p>Switch the sides for clarity and factor out \(v_-\):</p>
+
+
+<p>\[ v_o = \frac {R_F v_-}{R_S} + v_- \]</p>
+
+
+<p>\[ v_o = v_-(\frac {R_F}{R_S} + 1) \]</p>
+
+
+<p>And, finally, get the actual value of \(v_-\) in there:</p>
+
+
+<p>\[ v_o = \frac {v_1 + v_2}{2} (\frac {R_F}{R_S} + 1) \]</p>
+
+
+<p>We’re done! We can also easily see that if we set \(R_F = R_S\), the output is simply \(v_o = v_1 + v_2\).</p>
+<p><span class="paragraph" id="autosec-90"> Op amp integrator</span><a id="autopage-90"></a> Due to some magic of
+capacitors, we can use op amps to create circuits that integrate and differentiate signals (with respect to time). Here’s an
+integrator circuit:</p>
+
+
+<figure id="autoid-20" class="figure">
+
+<p><span id="lateximage15" class="lateximagesource">
+<!--
+                     C
+                          i
+                 +        −
+         R           vC
+             i
+                 −
+     −                        vo
+vI   +
+                 +
+-->
+<img src="lateximages\lateximage-15.svg" alt="image" style="" class="lateximage"></span></p>
+
+
+<figcaption>
+
+<p><a id="autoid-20"></a>Figure 5.10:&nbsp;Op amp integrator</p>
+
+
+
+</figcaption>
+
+</figure>
+
+<p><br />
+How does this circuit work? Well, remember the formula for the voltage over a capacitor:</p>
+
+
+<p>\[ v_C = \frac {1}{C} \int _{-\infty }^{t} i(t) dt \]</p>
+
+
+<p>\(v_+\) is grounded, and thus at 0 volts. \(v_-\) is, via the virtual short technique, also 0 volts. Therefore, the
+current through \(R\) is simply \(\displaystyle \frac {v_I}{R}\).<br />
+That same current must go through the capacitor, since there’s no other way (the noninverting input has an infinite
+impedance), so the capacitor voltage drop is</p>
+
+
+<p>\[ v_C = \frac {1}{C} \int _{-\infty }^{t} \frac {v_I}{R} dt = \frac {1}{RC} \int _{-\infty }^{t} v_I dt \]</p>
+
+
+<p>As with the previous op amp circuits where the noninverting input is grounded, we can find \(v_o\) as</p>
+
+
+<p>\[ v_o = v_- - v_C = 0 - \frac {1}{RC} \int _{-\infty }^{t} v_I dt \]</p>
+
+
+<p>\[ v_o = -\frac {1}{RC} \int _{-\infty }^{t} v_I dt \]</p>
+
+
+<p>Thus this is an inverting integrator. If needed, we could feed the output into an inverting buffer (aka inverting
+unity-gain amplifier) to get it positive.<br />
+</p>
+
+
+<p>If we do a more complete analysis, we get the differential equation </p>
+
+
+<p>\[ RC(1 + A) \frac {dv_-}{dt} + v_- = v_I \]</p>
+
+
+<p>indicating that the time constant for this circuit is multiplied by the op amp gain \(A\). Therefore, the equation that
+describes \(v_o\) for a step input is of the same form as we’ve seen in regular series RC circuits: </p>
+
+
+<p>\[ v_o = -AV(1 - e^{-\frac {t}{(1 + A)RC}}) \]</p>
+
+
+<p>... where V is the voltage of the step input.<br />
+Thus, for short time scales (short compared to \((1 + A)RC\)), this circuit is a very good approximation of an ideal
+integrator.</p>
+<p><span class="paragraph" id="autosec-93"> Op amp differentiator</span><a id="autopage-93"></a></p>
+
+
+<figure id="autoid-21" class="figure">
+
+<p><span id="lateximage16" class="lateximagesource">
+<!--
+                     R
+                          i
+         C       +   vR   −
+             i
+                 −
+     −                        vo
+vI   +
+                 +
+-->
+<img src="lateximages\lateximage-16.svg" alt="image" style="" class="lateximage"></span></p>
+
+
+<figcaption>
+
+<p><a id="autoid-21"></a>Figure 5.11:&nbsp;Op amp differentiator</p>
+
+
+
+</figcaption>
+
+</figure>
+
+<p><br />
+This circuit is identical to the integrator except for <em>one</em> change: the capacitor and resistor places have been
+swapped. So, how does this work, then?<br />
+</p>
+
+
+<p>\(v_+\) is grounded, and so via the virtual short method, \(v_-\) must also be 0 volts. Therefore, the voltage drop
+across the capacitor equals \(v_I\). The current through the capacitor is given by</p>
+
+
+<p>\[ i = C \frac {dv_I}{dt} \]</p>
+
+
+<p>That same current \(i\) is then forced through the resistor \(R\), which causes a voltage drop of \(R \cdot i\) across
+the resistor:</p>
+
+
+<p>\[ v_R = RC \frac {dv_I}{dt} \]</p>
+
+
+<p>And, as with several of the previous circuits, \(v_o\) equals \(v_-\) minus the drop across the resistor:</p>
+
+
+<p>\[ v_o = v_- - v_R = 0 - RC \frac {dv_I}{dt} \]</p>
+
+
+<p>\[ v_o = - RC \frac {dv_I}{dt} \]</p>
+
+
+<p>So, as with the previous circuit, this one also inverts. And, again, we could pass it through an inverting buffer op amp
+to get rid of the inversion.</p>
+<p><span class="paragraph" id="autosec-96"> Buffered filters</span><a id="autopage-96"></a> Consider a basic passive RC
+filter:<br />
+</p>
+
+
+<figure id="autoid-22" class="figure">
+
+<p><span id="lateximage17" class="lateximagesource">
+<!--
+     R
+ +          +
+Vi       C Vo
+ −          −
+-->
+<img src="lateximages\lateximage-17.svg" alt="image" style="" class="lateximage"></span></p>
+
+
+<figcaption>
+
+<p><a id="autoid-22"></a>Figure 5.12:&nbsp;Buffered filters</p>
+
+
+
+</figcaption>
+
+</figure>
+
+<p><br />
+The dashed lines represent the filter components (the reason for them will be clear soon).<br />
+We’ve analyzed this circuit in a previous chapter. However, let’s look at how a more complete circuit might look, when we
+attach a Thevenin equivalent source and a resistive load (perhaps a speaker):<br />
+</p>
+
+
+<figure id="autoid-23" class="figure">
+
+<p><span id="lateximage18" class="lateximagesource">
+<!--
+           RT H   R
+                           +
+       −
+VT H   +              C   Vo   RL
+                           −
+-->
+<img src="lateximages\lateximage-18.svg" alt="image" style="" class="lateximage"></span></p>
+
+
+<figcaption>
+
+<p><a id="autoid-23"></a>Figure 5.13:&nbsp;Buffered filters with Thevenin equivalent source</p>
+
+
+
+</figcaption>
+
+</figure>
+
+<p><br />
+If we analyze this circuit, we’ll soon find that the transfer function is not at all the one we would expect from just \(R\)
+and \(C\). Rather, the transfer function would be</p>
+
+
+<p>\[ H(s) = \frac {\frac {1}{sC} || R_L}{(\frac {1}{sC} || R_L) + R_{TH} + R} \]</p>
+
+
+<p>Instead of what we actually wanted:</p>
+
+
+<p>\[ H(s) = \frac {\frac {1}{sC}}{\frac {1}{sC} + R} \]</p>
+
+
+<p>What can we do about this? Well, one solution - that works just fine, but is rather wasteful - is to buffer both the input
+and output of the filter:<br />
+</p>
+
+
+<figure id="autoid-24" class="figure">
+
+<p><span id="lateximage19" class="lateximagesource">
+<!--
+           RT H
+                  +   R       +
+
+       −          −           −
+VT H   +
+                          C       RL
+-->
+<img src="lateximages\lateximage-19.svg" alt="image" style="" class="lateximage"></span></p>
+
+
+</figure>
+
+<p><br />
+That’s a fair bit of extra complexity! However, the input op amp will make sure that virtually 0 current is drawn from the
+source, and decouple the input from the filter.<br />
+Likewise, the output op amp will make sure virtually no current is drawn from the RC network, so that the load resistance
+doesn’t affect the transfer function.<br />
+Assuming ideal op amps, this filter should behave as a passive filter does when there is no load (infinite load resistance) and
+0 source resistance. This filter also has (with ideal op amps) infinite input impedance and 0 output impedance!</p>
+<p><span class="paragraph" id="autosec-103"> Op amp current source</span><a id="autopage-103"></a></p>
+
+
+<p>We can use op amps to make very precise current sources. Here’s one of several ways to do so:<br />
+</p>
+
+
+<figure id="autoid-25" class="figure">
+
+<p><span id="lateximage20" class="lateximagesource">
+<!--
+          +
+        v+
+        v− −
+               RL
++
+ vSET
+−              vSET
+
+               RSET
+-->
+<img src="lateximages\lateximage-20.svg" alt="image" style="" class="lateximage"></span></p>
+
+
+<figcaption>
+
+<p><a id="autoid-25"></a>Figure 5.14:&nbsp;Op amp current source</p>
+
+
+
+</figcaption>
+
+</figure>
+
+<p><br />
+</p>
+
+
+<p>Note that the topology above is identical to the noninverting amplifier! I only changed the resistor and voltage source
+names, to make things more clear.<br />
+How does this circuit work? Well, we have negative feedback, as usual. Therefore, we can apply the virtual short method,
+and see that the voltage across \(R_{SET}\) is \(v_{SET}\). Therefore, the current through it is \(\displaystyle \frac
+{v_{SET}}{R_{SET}}\).<br />
+Since the current into the noninverting input is negligible (even taken as 0 for our model), \(R_L\) and \(R_{SET}\) are
+in series, and must share the same current! Therefore, the current through \(R_L\) is the same as the current through
+\(R_{SET}\), which the op amp tries to keep equal to \(\displaystyle \frac {v_{SET}}{R_{SET}}\) at all times.<br />
+</p>
+
+
+<p>Of course, there are some limitations. Most op amps have very low current limits, so this will only work for small
+currents (a few mA, almost certainly less than 40 or so) or when using power op amps rated for high currents. Second, the
+current can clearly never be larger than the supply voltage divided by \(R_{SET} + R_L\), since the supply voltage is
+the maximum the op amp can have on its output - in theory, in practice the actual maximum output voltage will always be
+slightly lower than the supply voltage.</p>
+<p><span class="paragraph" id="autosec-106"> Exponential amplifier</span><a id="autopage-106"></a></p>
+
+
+<p>The inverting amplifier topology is extremely versatile, as we’ve already seen with the integrator and differentiator
+configurations. We can do more, however! Lets see what happens with a diode in there:<br />
+</p>
+
+
+<figure id="autoid-26" class="figure">
+
+<p><span id="lateximage21" class="lateximagesource">
+<!--
+                            R1
+                  v−             i
+         D1            + v       −
+                          R1
+              i
+                        −
+     −                               vo
+vI   +                  +
+-->
+<img src="lateximages\lateximage-21.svg" alt="image" style="" class="lateximage"></span></p>
+
+
+<figcaption>
+
+<p><a id="autoid-26"></a>Figure 5.15:&nbsp;Exponential amplifier</p>
+
+
+
+</figcaption>
+
+</figure>
+
+<p><br />
+The analysis is very similar to that of the inverting amplifier and the integrator/differentiator.<br />
+</p>
+
+
+<p>\(v_+\) is grounded, so \(v_- \approx 0\) by the virtual short method (since we have negative feedback). Therefore,
+the voltage across the diode is simply \(v_I\). The current through a diode is given by the Shockley diode equation:</p>
+
+
+<p>\[ i_D = I_S(e^{v_D/V_T} - 1) \]</p>
+
+
+<p>\(I_S\) and \(V_T\) are diode parameters. \(I_S\) is the “reverse bias saturation current”, usually a very small value
+on the order of \(10^{-14}\) A, while \(V_T\) is the thermal voltage, roughly 25 mV at room temperature.<br />
+Now, given that we know the diode voltage drop, we can calculate that the current through it is:</p>
+
+
+<p>\[ i = I_S(e^{v_I/V_T} - 1) \]</p>
+
+
+<p>That same current will, as with the previous configurations, be forced to flow through \(R_1\) and create a voltage
+drop across it.<br />
+\(v_o\) can be seen to be \(v_-\) minus the drop across \(R_1\), and since \(v_-\) is 0: </p>
+
+
+<p>\[ v_o = -i \cdot R_1 = -R_1 I_S(e^{v_I/V_T} - 1) \]</p>
+
+
+<p>The above equation makes it clear that there’s an exponential relationship between \(v_I\) and \(v_o\). For a typical
+silicon diode at room temperature, with \(R_1 = 1000 \Omega \), we can estimate(!) the relationship as</p>
+
+
+<p>\[ v_o = -10^{-11} \cdot e^{v_I/0.025} \]</p>
+
+
+<p>Note that the last “1” was dropped, as its value was \(10^{-11}\) A, a current which is insignificantly small to us.<br />
+Though the \(10^{-11}\) term looks like it might dominate, it does not; the exponential increases extremely fast, and the
+output voltage goes below \(-100 V\) (remember that it’s an inverting amplifier) when the input is still as low as 0.75 volts.
+Of course, the op amp will saturate if the power supply voltage doesn’t reach that low.</p>
+<p><span class="paragraph" id="autosec-109"> Logarithmic amplifier</span><a id="autopage-109"></a></p>
+
+
+<p>By swapping the position of the diode and resistor in the exponential amplifier, we get this schematic:<br />
+</p>
+
+
+<figure id="autoid-27" class="figure">
+
+<p><span id="lateximage22" class="lateximagesource">
+<!--
+              v−            i
+                   +        −
+         R1            vD
+              i
+                   −
+     −                          vo
+vI   +             +
+-->
+<img src="lateximages\lateximage-22.svg" alt="image" style="" class="lateximage"></span></p>
+
+
+<figcaption>
+
+<p><a id="autoid-27"></a>Figure 5.16:&nbsp;Logarithmic amplifier</p>
+
+
+
+</figcaption>
+
+</figure>
+
+<p><br />
+This is still easy to analyze, but there’s a bit more math. We still use the diode equation, but this time, we need to solve
+the equation for \(v_D\) before we can use it to calculate a voltage drop given a current (the form we have only calculates
+current from a known voltage).<br />
+</p>
+
+
+<p>Again, the Shockley diode equation is</p>
+
+
+<p>\[ i_D = I_S(e^{v_D/V_T} - 1) \]</p>
+
+
+<p>The current \(i_D\) through the diode will be given by the current through \(R_1\), which is \(\displaystyle \frac
+{v_I - v_-}{R_1}\). As \(v_-\) is 0 via the virtual short (this should be second nature at this point!), the current is
+simply given by \(\displaystyle \frac {v_I}{R}\), so let’s make that substitution. Then, we will need to solve the equation
+for \(v_D\). Let’s start by distributing the \(I_S\), and getting the exponential on its own:</p>
+
+
+<p>\[ \frac {v_I}{R} = I_S(e^{v_D/V_T} - 1) \]</p>
+
+
+<p>\[ \frac {v_I}{R} = I_S \cdot e^{v_D/V_T} - I_S \]</p>
+
+
+<p>\[ \frac {v_I}{R} + I_S = I_S \cdot e^{v_D/V_T} \]</p>
+
+
+<p>Divide both sides by \(I_S\):</p>
+
+
+<p>\[ \frac {v_I}{R I_S} + 1 = e^{v_D/V_T} \]</p>
+
+
+<p>Take the natural log of both sides:</p>
+
+
+<p>\[ \ln {(\frac {v_I}{R I_S} + 1)} = \frac {v_D}{V_T} \]</p>
+
+
+<p>And, finally, multiply both sides by \(V_T\), and just switch the sides:</p>
+
+
+<p>\[ v_D = V_T \cdot \ln {(\frac {v_I}{R I_S} + 1)} \]</p>
+
+
+<p>Now we know how to calculate the diode’s voltage drop, which makes us very close to finding \(v_o\). We know that
+\(v_o = v_- - v_D\), and that \(v_-\) is 0, so</p>
+
+
+<p>\[ v_o = -v_D \]</p>
+
+
+<p>\[ v_o = -V_T \cdot \ln {(\frac {v_I}{R I_S} + 1)} \]</p>
+
+
+<p>And we are done! This is indeed a logarithmic amplifier.</p>
+<p><span class="paragraph" id="autosec-112"> Active RC filters</span><a id="autopage-112"></a> We can also construct
+filters that use op amps as part of the actual circuitry, rather than just having them as input/output buffer. Such filters are
+called <em>active filters</em>, and they come in various topologies, where the op amp’s function differs.<br />
+Here’s an example for an active RC filter that we’ll analyze in this section:<br />
+</p>
+
+
+<figure id="autoid-28" class="figure">
+
+<p><span id="lateximage23" class="lateximagesource">
+<!--
+                             C2
+
+                                      R2
+
+
+                                  −
+         R1   v1        v−                 Vo
+                   C1
+     −                            +
+Vi   +
+-->
+<img src="lateximages\lateximage-23.svg" alt="image" style="" class="lateximage"></span></p>
+
+
+<figcaption>
+
+<p><a id="autoid-28"></a>Figure 5.17:&nbsp;Active RC filters</p>
+
+
+
+</figcaption>
+
+</figure>
+
+<p><br />
+Let’s get started. We know that \(V_o = A(v_+ - v_-) = -A v_-\).<br />
+Let’s write node equations for \(v_1\) and \(v_-\) using the impedance method:</p>
+
+
+<p>\[ \frac {v_1 - V_i}{R_1} + \frac {v_1 - V_o}{Z_{C2}} + \frac {v_1}{Z_{C1}} = 0 \]</p>
+
+
+<p>(since \(v_- \approx 0\) via the virtual short technique.) and</p>
+
+
+<p>\[ \frac {- v_1}{Z_{C1}} + \frac {- V_o}{R2} = 0 \]</p>
+
+
+<p>(Again, since \(v_- \approx 0\) that term disappears, to simplify our calculations.)</p>
+
+
+<p>After substituting \(\displaystyle Z_{C1} = \frac {1}{s C_1}\) and \(\displaystyle Z_{C2} = \frac {1}{s C_2}\), we
+solve the equations for \(V_o\) (I used Mathematica), simplify and get</p>
+
+
+<p>\[ V_o = - \frac {s C_1 R_2 V_i}{s^2 + \frac {C_1 + C_2}{C_1 C_2 R_2} s + \frac {1}{C_1 C_2 R_1 R_2}}
+\]</p>
+
+
+<p>Comparing the denominator to the canonical form \(s^2 + 2\alpha s + {\omega _0}^2\) we get</p>
+
+
+<p>\[ 2\alpha = \Delta \omega = \frac {C_1 + C_2}{C_1 C_2 R_2} \]</p>
+
+
+<p>\[ \omega _0 = \frac {1}{\sqrt {C_1 C_2 R_1 R_2}} \]</p>
+
+
+<p>\[ Q = \frac {\omega _0}{2\alpha } = \frac {\sqrt {C_1 C_2 R_1 R_2}}{R_1 C_1 + R_1 C_2} \]</p>
+
+
+<p>If we substitute \(s = j\omega \) and divide by \(V_i\), we get the circuit’s transfer function \(H(j\omega )\), also
+simply \(\displaystyle \frac {V_o}{V_i}\):</p>
+
+
+<p>\[ H(j\omega ) = - \frac {j \omega C_1 R_2}{-\omega ^2 + \frac {j\omega (C_1 + C_2)}{C_1 C_2 R_2} + \frac
+{1}{C_1 C_2 R_1 R_2}} \]</p>
+<p><span class="paragraph" id="autosec-115"> Positive feedback</span><a id="autopage-115"></a> Positive feedback was
+briefly touched upon in the section on <em>negative</em> feedback, but deserves more study. Let’s see what happens if we
+make a connection similar to the inverting amplifier, but connect the feedback and input to the <em>positive</em> terminal,
+and ground the <em>negative</em> terminal.<br />
+</p>
+
+
+<figure id="autoid-29" class="figure">
+
+<p><span id="lateximage24" class="lateximagesource">
+<!--
+                        R1
+              v+             i
+                   + v       −
+         R2           R1
+              i     +
+                                 vo
+vI
+     −
+     +              −
+-->
+<img src="lateximages\lateximage-24.svg" alt="image" style="" class="lateximage"></span></p>
+
+
+<figcaption>
+
+<p><a id="autoid-29"></a>Figure 5.18:&nbsp;Positive feedback</p>
+
+
+
+</figcaption>
+
+</figure>
+
+<p><br />
+</p>
+
+
+<p>Let’s analyze this circuit intuitively first. Note that we’re feeding a portion of the output back to the <em>positive</em>
+terminal of the op amp, which means we now have <em>positive</em> feedback.<br />
+Assume that the circuit is in equilibrium, to begin with. What would happen in this circuit if, for whatever reason (noise,
+external excitation, etc.) the output node \(v_o\) would increase in voltage?<br />
+Well, we have a voltage divider back to the positive terminal, so a portion of that voltage increase would appear at the
+positive terminal. Via the op amp equation \(v_o = A(v_+ - v_-)\), the op amp would hugely amplify that voltage, and
+vastly increase the output. That, in turn, would make an even higher voltage appear at the + terminal, which would get
+amplified, etc. Very quickly, the op amp will spiral out of control, saturate and hit the positive supply rail.<br />
+</p>
+
+
+<p>Let’s then think about what would happen if we start out at \(v_+ = v_- = v_o = 0\) volts. Say \(v_o\) drops down
+to \(-1\) volt. A portion of that would be fed back to the positive input; for this example, let’s say \(R_1 = R_2\), so
+that exactly half gets fed back.<br />
+\(-0.5\) volts would appear at \(v_+\), while \(v_-\) would remain at 0 volts as always (it’s grounded!). Via the good old
+op amp equation, we have \(v_o = A(-0.5 - 0)\), so the op amp will try to force the output down as low as it can (as the
+value of A is very, very large, the op amp wants \(v_o\) to be much less than the supply voltage that might be on the
+order of \(-12\) volts).<br />
+</p>
+<p><span class="paragraph" id="autosec-118"> Op amp comparator</span><a id="autopage-118"></a></p>
+
+
+<p>Let’s try to build a circuit that exploits the positive feedback phenomenon, where the output voltage is virtually always
+either \(+V_S\) or \(-V_S\). We can use such a circuit as a comparator:<br />
+</p>
+
+
+<figure id="autoid-30" class="figure">
+
+<p><span id="lateximage25" class="lateximagesource">
+<!--
+         +
+             vo
+vI
+     −
+     +   −
+-->
+<img src="lateximages\lateximage-25.svg" alt="image" style="" class="lateximage"></span></p>
+
+
+<figcaption>
+
+<p><a id="autoid-30"></a>Figure 5.19:&nbsp;Op amp comparator</p>
+
+
+
+</figcaption>
+
+</figure>
+
+<p><br />
+</p>
+
+
+<p>This circuit will have \(v_o = V_S\) whenever \(v_I\) is positive (\(v_I &gt; v_-\), and \(v_-\) is grounded) and
+\(v_o = -V_S\) when \(v_I\) is negative (\(v_I &lt; v_-\)), as long as \(A v_+ &gt; V_S\) or \(A v_+ &lt; -V_S\) is
+true, so that the op amp is saturated.<br />
+Of course, the \(v_-\) terminal doesn’t have to be grounded - it could be set to some reference voltage that we want to
+compare to \(v_+\), via a voltage divider, perhaps. It could even be a second signal.</p>
+
+
+<p>Here’s the transfer function for a comparator, normalized so that \(v_o\) ranges between 1 and -1:</p>
+
+
+<p>(The filled areas are the output; the unconnected lines were hard to spot without the filling.)<br />
+Looks great! However, what whould happen if there were noise on the input voltage? The distorted input could cross zero
+multiple times due to noise, so the output is not a clean square wave:</p>
+
+
+<p>Because the noise causes the input to cross zero multiple times extra per cycle, there are glitches in the square wave
+output. This example is obviously exaggerated, but we still want a better solution. If we could move the threshold from 0 to
+some positive/negative voltage pair, so that the noise doesn’t cross those thresholds very easily, this could be avoided.<br />
+Let’s see (in the next section) what would happen to this transfer function if we add positive feedback.</p>
+<p><span class="paragraph" id="autosec-121"> Schmitt trigger</span><a id="autopage-121"></a></p>
+
+
+<p>If we change the circuit slightly from the previous comparator to add positive feedback, and at the same time provide
+the input to the inverting input, we get this circuit:<br />
+</p>
+
+
+<figure id="autoid-31" class="figure">
+
+<p><span id="lateximage26" class="lateximagesource">
+<!--
+      v− −
+                         vo
+      v+
+        +
+             R1
++
+ vI                 vo
+−            v+ =
+                    2
+             R2
+-->
+<img src="lateximages\lateximage-26.svg" alt="image" style="" class="lateximage"></span></p>
+
+
+<figcaption>
+
+<p><a id="autoid-31"></a>Figure 5.20:&nbsp;Schmitt trigger</p>
+
+
+
+</figcaption>
+
+</figure>
+
+<p><br />
+</p>
+
+
+<p>This circuit is a <em>Schmitt trigger</em>; more specifically, an inverting Schmitt trigger. It has <em>hysteresis</em> (it
+”remembers” the previous state of the circuit), and will solve the problem we had. How? Well let’s analyze the circuit and
+find out!<br />
+</p>
+
+
+<p>Let’s do a manual “simulation” again, like we did with the previous comparator. Also, let’s use some numerical values to
+make it a bit more intuitive. We’ll use \(R_1 = R_2\) (their values don’t really matter, only the ratio) and \(V_S\) = 15
+V (and therefore \(-V_S = -15\) V). Also, we’ll start off our simulation with \(v_I = 0\) V and \(v_o = 15\) V, a state
+that we’ll soon see is valid for the normal operation of this circuit.<br />
+</p>
+
+
+<p>With the values we’ve chosen, \(v_+\) will be half of \(v_o\), so \(v_+ = 7.5\) volts. The op amp equation always
+applies, so with \(v_- = v_I = 0\) volts, the op amp will saturate the output, as \(v_o = A(7.5 - v_I) = A(7.5 - 0)\) far
+exceeds \(V_S = 15\) volts. Let’s look at that equation a bit more carefully. As long as \(A\) is very big (again, it’s
+usually over \(10^4\), and not rarely over \(10^6\)), \(v_o\) will stick to \(V_S\) as long as the input is less than 7.5
+volts. For example, say the input increases all the way to 7.4 volts; via \(v_o = A(7.5 - 7.4)\), the output will still be
+\(v_o = 0.1 \cdot A\) which still far exceeds \(V_S\).<br />
+Interesting things happen when \(v_- &gt; v_+\), however. For example, when \(v_I = v_- = 7.6\) volts, \(v_+ - v_-\)
+becomes negative, and the op amp equation evaluates to a hugely negative number, and so the op amp will saturate at the
+<em>negative</em> rail \(-V_S\), since \(v_o = A(7.5 - 7.6) = -0.1 \cdot A \ll -V_S\).<br />
+</p>
+
+
+<p>Now that the input has gone above the old “switching threshold” of 7.5 volts, let’s see what happens when we go back
+below again. Note that now that \(v_o = -15\) volts, \(v_+ = -7.5\) volts, thanks to the voltage divider at the
+output.</p>
+
+
+<p>We have \(v_o = A(v_+ - v_-) = A(-7.5 - 7.6)\) at the moment, which evaluates to a very negative number, so the op
+amp should indeed be in negative saturation. What happens if we lower the input voltage to 7.4 volts, below the old
+switching threshold? It still evaluates to a negative number! Even if we go to \(v_I = 0\), it will <em>still</em> evaluate to
+\(v_o = A(-7.5)\). In order to get the output to switch, we need to go all the way down to \(v_I \approx -7.5\) volts
+(ever-so-slightly lower). Let’s use \(v_I = -7.6\) volts. Via the good old op amp equation, we have \(v_o = A(-7.5 - (-7.6))
+= A(0.1)\), which means the output will now switch to positive saturation again, and \(v_+\) will therefore become
+\(+7.5\) volts.<br />
+</p>
+
+
+<p>Note that now that we’ve switched again, the only way to switch the output back to the negative voltage is to go above
+\(v_I = 7.5\) volts, at which point \(v_O = A(7.5 - v_I)\) will turn negative.<br />
+</p>
+
+
+<p>So, as can be seen in the rather messy analysis above, a signal like our sine wave will cause a clean square wave output,
+as the noise we had comes nowhere near \(V_S/2\) or \(-V_S/2\), and so the output won’t switch more than once per
+intentional zero crossing. This trigger’s inverting nature is also clear, as it only switches to a negative output when the
+input gets <em>positive</em> enough.<br />
+</p>
+
+
+<p>Let’s go back to the noisy sine wave, and see how the same input looks through a Schmitt trigger, instead of a
+comparator:</p>
+
+
+<p>(Again, the filled areas are the output.)<br />
+As in the textual example above, we start out with the input at \(0\) volts (plus a whole ton of noise, which makes it start
+out closer to 5 than 0), and start the world with \(v_o = 15\) V, and take it from there.<br />
+Despite the extreme, exaggerated noise, the output is a perfectly clean square wave! Note how the output switches
+whenever the input crosses the \(\pm 7.5\) V threshold set by the voltage divider, but only from “one direction” - for
+example, when the sine wave is starting to go up from its bottom position around the graph’s middle, it crosses the -7.5
+volt threshold without anything happening. In just this graph, the sine wave crosses the thresholds 6 times (6 intended
+times - not counting the extra ones due to the noise), but only switches 3 times. This is due to hysteresis - the past
+matters; which “direction” it comes from decides whether the output will switch or not.<br />
+Also, of course, note how the output is an inversion of the input. It is however perfectly possible to build non-inverting
+Schmitt triggers.<br />
+</p>
+
+
+<p>We can also vary the switching thresholds. The equation is</p>
+
+
+<p>\[ V_{thres} = \pm v_I \cdot \frac {R_2}{R_1 + R_2} \]</p>
+
+
+<p>... where \(R_2\) is the resistor between \(v_+\) and ground.</p>
+<p><span class="paragraph" id="autosec-124"> Relaxation oscillator</span><a id="autopage-124"></a> We can use the
+inverting Schmitt trigger to make an op amp oscillator, by allowing a capacitor to control the \(v_-\) voltage. The
+capacitor is then charged/discharged through a resistor connected to \(v_o\), like this:</p>
+
+
+<figure id="autoid-32" class="figure">
+
+<p><span id="lateximage27" class="lateximagesource">
+<!--
+           R
+
+
+
+    v− −
+                           vo
+    v+
+      +
+C
+               R1
+                      vo
+               v+ =
+                      2
+               R1
+-->
+<img src="lateximages\lateximage-27.svg" alt="image" style="" class="lateximage"></span></p>
+
+
+</figure>
+
+<p>Notice that the bottom resistors are the same value, so that the thresholds are again set at \(\pm V_S\).<br />
+The “top” resistor \(R\) is the only one that matters for the rise/fall times, while the “bottom” ones are the only ones that
+matter for setting the switching thresholds.<br />
+</p>
+
+
+<p>Let’s take the usual intuitive look at how this would work. Imagine it starts out with the capacitor voltage (which is the
+same as \(v_-\)) at 0 volts, and \(v_o\) at the positive rail, 15 volts (so -\(V_S\) is then -15 volts).<br />
+In this state, a current will flow from \(v_o\) to \(v_-\), due to the voltage difference (15 - 0 volts). This current flows
+through \(R_1\), and has nowhere to go but through the capacitor, so the capacitor is charged by this current. It keeps
+charging along happily with no other change in the circuit, up until it passes just slightly above 7.5 volts (\(V_S/2\)). At
+that point, according to the op amp equation, \(v_o = A(7.5 - v_-)\) will turn negative, and force \(v_o\) down to the
+negative rail.<br />
+When that happens, the capacitor voltage will be almost exactly \(7.5\) volts, while \(v_o\) will be at \(-15\). Therefore
+the capacitor will discharge through \(R\), until it’s down to \(V_S/2 = -7.5\) volts, at which point \(v_o = A(-7.5 -
+v_-)\) will turn positive, and force \(v_o\) to the positive rail. This cycle will repeat over and over, and produce - at least
+in theory - a perfect square wave, with a 50% duty cycle (i.e. the “on time” is exactly equal to the “off time”).<br />
+</p>
+
+
+<p>Now, let’s turn to calculating the oscillation frequency of this circuit. The way we do this is to calculate the rise time
+and the fall time for the RC circuit at the inverting input, and use that information to find the frequency.</p>
+<h5 id="autosec-127"> <span class="sectionnumber">5.0.1&#x2001;</span>Rise time</h5><a id="autopage-127"></a>
+
+<p>To calculate the rise time, let us define \(t = 0\) such that the capacitor voltage is as low as it ever gets, i.e.
+\(-V_S/2\). We can then use our old trusty formula \(v_C = V_S + (V_0 - V_S)e^{-t/RC}\), and set that equal to the
+target voltage, \(V_S/2\):</p>
+
+
+<p><span class="hidden"> \( \seteqsection {5} \) </span> </p>
+
+
+
+<!--
+
+
+
+                                              VS           VS         −t /RC
+                                                 = VS + (−     − VS )e r
+                                               2            2
+                                              VS        3VS −tr /RC
+                                                 = VS −      e
+                                               2         2
+
+
+-->
+
+
+<p>
+\begin{align*} \frac {V_S}{2} &amp;= V_S + (-\frac {V_S}{2} - V_S) e^{-t_r/RC}\\ \frac {V_S}{2} &amp;= V_S
+- \frac {3V_S}{2} e^{-t_r/RC} \end{align*}
+</p>
+
+
+<p>To start with, we subtract \(V_S\) from both sides, and then multiply by \(-1\):</p>
+
+
+<p>\[ -\frac {V_S}{2} = - \frac {3V_S}{2} e^{-t_r/RC} \]</p>
+
+
+<p>\[ \frac {V_S}{2} = \frac {3V_S}{2} e^{-t_r/RC} \]</p>
+
+
+<p>We can now divide both sides by \(\displaystyle \frac {3 V_S}{2}\), which is the same as multiplying by
+\(\displaystyle \frac {2}{3 V_S}\):</p>
+
+
+<p>\[ \frac {V_S}{2} \cdot \frac {2}{3 V_S} = \frac {2}{3 V_S} \cdot \frac {3V_S}{2} e^{-t_r/RC} \]</p>
+
+
+<p>\[ \frac {\cancel {V_S}}{\cancel {2}} \cdot \frac {\cancel {2}}{3 \cancel {V_S}} = e^{-t_r/RC} \]</p>
+
+
+<p>This remains:</p>
+
+
+<p>\[ \frac {1}{3} = e^{-t_r/RC} \]</p>
+
+
+<p>We take the natural log of both sides, and multiply both sides by -RC:</p>
+
+
+<p>\[ \ln {\left (\frac {1}{3}\right )} = -\frac {t_r}{RC} \]</p>
+
+
+<p>\[ -RC \ln {\left (\frac {1}{3}\right )} = t_r \]</p>
+
+
+<p>Via log rules, \(\ln {(1/3)} = \ln {(1)} - \ln {(3)} = 0 - \ln {(3)}\):</p>
+
+
+<p>\[ t_r = RC \ln {(3)} \]</p>
+
+
+<p>Ah, finally: we know the rise time. Next up: fall time.</p>
+<h5 id="autosec-128"> <span class="sectionnumber">5.0.2&#x2001;</span>Fall time</h5><a id="autopage-128"></a>
+
+<p>For the fall time, we use the same equation \(v_C = V_S + (V_0 - V_S)e^{-t/RC}\), but plug in other values for the
+variables, and then set it equal to the target value of \(-V_S/2\). Remember that the “supply” that is “charging” the
+capacitor is now \(-V_S\), and the initial voltage now \(V_S/2\):</p>
+
+
+<p>\[ -\frac {V_S}{2} = -V_S + (\frac {V_S}{2} - (-V_S))e^{-t_f/RC} \]</p>
+
+
+<p>\[ -\frac {V_S}{2} = -V_S + \frac {3 V_S}{2} e^{-t_f/RC} \]</p>
+
+
+<p>Compare this form to the rise time:</p>
+
+
+<p>\[ \frac {V_S}{2} = V_S - \frac {3V_S}{2} e^{-t_r/RC} \]</p>
+
+
+<p>If we multiply both sides of the fall time equation by \(-1\), we can easily see that these equations are exactly the same,
+which means the answer must also be the same!</p>
+
+
+<p>\[ t_f = t_r = RC \ln {(3)} \]</p>
+<h5 id="autosec-129"> <span class="sectionnumber">5.0.3&#x2001;</span>Frequency</h5><a id="autopage-129"></a>
+
+<p>Frequency is the inverse of cycle time, and \(t_r + t_f\) make up one full cycle. Therefore,</p>
+
+
+<p>\[ f = \frac {1}{t_r + t_f} = \frac {1}{2 RC \ln {(3)}} \]</p>
+
+
+<p>If the negative supply is not equal to exactly \(-V_S\), the formula above (and its derivation) becomes quite a bit more
+complex. We will not worry about that case, as having equal supplies to within a small margin of error is common. </p>
+
+
+</section>
+
+<footer>
+
+</footer>
+
+<nav class="botnavigation"><a href="index.html" class="linkhome"
+>Home</a></nav>
+
+</body>
+</html>

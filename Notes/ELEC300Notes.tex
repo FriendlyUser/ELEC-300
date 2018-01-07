@@ -1,0 +1,440 @@
+
+%\documentclass{scrreprt}
+\documentclass{report}
+\nonstopmode
+%% Overleaf will be used for storage, but lwarp doesn't work on overleaf maybe it will work on sharelatex? But I doubt it will, so looks like I'm left with bringing my personal computer to the university 2 times a week and working on these notes at home, one disadvantage of using lwarp.
+%%% Needed to write listtodonotes, and listofalgorithms, but the problem is listoftodonotes
+\usepackage{morewrites}
+% \PassOptionsToPackage {warpprint,BaseJobname=ELEC300Notes}{lwarp} to print pdf document
+\usepackage[
+HomeHTMLFilename=index,     % Filename of the homepage.
+%HTMLFilename={node-},       % Filename prefix of other pages.
+IndexLanguage=english,      % Language for xindy index, glossary.
+%latexmk,                    % Use latexmk to compile.
+%   OSWindows,                  % Force Windows. (Usually automatic.)
+mathjax,                    % Use MathJax to display math.
+]{lwarp}
+\usepackage{cancel}
+\usepackage{caption}
+\captionsetup[table]{position=top}
+\captionsetup[figure]{position=bottom}
+
+\setcounter{tocdepth}{2} % Include subsections in the \TOC.
+\setcounter{secnumdepth}{2} % Number down to subsections.
+\setcounter{FileDepth}{0} % Split \HTML\ files at sections, in this case chapters?, 0 for chapters?
+\booltrue{CombineHigherDepths} % Combine parts/chapters/sections
+\setcounter{SideTOCDepth}{1} % Include subsections in the side\TOC
+\HTMLAuthor{David Li} % Sets the HTML meta author tag.
+\HTMLLanguage{en-US} % Sets the HTML meta language.
+\HTMLDescription{A list of cheatsheets some diagrams}%
+
+\title{ELEC 300 Notes}
+\author{David Li}
+\date{January 2018 --- April 2018}
+\usepackage{tikz}
+\usetikzlibrary{positioning}
+\usetikzlibrary{shapes,arrows} 
+\newcommand{\sse}{\mathrm{ss}}
+\newcommand{\re}{\mathrm{ref}}
+\usepackage{float}
+
+
+%% Trying out mdframed in lwarp
+\usepackage[framemethod=tikz]{mdframed}
+\newmdenv[
+topline=false,
+bottomline=false,
+rightline=false,
+innerrightmargin=0pt
+]{siderule}
+\newenvironment{note}%
+{\begin{siderule}\textbf{Note:}}
+	{\end{siderule}}
+
+\usepackage{hyperref}
+
+\hypersetup{colorlinks=true, linkcolor=blue, citecolor=black}
+\usepackage{booktabs}
+\usepackage{float}
+\usepackage{multirow}
+\usetikzlibrary{bending}
+\usepackage[american,siunitx]{circuitikz}
+\usepackage{listings}
+%% https://tex.stackexchange.com/questions/301993/create-custom-note-environment-with-tcolorbox
+\usepackage{enumitem}
+\usepackage{tcolorbox}
+\usepackage{amsmath, amsthm}
+\tcbuselibrary{listings}
+\tcbuselibrary{breakable}
+\newtcblisting[auto counter,number within=chapter]{matlaboutput}[2][]{sharp corners, breakable,
+	fonttitle=\bfseries,colback=white, colframe=black!90, listing only, 
+	listing options={language=Matlab, showstringspaces=false, breakatwhitespace=true, breaklines=true, tabsize=4}, 
+	title=Matlab Output \thetcbcounter:  #1}
+
+\usepackage{amsthm}
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{corollary}{Corollary}[theorem]
+
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+\newtheorem{example}{Example}[section]
+
+\usepackage{longtable}
+
+%% Added for bibilography and title page
+%% This is not going to be used, however it is useful to know what I can reference in texstudio
+\begin{document}
+	
+%% Print Title Page
+\makeatletter
+% Create \printauthor command which will display contact info                     
+\def\printauthor{%                  
+	{\large \@author}}              
+\makeatother
+
+\author{%
+	\textbf{Name: }  David Li \\
+	\textbf{Student Number:} V00818631	\\
+	\textbf{Term}  3A  \\
+	\textit{Discipline:} Computer Engineering \\  \vspace{4pt}
+	\textit{Email:} \href{mailto:lidavid@uvic.ca}{lidavid@uvic.ca}
+}
+
+\maketitle
+
+\begin{titlepage}
+	%\AddToShipoutPicture*{\BackgroundPic}
+	\begin{center}
+		%		{\vspace*{3pt} }
+		{\Huge \textsc{Faculty of Electrical and Computer Engineering} \\ \vspace{4pt}}
+		\rule[13pt]{1\textwidth}{1pt} \\ \vspace{1pt}
+		{\LARGE \textbf{{\textsc{ELEC 300 – Linear Circuits: II }}} \\ Instructor  --- \textit{Dr. Jens Bornemann} \\ }
+		{\Large \textsc{Required Text: \hyperlink{ref-book:nilEC}{Nilsson, Electric Circuits}} \\} 
+		\vspace{4pt} 
+		{\Large \textsc{Winter 2018}} \\ 
+		\vspace{20pt}
+		%{\Large \textsc{Victoria, British Columbia, Canada} \\ \vspace{45pt}}
+		\begin{minipage}{0.96\linewidth}
+			\begin{flushright}
+					{
+					\large \textit{Course Website} \href{http://www.ece.uvic.ca/~jbornema/300-LinCircII-S2018.html}{ELEC 300}  \\
+					\textsc{\textbf{Course Assessment:}} \\
+					Assignments: 10 \% Due Dates: TBA \\
+					Labs 20 \% \\
+					Mid-term 20 \% Date: 22 Feb 2018 \\
+					Final Exam 50 \%} \\
+			\end{flushright}
+		\end{minipage}
+		\begin{minipage}{0.02\linewidth}
+			\rule[0pt]{1pt}{110pt} 
+		\end{minipage}
+		\\ \vspace{40pt}
+		{\Large \textsc{\today} \\ \vspace{15pt}
+			{\Large \textsc{In partial fulfillment of the academic requirements of this course. \\
+				}
+			}	
+		}
+		
+	\end{center}
+\end{titlepage}
+\tableofcontents
+\listoffigures
+\listoftables
+\lstlistoflistings
+
+
+
+% Only works in the print version
+%\tcblistof[\section*]{examples}{List of Examples}
+\chapter{Tables and Units}
+
+\begin{note}
+	This meme note better work
+\end{note}
+
+\input{tables.tex}
+
+\begin{figure}
+	\centering
+	\includegraphics[width=1\linewidth]{Inkscape/electricCircuit.png}
+	\caption{Electric Circuit generated using InkScape}
+	\label{fig:electriccircuit}
+\end{figure}
+
+\chapter{Course Information}
+\begin{theorem}{}{}
+	Testing my life
+\end{theorem}
+
+\begin{definition}{}{}
+	Another test
+\end{definition}
+
+\begin{example}{}{}
+	example
+\end{example}
+
+\begin{corollary}{}{}
+	More testing
+\end{corollary}
+
+\begin{remark}
+	Hopefully this course will not be too hard
+\end{remark}
+
+\begin{proof}
+$$Good at math.$$
+\end{proof}
+\section{Expectations}
+\input{othertexfiles/ELEC300CourseInfo.tex}
+
+\chapter{Concepts to Review}
+\input{reviewconcepts.tex}
+%\chapter{Operation Amplifiers}
+\input{opamps.tex}
+\chapter{Testing Lwarp}
+%This chapter contains content on simplifing basic electric circuits. 
+
+\begin{figure}
+\begin{lateximage}%
+	\begin{circuitikz}
+	\draw (0,4) to [V,l_=$ NI$] (0,0) 
+	(0,4) to  [R,i>=$\phi_1$, l^= ${R}_{1}$,v_>=${F}_1$, color=purple] (4,4) 
+	(4,0) -- (0,0) 
+	(4,4) to [R,i^>=$\phi_2$, l^= ${R}_{2}$,v_>=${F}_2$, color=blue] (4,0)
+	(4,4) to [R,l^= ${R}_{3}$,v_>=${F}_3$, color=red] (8,4)
+	(8,4) to [R,i^>=$\phi_3$, l^= ${R}_{g}$,v_>=${F}_g$, color=cyan] (8,0)
+	(8,0) to [R, l^= ${R}_{4}$,v_>=${F}_4$, color=green] (4,0);
+	\draw[thin, <-, >=triangle 45] (6,2) node{$\phi_3$}   ++(-90:1) arc (-90:100:1);
+	\draw[thin, <-, >=triangle 45] (2,2) node{$\phi_2$}   ++(-90:1) arc (-90:100:1);
+	%		\node (phi) at (4.25,0.5) {$\phi_2$};
+	%		\draw[-stealth]  (4.25,2.5) to [bend left=90] (phi);  
+\end{circuitikz}
+\end{lateximage}% NEW
+\caption{Electric Circuits}
+\end{figure}
+
+%Adding some text here \newline
+\begin{figure}
+\begin{lateximage}%NEW
+	\tikzstyle{block} = [draw, fill=blue!20, rectangle, minimum height=3em, minimum width=4em]
+	\tikzstyle{controller} = [draw, fill=red!20, rectangle, minimum height=3em, minimum width=4em]
+	\tikzstyle{sum} = [draw, fill=blue!20, circle, node distance=1cm]
+	\tikzstyle{input} = [coordinate]
+	\tikzstyle{output} = [coordinate]
+	\begin{tikzpicture}[auto, >=latex']
+	% Nodes
+	\node [input] (input) {};
+	\node [sum, right = 1cm of input] (sum) {};
+	\node [controller, right = 1cm of sum] (system) {$K_D s + K_P$};
+	\node [block, right = 1cm of system] (system2) {$\frac{k}{ms^2}$};
+	\node [output, right = 2cm of system2] (output) {};
+	\node [input, below = 0.5cm of system] (m) {};
+	% Arrows
+	\draw [draw,->] (input) -- node {$Z_\re$} (sum);
+	\draw [->] (sum) -- node {} (system);
+	\draw [->] (system) -- node {$I$} (system2);
+	\draw [->] (system2) -- node (y) {$Z$}(output);
+	\draw [-] (y) |- (m) {} ;
+	\draw [->] (m) -| node[pos=0.99] {$-$}  node [near end] {} (sum);
+	\end{tikzpicture}  
+\end{lateximage}% NEW
+	\caption{Proportional-derivative control.}
+\end{figure}
+
+\section{Testing out images}
+%Adding some text here \newline
+\begin{figure}
+\centering
+\begin{lateximage}% NEW
+	\tikzstyle{block} = [draw, fill=blue!20, rectangle, minimum height=3em, minimum width=4em]
+	\tikzstyle{controller} = [draw, fill=red!20, rectangle, minimum height=3em, minimum width=4em]
+	\tikzstyle{sum} = [draw, fill=blue!20, circle, node distance=1cm]
+	\tikzstyle{input} = [coordinate]
+	\tikzstyle{output} = [coordinate]
+	\begin{tikzpicture}[auto, >=latex']
+	% Nodes
+	\node [input] (input) {};
+	\node [sum, right = 1cm of input] (sum) {};
+	\node [controller, right = 1cm of sum] (con1) {$\frac{s+p_c}{s+z_c}$};
+	\node [controller, right = 1cm of con1] (con2) {$K_D s + K_P$};
+	\node [block, right = 1cm of con2] (system2) {$\frac{k}{ms^2}$};
+	\node [output, right = 2cm of system2] (output) {};
+	\node [input, below = 0.5cm of con2] (m) {};
+	% Arrows
+	\draw [draw,->] (input) -- node {$Z_\re$} (sum);
+	\draw [->] (sum) -- (con1);
+	\draw [->] (con1) -- (con2);
+	\draw [->] (con2) -- node {$I$} (system2);
+	\draw [->] (system2) -- node (y) {$Z$}(output);
+	\draw [-] (y) |- (m) {} ;
+	\draw [->] (m) -| node[pos=0.99] {$-$}  node [near end] {} (sum);
+	\end{tikzpicture}  
+\end{lateximage}% NEW
+	\caption{Lag compensation in series with PD control.}
+\end{figure}
+
+\begin{lstlisting}{caption={Using a latex image}}
+	% M-file: prob7_17.m
+	% M-file create a plot of the induced torque power
+	% converted power out and efficiency of the induction
+	% motor of Problem 7-14 as a function of slip.
+	% First, initialize the values needed in this program.
+	r1 = 0.075; % Stator resistance
+	x1 = 0.170; % Stator reactance
+	r2 = 0.065; % Rotor resistance
+	x2 = 0.170; % Rotor reactance
+	xm = 7.2; % Magnetization branch reactance
+	v_phase = 440 / sqrt(3); % Phase voltage
+	n_sync = 3000; % Synchronous speed (r/min)
+	w_sync = 314.2; % Synchronous speed (rad/s)
+	p_mech = 1000; % Mechanical losses (W)
+	p_core = 1100; % Core losses (W)
+	p_misc = 150; % Miscellaneous losses (W)
+	% Calculate the Thevenin voltage and impedance from Equations
+	% 7-41a and 7-43.
+	v_th = v_phase * ( xm / sqrt(r1^2 + (x1 + xm)^2) );
+	z_th = ((j*xm) * (r1 + j*x1)) / (r1 + j*(x1 + xm));
+	r_th = real(z_th);
+	x_th = imag(z_th);
+\end{lstlisting}
+
+
+Another test 
+\begin{figure}
+\centering
+\begin{lateximage}
+\tikzstyle{block} = [draw, fill=blue!20, rectangle, minimum height=3em, minimum width=4em]
+\tikzstyle{controller} = [draw, fill=red!20, rectangle, minimum height=3em, minimum width=4em]
+\tikzstyle{sum} = [draw, fill=blue!20, circle, node distance=1cm]
+\tikzstyle{input} = [coordinate]
+\tikzstyle{output} = [coordinate]
+\begin{tikzpicture}[auto, >=latex']
+% Nodes
+\node [input] (input) {};
+\node [sum, right = 1cm of input] (sum) {};
+\node [controller, right = 1cm of sum] (con1) {$\frac{s+p_c}{s+z_c}$};
+\node [controller, right = 1cm of con1] (con2) {$K_D s + K_P$};
+\node [block, right = 1cm of con2] (system2) {$\frac{k}{ms^2}$};
+\node [output, right = 2cm of system2] (output) {};
+\node [input, below = 0.5cm of con2] (m) {};
+% Arrows
+\draw [draw,->] (input) -- node {$Z_\re$} (sum);
+\draw [->] (sum) -- (con1);
+\draw [->] (con1) -- (con2);
+\draw [->] (con2) -- node {$I$} (system2);
+\draw [->] (system2) -- node (y) {$Z$}(output);
+\draw [-] (y) |- (m) {} ;
+\draw [->] (m) -| node[pos=0.99] {$-$}  node [near end] {} (sum);
+\end{tikzpicture}
+\end{lateximage}
+\caption{This will be a good image}
+\end{figure}
+\nocite{*}
+
+The references used for this course are listed in the next page.  \\
+
+\begin{lateximage}
+\begin{matlaboutput}{Using a latex image}
+	% M-file: prob7_17.m
+	% M-file create a plot of the induced torque power
+	% converted power out and efficiency of the induction
+	% motor of Problem 7-14 as a function of slip.
+	% First, initialize the values needed in this program.
+	r1 = 0.075; % Stator resistance
+	x1 = 0.170; % Stator reactance
+	r2 = 0.065; % Rotor resistance
+	x2 = 0.170; % Rotor reactance
+	xm = 7.2; % Magnetization branch reactance
+	v_phase = 440 / sqrt(3); % Phase voltage
+	n_sync = 3000; % Synchronous speed (r/min)
+	w_sync = 314.2; % Synchronous speed (rad/s)
+	p_mech = 1000; % Mechanical losses (W)
+	p_core = 1100; % Core losses (W)
+	p_misc = 150; % Miscellaneous losses (W)
+	% Calculate the Thevenin voltage and impedance from Equations
+	% 7-41a and 7-43.
+	v_th = v_phase * ( xm / sqrt(r1^2 + (x1 + xm)^2) );
+	z_th = ((j*xm) * (r1 + j*x1)) / (r1 + j*(x1 + xm));
+	r_th = real(z_th);
+	x_th = imag(z_th);
+\end{matlaboutput}
+\end{lateximage}
+
+\begin{theorem}
+	Testing out the theorems
+\end{theorem}
+\begin{verbatim}
+pdflatex file
+pdflatex file_html.tex
+lwarpmk limages
+lwarpmk html
+lwarpmk pdftohtml
+\end{verbatim}
+
+\begin{example}
+Testing out the examples
+\begin{verbatim}
+pdflatex file
+pdflatex file_html.tex
+lwarpmk limages
+lwarpmk html
+lwarpmk pdftohtml
+\end{verbatim}
+\end{example}
+
+\begin{theorem}
+	Let $f$ be a function whose derivative exists in every point, then $f$ is 
+	a continuous function.
+\end{theorem}
+
+\begin{theorem}[Pythagorean theorem]
+	\label{pythagorean}
+	This is a theorema about right triangles and can be summarised in the next 
+	equation 
+	\[ x^2 + y^2 = z^2 \]
+\end{theorem}
+
+And a consequence of theorem \ref{pythagorean} is the statement in the next 
+corollary.
+
+\begin{corollary}
+	There's no right rectangle whose sides measure 3cm, 4cm, and 6cm.
+\end{corollary}
+
+You can reference theorems such as \ref{pythagorean} when a label is assigned.
+
+\begin{lemma}
+	Given two line segments whose lengths are $a$ and $b$ respectively there is a 
+	real number $r$ such that $b=ra$.
+\end{lemma}
+\chapter{References}
+\hypertarget{ref-book:nilEC}{}%{Nilsson}
+{[}1{]} S. R. James W. Nilsson, \emph{Electric circuits}, 10th ed.
+Prentice Hall, 2014 {[}Online{]}. Available:
+\url{http://gen.lib.rus.ec/book/index.php?md5=03056790a74181d7794410d104eb40da}
+
+\hypertarget{ref-book:nilECSol}{}%{Nilsson ISM}
+{[}2{]} J. W. Nilsson and S. A. Riedel, \emph{Electric circuits -
+	instructor's solutions manual}, 10th ed. Pearson Education, c2015
+{[}Online{]}. Available:
+\url{http://gen.lib.rus.ec/book/index.php?md5=87d143afb7721c649ca9d0312cfbfdab}
+
+\hypertarget{ref-book:alexEC}{}%{Alexander}
+{[}3{]} M. S. Charles K Alexander, \emph{Fundamentals of electric
+	circuits}, 6th ed. McGraw-Hill Education, 2016 {[}Online{]}. Available:
+\url{http://gen.lib.rus.ec/book/index.php?md5=35E6BF8A0595988D38F4A6A8B7FA12A4}
+
+\hypertarget{ref-book:alexECSol}{}%{Alexander ISM}
+{[}4{]} M. N. O. Charles K.Alexander, \emph{Fundamentals of electric
+	circuits - instructor solutions manual}, 5th ed. McGraw Hill, 2013
+{[}Online{]}. Available:
+\url{http://gen.lib.rus.ec/book/index.php?md5=19dd000fcf3786cee40d7ec083f7c13a}
+
+
+\end{document}
