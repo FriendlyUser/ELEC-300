@@ -1,0 +1,116 @@
+<hr />
+<h1 id="elec-300-reference-document" class="unnumbered">ELEC 300 reference document,</h1>
+<p>going through circuit analysis with matlab to create and document useful features. This is the document that will be published</p>
+<ol>
+<li><p>Another list</p></li>
+<li><p>lists</p></li>
+<li><p>trades</p></li>
+</ol>
+<pre><code>format compact
+format rational</code></pre>
+<h2 id="introduction" class="unnumbered">Introduction</h2>
+<p>testing things out, what exactly is the introduction section</p>
+<h2 id="section-title-without-section-break" class="unnumbered">SECTION TITLE WITHOUT SECTION BREAK</h2>
+<p>DESCRIPTIVE TEXT</p>
+<pre><code>G=[1 0 0 0 0;...
+ -1/3 5/6 -1/3 0 0;...
+ 0 -1/3 13/30 19/60 -19/60;...
+ 0 -10/3 1 -1 0;...
+ 0 0 -1/10 -19/60 37/60]
+I=[12 0 0 0 0]&#39;
+V=G\I
+fprintf(&#39;\n&#39;);...
+ fprintf(&#39;v1 = %7.2f V \n&#39;,V(1));...
+ fprintf(&#39;v2 = %7.2f V \n&#39;,V(2));...
+ fprintf(&#39;v3 = %7.2f V \n&#39;,V(3));...
+ fprintf(&#39;v4 = %7.2f V \n&#39;,V(4));...
+ fprintf(&#39;v5 = %7.2f V \n&#39;,V(5));...
+ fprintf(&#39;\n&#39;); fprintf(&#39;\n&#39;)
+
+
+z1=4-j*6; z2=2+j*3; z3=8-j*3; % Define z1, z2 and z3
+Z=[1/z1+1/z2 -1/z2; -1/z2 1/z2+1/z3]; % Elements of matrix Z
+I=[5 -10]&#39;; % Column vector I
+V=Z\I; Va=V(1,1); Vb=V(2,1); Vab=Va-Vb; % Va = V(1), Vb = V(2) are also acceptable
+% With f p r i n t f only the real part of each parameter is processed so we will use di s p
+fprintf(&#39; \n&#39;); disp(&#39;Va = &#39;); disp(Va); disp(&#39;Vb = &#39;); disp(Vb); disp(&#39;Vab = &#39;); disp(Vab);
+fprintf(&#39; \n&#39;);
+
+Z=[1 0 0; -(4-j*6) 14-j*6 -(8-j*3); 0 0 1];
+V=[5 0 10]&#39;;
+I=Z\V; i1=I(1); i2=I(2); i3=I(3); fprintf(&#39; \n&#39;);
+disp(&#39;i1 = &#39;); disp(i1); disp(&#39;i2 = &#39;); disp(i2); disp(&#39;i3 = &#39;); disp(i3);
+
+z1=4-6j; z2=2+3j; z3=8-3j; Is=5; i1=z1*Is/(z1+z2+z3);...
+i1, magI1=abs(i1), phaseI1=angle(i1)*180/pi, v1=-3j*i1,...
+magV1=abs(v1), phaseV1=angle(v1)*180/pi,...
+Is2=-10; i2=(z1+z2)*Is2/(z1+z2+z3); magI2=abs(i2), phaseI2=angle(i2)*180/pi,...
+v2=-3j*i2, magV2=abs(v2), phaseV1=angle(v2)*180/pi,...
+vC=v1+v2, magvC=abs(vC), phasevC=angle(vC)*180/pi</code></pre>
+<p>G = 1 0 0 0 0 -1/3 5/6 -1/3 0 0 0 -1/3 13/30 19/60 -19/60 0 -10/3 1 -1 0 0 0 -1/10 -19/60 37/60 I = 12 0 0 0 0 V = 12 952/73 1504/73 -5008/219 -1840/219</p>
+<p>v1 = 12.00 V v2 = 13.04 V v3 = 20.60 V v4 = -22.87 V v5 = -8.40 V</p>
+<p>Va = -120/29 + 570/29i Vb = -650/29 - 30/29i Vab = 530/29 + 600/29i</p>
+<p>i1 = 5 i2 = 220/29 - 30/29i i3 = 10 i1 = 115/58 - 75/58i magI1 = 1283/542 phaseI1 = -16059/485 v1 = -225/58 - 345/58i magV1 = 3359/473 phaseV1 = -59709/485 magI2 = 3607/819 phaseI2 = 28438/161 v2 = 45/58 + 765/58i magV2 = 3607/273 phaseV1 = 13948/161 vC = -90/29 + 210/29i magvC = 583/74 phasevC = 15961/141</p>
+<h2 id="another-section" class="unnumbered">Another Section</h2>
+<pre><code>clear all
+% Enter the non-zero values of the G matrix
+G(1,1)=1;
+G(2,1)=-1/2;
+G(2,2)=1/2-1/5j+1/3j;
+G(2,3)=-1/3j;
+G(3,2)=-1/3j;
+G(3,3)=1/3j+1/5;
+%
+% Enter all values of the I matrix
+I=[1 0 0]&#39;;
+%
+% Compute node voltages
+V=G\I;
+%
+VR1=V(1)-V(2);
+VL=V(2)-V(3);
+% Compute magnitudes and phase angles of voltages
+magV1=abs(V(1)); magV2=abs(V(2)); magV3=abs(V(3));
+phaseV1=angle(V(1))*180/pi; phaseV2=angle(V(2))*180/pi; phaseV3=angle(V(3))*180/pi;
+magVR1=abs(VR1); phaseVR1=angle(VR1)*180/pi;
+magVL=abs(VL); phaseVL=angle(VL)*180/pi;
+%
+% Denote radian frequency as w and plot wt for 0 to 2*pi range
+wt=linspace(0,2*pi);
+V1=magV1*cos(wt-phaseV1);
+V2=magV2*cos(wt-phaseV2);
+V3=magV3*cos(wt-phaseV3);
+VR1t=magVR1*cos(wt-phaseVR1);
+VLt=magVL*cos(wt-phaseVL);
+%
+% Convert wt to degrees
+deg=wt*180/pi;
+%
+% Print phasor voltages, magnitudes, and phase angles
+fprintf(&#39; \n&#39;);
+% With f p r i n t f only the real part of each parameter is processed so we will use d i s p
+disp(&#39;V1 = &#39;); disp(V(1)); disp(&#39;V2 = &#39;); disp(V(2)); disp(&#39;V3 = &#39;); disp(V(3));
+disp(&#39;VR1 = &#39;); disp(VR1); disp(&#39;VL = &#39;); disp(VL);
+fprintf(&#39;magV1 = %4.2f V \t&#39;, magV1); fprintf(&#39;magV2 = %4.2f V \t&#39;, magV2);
+fprintf(&#39;magV3 = %4.2f V&#39;, magV3); fprintf(&#39; \n&#39;); fprintf(&#39; \n&#39;);
+fprintf(&#39;phaseV1 = %4.2f deg \t&#39;, phaseV1);
+fprintf(&#39;phaseV2 = %4.2f deg \t&#39;, phaseV2); fprintf(&#39;phaseV3 = %4.2f deg&#39;, phaseV3);
+fprintf(&#39; \n&#39;); fprintf(&#39; \n&#39;);
+fprintf(&#39;magVR1 = %4.2f V \t&#39;, magVR1); fprintf(&#39;phaseVR1 = %4.2f deg &#39;, phaseVR1);
+fprintf(&#39; \n&#39;); fprintf(&#39; \n&#39;);
+fprintf(&#39;magVL = %4.2f V \t&#39;, abs(VL)); fprintf(&#39;phaseVL = %4.2f deg &#39;, phaseVL);
+fprintf(&#39; \n&#39;);
+%
+plot(deg,V1,deg,V2,deg,V3,deg,VR1t,deg,VLt)
+fprintf(&#39; \n&#39;);</code></pre>
+<p>V1 = 1 V2 = 550/733 - 95/733i V3 = 725/1466 - 625/1466i VR1 = 183/733 + 95/733i VL = 375/1466 + 435/1466i magV1 = 1.00 V magV2 = 0.76 V magV3 = 0.65 V</p>
+<p>phaseV1 = 0.00 deg phaseV2 = -9.80 deg phaseV3 = -40.76 deg</p>
+<p>magVR1 = 0.28 V phaseVR1 = 27.43 deg</p>
+<p>magVL = 0.39 V phaseVL = 49.24 deg</p>
+<div class="figure">
+<img src="ReferenceDocument_01.png" alt="ReferenceDocument_01.png" />
+<p class="caption"><span class="math inline"><em>R</em><em>e</em><em>f</em><em>e</em><em>r</em><em>e</em><em>n</em><em>c</em><em>e</em><em>D</em><em>o</em><em>c</em><em>u</em><em>m</em><em>e</em><em>n</em><em>t</em><sub>01</sub>.<em>p</em><em>n</em><em>g</em></span></p>
+</div>
+<p><br /><span class="math display"><em>H</em> = <em>w</em><sub><em>x</em></sub> + 5</span><br /></p>
+<p><a href="http://www.mathworks.com">MathWorks</a></p>
+<p><a href="matlab:FUNCTION">DISPLAYED TEXT</a></p>
