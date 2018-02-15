@@ -12,7 +12,6 @@
 <![endif]-->
 <title>ELEC 300 Notes — Concepts to Review</title>
 <link rel="stylesheet" type="text/css" href="lwarp.css" />
-
 <!-- https://groups.google.com/forum/#!topic/
                                mathjax-users/jUtewUcE2bY -->
 <script type="text/x-mathjax-config">
@@ -80,7 +79,10 @@ MathJax.Hub.Register.StartupHook("TeX AMSmath Ready",function () {
  MathJax.Hub.Config({
    extensions: ["tex2jax.js","[siunitx]/siunitx.js"],
    jax: ["input/TeX","output/HTML-CSS"],
-   tex2jax: {inlineMath: [["$","$"],["\\(","\\)"]]},
+   tex2jax: {
+        inlineMath: [["$","$"],["\\(","\\)"]] ,
+        processClass: "tabbing|verse"
+     },
    TeX: {extensions: ["AMSmath.js","AMSsymbols.js", "sinuitx.js"]}
  });
  MathJax.Ajax.config.path['siunitx'] = 'http://rawgit.com/burnpanck/MathJax-siunitx/master/';
@@ -107,6 +109,7 @@ src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-
   src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML-full">
 </script>
 -->
+
 
 </head>
 <body>
@@ -135,7 +138,92 @@ src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-
 >Home</a></p>
 
 
-<p></p>
+<p><a href="Tables-Units.html#autosec-13" class="tocchapter"
+><span class="sectionnumber">1</span>&#x2001;Tables and Units</a></p>
+
+
+<p><a href="Course-Information.html#autosec-59" class="tocchapter"
+><span class="sectionnumber">2</span>&#x2001;Course Information</a></p>
+
+
+<p><a href="Course-Information.html#autosec-66" class="tocsection"
+><span class="sectionnumber">2.1</span>&#x2001;Expectations</a></p>
+
+
+<p><a href="Concepts-Review.html#autosec-70" class="tocchapter"
+><span class="sectionnumber">3</span>&#x2001;Concepts to Review</a></p>
+
+
+<p><a href="Concepts-Review.html#autosec-71" class="tocsection"
+><span class="sectionnumber">3.1</span>&#x2001;Components in series and parallel</a></p>
+
+
+<p><a href="Concepts-Review.html#autosec-72" class="tocsection"
+><span class="sectionnumber">3.2</span>&#x2001;State devices / energy storage devices</a></p>
+
+
+<p><a href="Concepts-Review.html#autosec-75" class="tocsection"
+><span class="sectionnumber">3.3</span>&#x2001;First order circuits</a></p>
+
+
+<p><a href="Concepts-Review.html#autosec-76" class="tocsection"
+><span class="sectionnumber">3.4</span>&#x2001;Second order circuits, impedance, filters</a></p>
+
+
+<p><a href="Circuit-analysis.html#autosec-84" class="tocchapter"
+><span class="sectionnumber">4</span>&#x2001;Circuit analysis</a></p>
+
+
+<p><a href="Circuit-analysis.html#autosec-85" class="tocsection"
+><span class="sectionnumber">4.1</span>&#x2001;Thevenin equivalent circuits</a></p>
+
+
+<p><a href="Circuit-analysis.html#autosec-94" class="tocsection"
+><span class="sectionnumber">4.2</span>&#x2001;Norton equivalent circuits</a></p>
+
+
+<p><a href="Operational-Amplifiers.html#autosec-98" class="tocchapter"
+><span class="sectionnumber">5</span>&#x2001;Operational Amplifiers</a></p>
+
+
+<p><a href="Testing-Lwarp.html#autosec-166" class="tocchapter"
+><span class="sectionnumber">6</span>&#x2001;Testing Lwarp</a></p>
+
+
+<p><a href="BODE-DIAGRAMS.html#autosec-172" class="tocchapter"
+><span class="sectionnumber">7</span>&#x2001;BODE DIAGRAMS</a></p>
+
+
+<p><a href="BODE-DIAGRAMS.html#autosec-177" class="tocsection"
+><span class="sectionnumber">7.1</span>&#x2001;PHASE AND GAIN MARGINS</a></p>
+
+
+<p><a href="Resonance-Circuits.html#autosec-179" class="tocchapter"
+><span class="sectionnumber">8</span>&#x2001;Resonance Circuits</a></p>
+
+
+<p><a href="Resonance-Circuits.html#autosec-180" class="tocsection"
+><span class="sectionnumber">8.1</span>&#x2001;Resonance</a></p>
+
+
+<p><a href="Resonance-Circuits.html#autosec-181" class="tocsection"
+><span class="sectionnumber">8.2</span>&#x2001;Series Resonance</a></p>
+
+
+<p><a href="Resonance-Circuits.html#autosec-182" class="tocsection"
+><span class="sectionnumber">8.3</span>&#x2001;Selectivity and Q of a Circuit</a></p>
+
+
+<p><a href="Resonance-Circuits.html#autosec-184" class="tocsection"
+><span class="sectionnumber">8.4</span>&#x2001;Power in a Series Resonant Circuit</a></p>
+
+
+<p><a href="Resonance-Circuits.html#autosec-186" class="tocsection"
+><span class="sectionnumber">8.5</span>&#x2001;Testing out images</a></p>
+
+
+<p><a href="References.html#autosec-205" class="tocchapter"
+><span class="sectionnumber">9</span>&#x2001;References</a></p>
 
 
 </div>
@@ -144,9 +232,9 @@ src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-
 
 <section class="textbody">
 
-<h3 id="autosec-35"> <span class="sectionnumber">3&#x2001;</span>Concepts to Review</h3><a id="autopage-35"></a>
-<h4 id="autosec-36"> <span class="sectionnumber">3.1&#x2001;</span>Components in series and parallel</h4><a
-id="autopage-36"></a>
+<h3 id="autosec-70"> <span class="sectionnumber">3&#x2001;</span>Concepts to Review</h3><a id="autopage-70"></a>
+<h4 id="autosec-71"> <span class="sectionnumber">3.1&#x2001;</span>Components in series and parallel</h4><a
+id="autopage-71"></a>
 
 <p>Series resistances add:</p>
 
@@ -192,11 +280,11 @@ id="autopage-36"></a>
 
 
 <p>\[ \frac {1}{ \frac {1}{x_1} + \frac {1}{x_2} } = \frac {x_1 \cdot x_2}{x_1 + x_2} \]</p>
-<h4 id="autosec-37"> <span class="sectionnumber">3.2&#x2001;</span>State devices / energy storage devices</h4><a
-id="autopage-37"></a>
+<h4 id="autosec-72"> <span class="sectionnumber">3.2&#x2001;</span>State devices / energy storage devices</h4><a
+id="autopage-72"></a>
 
 <p>This section assumes time-invariant devices, i.e. capacitance/inductance is a fixed value, and not a function of time.</p>
-<h5 id="autosec-38"> <span class="sectionnumber">3.2.1&#x2001;</span>Capacitors</h5><a id="autopage-38"></a>
+<h5 id="autosec-73"> <span class="sectionnumber">3.2.1&#x2001;</span>Capacitors</h5><a id="autopage-73"></a>
 
 <p>The current through a capacitor is a function of the <em>rate of change</em> of voltage:</p>
 
@@ -220,7 +308,7 @@ id="autopage-37"></a>
 
 
 <p>\[ E = \frac {1}{2} C v^2 \]</p>
-<h5 id="autosec-39"> <span class="sectionnumber">3.2.2&#x2001;</span>Inductors</h5><a id="autopage-39"></a>
+<h5 id="autosec-74"> <span class="sectionnumber">3.2.2&#x2001;</span>Inductors</h5><a id="autopage-74"></a>
 
 <p>The voltage over an inductor is a function of the <em>rate of change</em> of current:</p>
 
@@ -245,7 +333,7 @@ it:</p>
 
 
 <p>\[ E = \frac {1}{2} L i^2 \]</p>
-<h4 id="autosec-40"> <span class="sectionnumber">3.3&#x2001;</span>First order circuits</h4><a id="autopage-40"></a>
+<h4 id="autosec-75"> <span class="sectionnumber">3.3&#x2001;</span>First order circuits</h4><a id="autopage-75"></a>
 
 <p>General equation for an increasing/decaying exponential in a RC/RL circuit:</p>
 
@@ -271,16 +359,16 @@ the initial current through the inductor. Above is for a thevenin equivalent cir
 
 
 <p>\[ V_S(1 - e^{-t/RC}) \]</p>
-<h4 id="autosec-41"> <span class="sectionnumber">3.4&#x2001;</span>Second order circuits, impedance, filters</h4><a
-id="autopage-41"></a>
+<h4 id="autosec-76"> <span class="sectionnumber">3.4&#x2001;</span>Second order circuits, impedance, filters</h4><a
+id="autopage-76"></a>
 
 <p>Canonical form of the characteristic equation for second-order circuits; use this to match up the values of \(\alpha \)
 and \(\omega _0\) for a circuit:</p>
 
 
 <p>\[ s^2 + 2\alpha s + {\omega _0}^2 = 0 \]</p>
-<h5 id="autosec-42"> <span class="sectionnumber">3.4.1&#x2001;</span>For all LC and RLC circuits:</h5><a
-id="autopage-42"></a>
+<h5 id="autosec-77"> <span class="sectionnumber">3.4.1&#x2001;</span>For all LC and RLC circuits:</h5><a
+id="autopage-77"></a>
 
 <p>\[ \text {Natural/undamped resonant radian frequency: } \omega _0 \text { (rad/s)} \]</p>
 
@@ -330,7 +418,7 @@ reason is that the <em>undamped</em> frequency is used for systems with no dampi
 resistor.<br />
 Underdamped RLC circuits are the only kind that oscillate, so the natural frequency is less interesting for overdamped
 circuits.</p>
-<h5 id="autosec-43"> <span class="sectionnumber">3.4.2&#x2001;</span>Series RLC circuits</h5><a id="autopage-43"></a>
+<h5 id="autosec-78"> <span class="sectionnumber">3.4.2&#x2001;</span>Series RLC circuits</h5><a id="autopage-78"></a>
 
 <p>\[ \omega _0 = \frac {1}{\sqrt {LC}} \text { rad/s} \]</p>
 
@@ -348,8 +436,8 @@ circuits.</p>
 
 
 <p>\[ Q = \frac {\omega _0}{2\alpha } = \frac {L}{R\sqrt {LC}} \text { (dimensionless)} \]</p>
-<h5 id="autosec-44"> <span class="sectionnumber">3.4.3&#x2001;</span>Parallel RLC circuits</h5><a
-id="autopage-44"></a>
+<h5 id="autosec-79"> <span class="sectionnumber">3.4.3&#x2001;</span>Parallel RLC circuits</h5><a
+id="autopage-79"></a>
 
 <p>\[ \omega _0 = \frac {1}{\sqrt {LC}} \text { rad/s} \]</p>
 
@@ -367,8 +455,8 @@ id="autopage-44"></a>
 
 
 <p>\[ Q = \frac {\omega _0}{2\alpha } = \frac {RC}{\sqrt {LC}} \text { (dimensionless)} \]</p>
-<h5 id="autosec-45"> <span class="sectionnumber">3.4.4&#x2001;</span>Frequency- to time-domain conversion</h5><a
-id="autopage-45"></a>
+<h5 id="autosec-80"> <span class="sectionnumber">3.4.4&#x2001;</span>Frequency- to time-domain conversion</h5><a
+id="autopage-80"></a>
 
 <p>You can find the time-domain behavior of a circuit to sinusoidal input from nothing but a complex amplitude of the
 form \(V_x\): </p>
@@ -379,7 +467,7 @@ form \(V_x\): </p>
 
 <p>See below for information about how to calculate the magnitude \(|z|\) and the angle \(\angle z\) of a complex
 number.</p>
-<h5 id="autosec-46"> <span class="sectionnumber">3.4.5&#x2001;</span>Complex algebra</h5><a id="autopage-46"></a>
+<h5 id="autosec-81"> <span class="sectionnumber">3.4.5&#x2001;</span>Complex algebra</h5><a id="autopage-81"></a>
 
 <p>A few properties of complex numbers that are necessary to know:</p>
 
@@ -418,7 +506,7 @@ number.</p>
 
 
 <p>\[ \angle \left ( \frac {z_1}{z_2} \right ) = \angle z_1 - \angle z_2 \]</p>
-<h5 id="autosec-47"> <span class="sectionnumber">3.4.6&#x2001;</span>Impedances</h5><a id="autopage-47"></a>
+<h5 id="autosec-82"> <span class="sectionnumber">3.4.6&#x2001;</span>Impedances</h5><a id="autopage-82"></a>
 
 <p>\[ \text {Resistor: } Z_R = R \]</p>
 

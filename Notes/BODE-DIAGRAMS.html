@@ -1,0 +1,485 @@
+
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<meta charset="UTF-8" />
+<meta name="author" content="David Li" />
+<meta name="generator" content="LaTeX lwarp package" />
+<meta name="description" content="A list of cheatsheets some diagrams" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<!--[if lt IE 9]>
+<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+<title>ELEC 300 Notes — BODE DIAGRAMS</title>
+<link rel="stylesheet" type="text/css" href="lwarp.css" />
+<!-- https://groups.google.com/forum/#!topic/
+                               mathjax-users/jUtewUcE2bY -->
+<script type="text/x-mathjax-config">
+MathJax.Hub.Register.StartupHook("TeX AMSmath Ready",function () {
+    var seteqsectionDefault = {name: "", num: 0};
+    var seteqsections = {}, seteqsection = seteqsectionDefault;
+    var TEX = MathJax.InputJax.TeX, PARSE = TEX.Parse;
+    var AMS = MathJax.Extension["TeX/AMSmath"];
+    TEX.Definitions.Add({
+    macros: {
+        seteqsection: "mySection",
+        seteqnumber: "mySetEqNumber"
+    }
+    });
+
+    PARSE.Augment({
+    mySection: function (name) {
+        seteqsection.num = AMS.number;
+        var n = this.GetArgument(name);
+        if (n === "") {
+        seteqsection = seteqsectionDefault;
+        } else {
+        if (!seteqsections["_"+n])
+            seteqsections["_"+n] = {name:n, num:0};
+        seteqsection = seteqsections["_"+n];
+        }
+        AMS.number = seteqsection.num;
+    },
+    mySetEqNumber: function (name) {
+        var n = this.GetArgument(name);
+        if (!n || !n.match(/^ *[0-9]+ *$/))
+            n = ""; else n = parseInt(n)-1;
+        <!-- $ syntax highlighting -->
+        if (n === "" || n < 1)
+            TEX.Error
+            ("Argument to "+name+" should be a positive integer");
+        AMS.number = n;
+    }
+    });
+    MathJax.Hub.Config({
+    TeX: {
+        equationNumbers: {
+        formatTag: function (n)
+            {return "("+(seteqsection.name+"."+n).replace(/^\./,"")+")"},
+        formatID: function (n) {
+            n = (seteqsection.name+'.'+n).replace
+                 (/[:"'<>&]/g,"").replace(/^\./,"");
+            return 'mjx-eqn-' + n;
+        }
+        }
+    }
+    });
+});
+</script>
+
+<!-- http://docs.mathjax.org/en/latest/options/ThirdParty.html -->
+<script type="text/x-mathjax-config">
+  MathJax.Ajax.config.path["Contrib"] =
+    "https://cdn.mathjax.org/mathjax/contrib";
+</script>
+
+<!-- https://github.com/burnpanck/MathJax-siunitx -->
+
+<script type="text/x-mathjax-config">
+ MathJax.Hub.Config({
+   extensions: ["tex2jax.js","[siunitx]/siunitx.js"],
+   jax: ["input/TeX","output/HTML-CSS"],
+   tex2jax: {
+        inlineMath: [["$","$"],["\\(","\\)"]] ,
+        processClass: "tabbing|verse"
+     },
+   TeX: {extensions: ["AMSmath.js","AMSsymbols.js", "sinuitx.js"]}
+ });
+ MathJax.Ajax.config.path['siunitx'] = 'http://rawgit.com/burnpanck/MathJax-siunitx/master/';
+ </script>
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    TeX: {
+    equationNumbers: {
+        autoNumber: "AMS"
+    }
+    }
+});
+</script>
+
+<!-- Alternative CDN provider: -->
+<script type="text/javascript" async
+src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS_HTML-full">
+</script>
+
+<!-- No longer supported after April 30, 2017: -->
+<!--
+<script
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML-full">
+</script>
+-->
+
+
+</head>
+<body>
+
+
+<nav class="topnavigation"><a href="index.html" class="linkhome"
+>Home</a></nav>
+
+<header>
+
+</header>
+
+<h1>ELEC 300 Notes</h1>
+<nav class="sidetoc">
+
+<div class="sidetoctitle">
+
+<p>Contents</p>
+
+
+</div>
+
+<div class="sidetoccontents">
+
+<p><a href="index.html" class="linkhome"
+>Home</a></p>
+
+
+<p><a href="Tables-Units.html#autosec-13" class="tocchapter"
+><span class="sectionnumber">1</span>&#x2001;Tables and Units</a></p>
+
+
+<p><a href="Course-Information.html#autosec-59" class="tocchapter"
+><span class="sectionnumber">2</span>&#x2001;Course Information</a></p>
+
+
+<p><a href="Course-Information.html#autosec-66" class="tocsection"
+><span class="sectionnumber">2.1</span>&#x2001;Expectations</a></p>
+
+
+<p><a href="Concepts-Review.html#autosec-70" class="tocchapter"
+><span class="sectionnumber">3</span>&#x2001;Concepts to Review</a></p>
+
+
+<p><a href="Concepts-Review.html#autosec-71" class="tocsection"
+><span class="sectionnumber">3.1</span>&#x2001;Components in series and parallel</a></p>
+
+
+<p><a href="Concepts-Review.html#autosec-72" class="tocsection"
+><span class="sectionnumber">3.2</span>&#x2001;State devices / energy storage devices</a></p>
+
+
+<p><a href="Concepts-Review.html#autosec-75" class="tocsection"
+><span class="sectionnumber">3.3</span>&#x2001;First order circuits</a></p>
+
+
+<p><a href="Concepts-Review.html#autosec-76" class="tocsection"
+><span class="sectionnumber">3.4</span>&#x2001;Second order circuits, impedance, filters</a></p>
+
+
+<p><a href="Circuit-analysis.html#autosec-84" class="tocchapter"
+><span class="sectionnumber">4</span>&#x2001;Circuit analysis</a></p>
+
+
+<p><a href="Circuit-analysis.html#autosec-85" class="tocsection"
+><span class="sectionnumber">4.1</span>&#x2001;Thevenin equivalent circuits</a></p>
+
+
+<p><a href="Circuit-analysis.html#autosec-94" class="tocsection"
+><span class="sectionnumber">4.2</span>&#x2001;Norton equivalent circuits</a></p>
+
+
+<p><a href="Operational-Amplifiers.html#autosec-98" class="tocchapter"
+><span class="sectionnumber">5</span>&#x2001;Operational Amplifiers</a></p>
+
+
+<p><a href="Testing-Lwarp.html#autosec-166" class="tocchapter"
+><span class="sectionnumber">6</span>&#x2001;Testing Lwarp</a></p>
+
+
+<p><a href="BODE-DIAGRAMS.html#autosec-172" class="tocchapter"
+><span class="sectionnumber">7</span>&#x2001;BODE DIAGRAMS</a></p>
+
+
+<p><a href="BODE-DIAGRAMS.html#autosec-177" class="tocsection"
+><span class="sectionnumber">7.1</span>&#x2001;PHASE AND GAIN MARGINS</a></p>
+
+
+<p><a href="Resonance-Circuits.html#autosec-179" class="tocchapter"
+><span class="sectionnumber">8</span>&#x2001;Resonance Circuits</a></p>
+
+
+<p><a href="Resonance-Circuits.html#autosec-180" class="tocsection"
+><span class="sectionnumber">8.1</span>&#x2001;Resonance</a></p>
+
+
+<p><a href="Resonance-Circuits.html#autosec-181" class="tocsection"
+><span class="sectionnumber">8.2</span>&#x2001;Series Resonance</a></p>
+
+
+<p><a href="Resonance-Circuits.html#autosec-182" class="tocsection"
+><span class="sectionnumber">8.3</span>&#x2001;Selectivity and Q of a Circuit</a></p>
+
+
+<p><a href="Resonance-Circuits.html#autosec-184" class="tocsection"
+><span class="sectionnumber">8.4</span>&#x2001;Power in a Series Resonant Circuit</a></p>
+
+
+<p><a href="Resonance-Circuits.html#autosec-186" class="tocsection"
+><span class="sectionnumber">8.5</span>&#x2001;Testing out images</a></p>
+
+
+<p><a href="References.html#autosec-205" class="tocchapter"
+><span class="sectionnumber">9</span>&#x2001;References</a></p>
+
+
+</div>
+
+</nav>
+
+<section class="textbody">
+
+<h3 id="autosec-172"> <span class="sectionnumber">7&#x2001;</span>BODE DIAGRAMS</h3><a id="autopage-172"></a>
+<h5 id="autosec-173"> <span class="sectionnumber">7.0.1&#x2001;</span>1. Gain Factor K:</h5><a
+id="autopage-173"></a>
+
+<p>Horizontal straight line at magnitude: \(20\log {(K)}\text {dB}\)</p>
+
+
+<p>Phase is zero.</p>
+<h5 id="autosec-174"> <span class="sectionnumber">7.0.2&#x2001;</span>2. Integral or derivative factors</h5><a
+id="autopage-174"></a>
+
+<p>\(\mathbf {(j\omega )}^{\mathbf {\pm 1}}\)</p>
+
+
+<p>\[\left ( \text {j}\omega \right )^{- 1}\ \rightarrow 20\log {\left | \frac {1}{\text {j}\omega } \right | = - 20\log
+\omega }\]</p>
+
+
+<p>Magnitude: strait line with slope -20 dB/decade</p>
+
+
+<p>Phase: -90&deg;</p>
+
+
+<p>\[\left ( \text {j}\omega \right ) \rightarrow 20\log \left | \text {j}\omega \right | = 20\log \omega \]</p>
+
+
+<p>Magnitude: straight line with slope 20dB/decade</p>
+
+
+<p>Phase: +90&deg;</p>
+<h5 id="autosec-175"> <span class="sectionnumber">7.0.3&#x2001;</span>3. First Order Factors</h5><a
+id="autopage-175"></a>
+
+<p>\(\left ( \mathbf {1 + j\omega T} \right )^{\mathbf {\pm 1}}\)</p>
+
+
+<p><span class="hidden"> \( \seteqsection {7} \) </span> </p>
+
+
+
+<!--
+
+
+
+                                                      −1                 1
+(7.1)                                       (1 + jωT )     → 20 log
+                                                                      1 + jωT
+                                                         p
+                                            = −20 log     1 + ω 2 T 2 [dB]
+
+
+
+-->
+
+
+<p>
+\begin{align} &amp; \left ( 1 + j\omega T \right )^{- 1} \rightarrow 20\log \left | \frac {1}{1 + j\omega T} \right | \\
+\notag &amp;= - 20\log \sqrt {1 + \omega ^{2}T^{2}}\ \lbrack dB\rbrack \end{align}
+</p>
+
+
+<p>Approximation for Magnitude:</p>
+
+
+<p>\[For\ \omega \ between\ 0\ and\ \frac {1}{T}\ \rightarrow 0dB\]</p>
+
+
+<p>\[For\ \omega \ \gg \frac {1}{T} \ \rightarrow - 20dB/decade\]</p>
+
+
+<p>Phase:</p>
+
+
+<p>\[\omega = 0\ \rightarrow \varphi = 0\]</p>
+
+
+<p>\[\omega = \frac {1}{T} \rightarrow \varphi = - 45\]</p>
+
+
+<p>\[\omega = \infty \rightarrow \varphi = - 90 \]</p>
+
+
+<p>\[\left ( \mathbf {1 + j\omega T} \right )^{\mathbf {+ 1}}\]</p>
+<h5 id="autosec-176"> <span class="sectionnumber">7.0.4&#x2001;</span>4. Quadratic Factors</h5><a
+id="autopage-176"></a>
+
+<p>\[G\left ( \text {j}\omega \right ) = \frac {1}{1 + 2\zeta \left ( \frac {\omega }{\omega _{n}} \right ) + \left (
+\frac {\text {j}\omega }{\omega _{n}} \right )^{2}}\ \ ;\ \ 0 &lt; \zeta &lt; 1\]</p>
+
+
+<p>Approximation for magnitude:</p>
+
+
+<p>\[\omega \ll \omega _{n} \rightarrow 0dB\]</p>
+
+
+<p>\[\omega \gg \omega _{n} \rightarrow - 20\log \left ( \frac {\omega ^{2}}{\omega _{n}^{2}} \right ) = - 40\log
+{\left ( \frac {\omega }{\omega _{n}} \right )\text {dB}}\]</p>
+
+
+<p>\[Phase:\]</p>
+
+
+<p>\[\omega = 0\ \rightarrow \varphi = 0\]</p>
+
+
+<p>\[\frac {\omega }{\omega _{n}} = 1 \rightarrow \varphi = - 90\backslash \]</p>
+
+
+<p>\[\omega = \infty \rightarrow \varphi = - 180 \]</p>
+
+
+<p>\[Resonant\ Frequency:\]</p>
+
+
+<p>\[\omega _{r} = \omega _{n}\sqrt {1 - 2\zeta ^{2}}\ \ for\ 0 &lt; \zeta &lt; 0.707\]</p>
+
+
+<p>\[Resonant\ Peak\ Value:\]</p>
+
+
+<p>\[M_{r} = \left | G\left ( \text {j}\omega \right ) \right |_{\max } = \frac {1}{2\zeta \sqrt {1 - \zeta ^{2}}} \ for\
+0 &lt; \zeta &lt; 0.707 \]</p>
+
+
+<p>Consider</p>
+
+
+<p>\[ G_{1}\left ( s \right ) = \frac {1}{1 + Ts} \ G_{2}\left ( s \right ) = \frac {1}{1 - Ts} \ G_{3}\left ( s \right ) =
+\frac {1}{Ts - 1} \]</p>
+
+
+<p>Then&#x2026;</p>
+
+
+<p>\[\left | G_{1}(j\omega ) \right | = \left | G_{2}(j\omega ) \right | = \left | G_{3}(j\omega ) \right |\]</p>
+
+
+<p>And&#x2026;</p>
+
+
+<p>\[\angle G_{2}\left ( \text {j}\omega \right ) = - \angle G_{1}\left ( \text {j}\omega \right ) and \]</p>
+
+
+<p>\[ \angle G_{3}\left ( \text {j}\omega \right ) = 180 - \angle G_{1}\left ( \text {j}\omega \right )\]</p>
+
+
+<p>\[+ 90\ and\ \angle G_{3}\left ( \text {j}\omega \right )\ goes\ from - 180\ to - 90\]</p>
+
+
+<p>Generate based on the Bode Plot.</p>
+
+
+<p><b>The Nyquist Stability Criterion:</b> relates the stability of the closed loop system to the frequency response of the
+open loop system.</p>
+
+
+<p>\[Z = N + P\]</p>
+
+
+<p><b>Z:</b> Number of zeros of \((1+H(S)G(s))\) in the right half plane = number of unstable poles of the closed-loop
+system.</p>
+
+
+<p><b>N:</b> Number of clockwise encirclements of the point \(-1+j0\).</p>
+
+
+<p><b>P:</b> Number of poles of \(G(s)H(s)\) in the right half plane.</p>
+
+
+<p>If the plot makes a counter-clockwise encirclement of the \(-1+j0\) point then N becomes -1.</p>
+
+
+<p>If Z = 0 the closed loop system is stable. If Z &gt; 0 the closed loop system has Z unstable poles. If Z &lt; 0 a mistake
+has been made and the calculations need to be rechecked.</p>
+<h4 id="autosec-177"> <span class="sectionnumber">7.1&#x2001;</span>PHASE AND GAIN MARGINS</h4><a
+id="autopage-177"></a>
+
+<p>A measure for relative stability of the closed-loop system is how close \(G(j\omega )\), the frequency response of the
+open-loop system, comes to the point \(-1+j0\). This is represented by the phase and gain margins.</p>
+
+
+<p><b>Phase Margin:</b> The amount of additional phase lag at the Gain Crossover Frequency \(\omega _{0}\) required
+to bring the system to the verge of instability.</p>
+
+
+<p>Gain crossover frequency: \(\omega _{0}\text {\ for\ which\ }\left | G\left ( j\omega _{0} \right ) \right | = 1\)</p>
+
+
+<p>Phase margin: \(\gamma = 180 + \angle G\left ( j\omega _{0} \right ) = 180 + \phi \)</p>
+
+
+<p><b>Gain Margin:</b> The reciprocal of the magnitude \(\left | G(j\omega _{1}) \right |\) at the Phase crossover
+frequency \(\omega _{1}\) required to bring the system to the verge of instability.</p>
+
+
+<p>Phase crossover frequency: \(\omega _{1}\ where\ \angle G\left ( j\omega _{1} \right ) = - 180\)</p>
+
+
+<p>Gain margin:</p>
+
+
+<p>\[K_{g} = \frac {1}{\left | G(j\omega _{1}) \right |}\]</p>
+
+
+<p>\[K_{g} = - 20\log \left | G\left ( j\omega _{1} \right ) \right |\]</p>
+
+
+<p>\[K_{g}\ in\ dB &gt; 0 = stable\]</p>
+
+
+<p>for minimum phase systems.    </p>
+
+
+<p>\[K_{g}in\ dB &lt; 0\]</p>
+
+
+<p>= unstable for minimum phase systems.</p>
+
+
+<p><b>Minimum phase systems:</b> all poles and zeros are in the left half plane.</p>
+
+
+<p>If the open-loop system is minimum phase and has both phase and gain margins positive then the closed-loop system is
+stable.</p>
+
+
+<p>For good relative stability both margins are required to be positive.</p>
+
+
+<p>Good values for minimum phase system are:</p>
+
+
+<p>Phase Margin: 30&deg;-60&deg;</p>
+
+
+<p>Gain Margin: above 6dB</p>
+
+
+</section>
+
+<footer>
+
+</footer>
+
+<nav class="botnavigation"><a href="index.html" class="linkhome"
+>Home</a></nav>
+
+</body>
+</html>

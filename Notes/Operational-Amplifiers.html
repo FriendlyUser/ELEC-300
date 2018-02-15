@@ -12,7 +12,6 @@
 <![endif]-->
 <title>ELEC 300 Notes — Operational Amplifiers</title>
 <link rel="stylesheet" type="text/css" href="lwarp.css" />
-
 <!-- https://groups.google.com/forum/#!topic/
                                mathjax-users/jUtewUcE2bY -->
 <script type="text/x-mathjax-config">
@@ -80,7 +79,10 @@ MathJax.Hub.Register.StartupHook("TeX AMSmath Ready",function () {
  MathJax.Hub.Config({
    extensions: ["tex2jax.js","[siunitx]/siunitx.js"],
    jax: ["input/TeX","output/HTML-CSS"],
-   tex2jax: {inlineMath: [["$","$"],["\\(","\\)"]]},
+   tex2jax: {
+        inlineMath: [["$","$"],["\\(","\\)"]] ,
+        processClass: "tabbing|verse"
+     },
    TeX: {extensions: ["AMSmath.js","AMSsymbols.js", "sinuitx.js"]}
  });
  MathJax.Ajax.config.path['siunitx'] = 'http://rawgit.com/burnpanck/MathJax-siunitx/master/';
@@ -107,6 +109,7 @@ src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-
   src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML-full">
 </script>
 -->
+
 
 </head>
 <body>
@@ -135,7 +138,92 @@ src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-
 >Home</a></p>
 
 
-<p></p>
+<p><a href="Tables-Units.html#autosec-13" class="tocchapter"
+><span class="sectionnumber">1</span>&#x2001;Tables and Units</a></p>
+
+
+<p><a href="Course-Information.html#autosec-59" class="tocchapter"
+><span class="sectionnumber">2</span>&#x2001;Course Information</a></p>
+
+
+<p><a href="Course-Information.html#autosec-66" class="tocsection"
+><span class="sectionnumber">2.1</span>&#x2001;Expectations</a></p>
+
+
+<p><a href="Concepts-Review.html#autosec-70" class="tocchapter"
+><span class="sectionnumber">3</span>&#x2001;Concepts to Review</a></p>
+
+
+<p><a href="Concepts-Review.html#autosec-71" class="tocsection"
+><span class="sectionnumber">3.1</span>&#x2001;Components in series and parallel</a></p>
+
+
+<p><a href="Concepts-Review.html#autosec-72" class="tocsection"
+><span class="sectionnumber">3.2</span>&#x2001;State devices / energy storage devices</a></p>
+
+
+<p><a href="Concepts-Review.html#autosec-75" class="tocsection"
+><span class="sectionnumber">3.3</span>&#x2001;First order circuits</a></p>
+
+
+<p><a href="Concepts-Review.html#autosec-76" class="tocsection"
+><span class="sectionnumber">3.4</span>&#x2001;Second order circuits, impedance, filters</a></p>
+
+
+<p><a href="Circuit-analysis.html#autosec-84" class="tocchapter"
+><span class="sectionnumber">4</span>&#x2001;Circuit analysis</a></p>
+
+
+<p><a href="Circuit-analysis.html#autosec-85" class="tocsection"
+><span class="sectionnumber">4.1</span>&#x2001;Thevenin equivalent circuits</a></p>
+
+
+<p><a href="Circuit-analysis.html#autosec-94" class="tocsection"
+><span class="sectionnumber">4.2</span>&#x2001;Norton equivalent circuits</a></p>
+
+
+<p><a href="Operational-Amplifiers.html#autosec-98" class="tocchapter"
+><span class="sectionnumber">5</span>&#x2001;Operational Amplifiers</a></p>
+
+
+<p><a href="Testing-Lwarp.html#autosec-166" class="tocchapter"
+><span class="sectionnumber">6</span>&#x2001;Testing Lwarp</a></p>
+
+
+<p><a href="BODE-DIAGRAMS.html#autosec-172" class="tocchapter"
+><span class="sectionnumber">7</span>&#x2001;BODE DIAGRAMS</a></p>
+
+
+<p><a href="BODE-DIAGRAMS.html#autosec-177" class="tocsection"
+><span class="sectionnumber">7.1</span>&#x2001;PHASE AND GAIN MARGINS</a></p>
+
+
+<p><a href="Resonance-Circuits.html#autosec-179" class="tocchapter"
+><span class="sectionnumber">8</span>&#x2001;Resonance Circuits</a></p>
+
+
+<p><a href="Resonance-Circuits.html#autosec-180" class="tocsection"
+><span class="sectionnumber">8.1</span>&#x2001;Resonance</a></p>
+
+
+<p><a href="Resonance-Circuits.html#autosec-181" class="tocsection"
+><span class="sectionnumber">8.2</span>&#x2001;Series Resonance</a></p>
+
+
+<p><a href="Resonance-Circuits.html#autosec-182" class="tocsection"
+><span class="sectionnumber">8.3</span>&#x2001;Selectivity and Q of a Circuit</a></p>
+
+
+<p><a href="Resonance-Circuits.html#autosec-184" class="tocsection"
+><span class="sectionnumber">8.4</span>&#x2001;Power in a Series Resonant Circuit</a></p>
+
+
+<p><a href="Resonance-Circuits.html#autosec-186" class="tocsection"
+><span class="sectionnumber">8.5</span>&#x2001;Testing out images</a></p>
+
+
+<p><a href="References.html#autosec-205" class="tocchapter"
+><span class="sectionnumber">9</span>&#x2001;References</a></p>
 
 
 </div>
@@ -144,9 +232,9 @@ src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-
 
 <section class="textbody">
 
-<h3 id="autosec-63"> <span class="sectionnumber">5&#x2001;</span>Operational Amplifiers</h3><a
-id="autopage-63"></a>
-<p><span class="paragraph" id="autosec-64"> Intro</span><a id="autopage-64"></a> <em>Operational Amplifiers</em>, or
+<h3 id="autosec-98"> <span class="sectionnumber">5&#x2001;</span>Operational Amplifiers</h3><a
+id="autopage-98"></a>
+<p><span class="paragraph" id="autosec-99"> Intro</span><a id="autopage-99"></a> <em>Operational Amplifiers</em>, or
 <em>op amps</em>, are an amplifier abstraction; that is, we can use it without knowing about its insides.</p>
 
 
@@ -154,21 +242,20 @@ id="autopage-63"></a>
 </p>
 
 
-<figure id="autoid-11" class="figure">
+<figure id="autoid-12" class="figure">
 
-<p><span id="lateximage6" class="lateximagesource">
+<p><span id="lateximage22" class="lateximagesource">
 <!--
      12 V
 v−   −
             vo
 v+   +
 -->
-<img src="lateximages\lateximage-6.svg" alt="image" style="" class="lateximage"></span></p>
+<img src="lateximages\lateximage-22.svg" alt="image" style="" class="lateximage"></span></p>
 
 
 <figcaption>
-
-<p><a id="autoid-11"></a>Figure 5.1:&nbsp;Basic Op Amp</p>
+<p>Figure 5.1:&nbsp;Basic Op Amp</p>
 
 
 
@@ -194,20 +281,19 @@ symbol:<br />
 </p>
 
 
-<figure id="autoid-12" class="figure">
+<figure id="autoid-13" class="figure">
 
-<p><span id="lateximage7" class="lateximagesource">
+<p><span id="lateximage23" class="lateximagesource">
 <!--
 v−   −
          vo
 v+   +
 -->
-<img src="lateximages\lateximage-7.svg" alt="image" style="" class="lateximage"></span></p>
+<img src="lateximages\lateximage-23.svg" alt="image" style="" class="lateximage"></span></p>
 
 
 <figcaption>
-
-<p><a id="autoid-12"></a>Figure 5.2:&nbsp;Annotated Op Amp</p>
+<p>Figure 5.2:&nbsp;Annotated Op Amp</p>
 
 
 
@@ -239,23 +325,22 @@ voltage difference as tiny as \(12 \mu \)V would be enough to drive the output t
 <ul style="list-style-type:none">
 
 <li>
-
-<p>                 1.   The op amp is a <em>differential</em> amplifier ...</p>
-
-</li>
-<li>
-<p>                 2.   ... that outputs a ground-referenced voltage.</p>
+<p>1. The op amp is a <em>differential</em> amplifier ...</p>
 
 </li>
 <li>
-<p>                 3. Its gain is extremely high (ideally infinite), often on the order of \(10000\) to a million, or even
-higher. If we want less gain, we’ll have to take care of that outside the abstract “amplifier box” that is the op amp.</p>
+<p>2. ... that outputs a ground-referenced voltage.</p>
 
 </li>
 <li>
-<p>                4. Op amps can be powered by a single supply (a positive voltage and ground) or a dual supply (a
-positive and a negative voltage, with ground being in between the two). There are op amps made specifically for either of
-these two, though many works in either configuration.</p>
+<p>3. Its gain is extremely high (ideally infinite), often on the order of \(10000\) to a million, or even higher. If we want
+less gain, we’ll have to take care of that outside the abstract “amplifier box” that is the op amp.</p>
+
+</li>
+<li>
+<p>4. Op amps can be powered by a single supply (a positive voltage and ground) or a dual supply (a positive and a
+negative voltage, with ground being in between the two). There are op amps made specifically for either of these two,
+though many works in either configuration.</p>
 
 </li>
 </ul>
@@ -265,9 +350,9 @@ no current flows into the input terminals, so we model them as open circuits.<br
 </p>
 
 
-<figure id="autoid-13" class="figure">
+<figure id="autoid-14" class="figure">
 
-<p><span id="lateximage8" class="lateximagesource">
+<p><span id="lateximage24" class="lateximagesource">
 <!--
      i+ ≈ 0       +
 v+
@@ -276,12 +361,11 @@ v+
               +   −
 v−
 -->
-<img src="lateximages\lateximage-8.svg" alt="image" style="" class="lateximage"></span></p>
+<img src="lateximages\lateximage-24.svg" alt="image" style="" class="lateximage"></span></p>
 
 
 <figcaption>
-
-<p><a id="autoid-13"></a>Figure 5.3:&nbsp;Op Amp with VCVS</p>
+<p>Figure 5.3:&nbsp;Op Amp with VCVS</p>
 
 
 
@@ -308,18 +392,18 @@ supply can usually swing between roughly -11 and +11 volts, or thereabouts. Ther
 before it the power supply voltage. Op amps which can output very close (usually within a few millivolts) of the power rails
 are called <em>rail-to-rail output</em> op amps. There are also <em>rail-to-rail input</em> and <em>rail-to-rail
 input/output</em> (RRIO) op amps.</p>
-<p><span class="paragraph" id="autosec-71"> Noninverting amplifier</span><a id="autopage-71"></a> Let’s use an op amp
-to build a noninverting amplifier, one of the simpler (and perhaps more common) uses of an op amp. This configuration
-uses a resistive divider between the output and the \(v_-\) terminal to limit the gain to more usable values. This also has
-the huge advantage of making the op amp very stable, as opposed to its “raw” form, where the gain \(A\) can vary
-extremely much for pretty much no discernable reason.<br />
+<p><span class="paragraph" id="autosec-106"> Noninverting amplifier</span><a id="autopage-106"></a> Let’s use an op
+amp to build a noninverting amplifier, one of the simpler (and perhaps more common) uses of an op amp. This
+configuration uses a resistive divider between the output and the \(v_-\) terminal to limit the gain to more usable values.
+This also has the huge advantage of making the op amp very stable, as opposed to its “raw” form, where the gain \(A\) can
+vary extremely much for pretty much no discernable reason.<br />
 It looks something like this:<br />
 </p>
 
 
-<figure id="autoid-14" class="figure">
+<figure id="autoid-15" class="figure">
 
-<p><span id="lateximage9" class="lateximagesource">
+<p><span id="lateximage25" class="lateximagesource">
 <!--
         +
       v+
@@ -332,12 +416,11 @@ It looks something like this:<br />
 
              R2
 -->
-<img src="lateximages\lateximage-9.svg" alt="image" style="" class="lateximage"></span></p>
+<img src="lateximages\lateximage-25.svg" alt="image" style="" class="lateximage"></span></p>
 
 
 <figcaption>
-
-<p><a id="autoid-14"></a>Figure 5.4:&nbsp;Noninverting Op Amp</p>
+<p>Figure 5.4:&nbsp;Noninverting Op Amp</p>
 
 
 
@@ -421,15 +504,15 @@ and \(R_2 = 1000\) \(\Omega \) the error is about 0.1%. Such a configuration wou
 virtually irrelevant to this circuit, as long as it’s very large.<br />
 The question is, though, <em>how</em> does it work? The answer is that the resistor divider connected to the inverting
 input creates a <em>negative feedback</em> loop.</p>
-<p><span class="paragraph" id="autosec-74"> Negative feedback</span><a id="autopage-74"></a> Negative feedback is a
+<p><span class="paragraph" id="autosec-109"> Negative feedback</span><a id="autopage-109"></a> Negative feedback is a
 quite simple concept. This explanation may be a bit confusing at first, but think it through carefully and you should get it
 - and when you do, you’ll agree that it’s simple! I’ll copy the schematic from above for convenience:<br />
 </p>
 
 
-<figure id="autoid-15" class="figure">
+<figure id="autoid-16" class="figure">
 
-<p><span id="lateximage10" class="lateximagesource">
+<p><span id="lateximage26" class="lateximagesource">
 <!--
         +
       v+
@@ -442,12 +525,11 @@ quite simple concept. This explanation may be a bit confusing at first, but thin
 
              R2
 -->
-<img src="lateximages\lateximage-10.svg" alt="image" style="" class="lateximage"></span></p>
+<img src="lateximages\lateximage-26.svg" alt="image" style="" class="lateximage"></span></p>
 
 
 <figcaption>
-
-<p><a id="autoid-15"></a>Figure 5.5:&nbsp;Negative feedback Op Amp</p>
+<p>Figure 5.5:&nbsp;Negative feedback Op Amp</p>
 
 
 
@@ -522,7 +604,7 @@ actual values will be used to create an even bigger gap, which in turn will incr
 gap larger yet, etc. A common example is when a microphone picks up sound from a nearby speaker, causing the sound
 from the microphone to be sent to the speaker, which leads to more sound being picked up by the microphone, increasing
 the volume in a loop until only an extremely loud noise remains.</p>
-<p><span class="paragraph" id="autosec-77"> Virtual short/virtual ground</span><a id="autopage-77"></a></p>
+<p><span class="paragraph" id="autosec-112"> Virtual short/virtual ground</span><a id="autopage-112"></a></p>
 
 
 <p>When we have an op amp with negative feedback (and <em>only</em> when we have negative feedback!), the feedback
@@ -556,7 +638,7 @@ to as a <em>virtual short</em>, or (especially when \(v_+\) is tied to ground) a
 
 <p>When combined, these constraints give rise to a new, very easy method of analysis for these circuits, as we’ll see in the
 following sections.</p>
-<p><span class="paragraph" id="autosec-78"> Op amps as buffers</span><a id="autopage-78"></a></p>
+<p><span class="paragraph" id="autosec-113"> Op amps as buffers</span><a id="autopage-113"></a></p>
 
 
 <p>Let’s see what happens if we take the noninverting amplifier in the section above, and instead of coupling \(v_o\) to
@@ -566,9 +648,9 @@ above.<br />
 </p>
 
 
-<figure id="autoid-16" class="figure">
+<figure id="autoid-17" class="figure">
 
-<p><span id="lateximage11" class="lateximagesource">
+<p><span id="lateximage27" class="lateximagesource">
 <!--
         +
       v+
@@ -579,12 +661,11 @@ above.<br />
  vI
 −            v−
 -->
-<img src="lateximages\lateximage-11.svg" alt="image" style="" class="lateximage"></span></p>
+<img src="lateximages\lateximage-27.svg" alt="image" style="" class="lateximage"></span></p>
 
 
 <figcaption>
-
-<p><a id="autoid-16"></a>Figure 5.6:&nbsp;Op Amps Voltage Divider</p>
+<p>Figure 5.6:&nbsp;Op Amps Voltage Divider</p>
 
 
 
@@ -613,16 +694,16 @@ work without buffering the voltage first.<br />
 
 
 <p>We can also build inverting buffers; see the next section.</p>
-<p><span class="paragraph" id="autosec-81"> Inverting amplifier</span><a id="autopage-81"></a></p>
+<p><span class="paragraph" id="autosec-116"> Inverting amplifier</span><a id="autopage-116"></a></p>
 
 
 <p>Another amplifier topology that uses negative feedback is the <em>inverting</em> amplifier, which causes e.g. a 1 volt
 signal to become \(-1 \cdot G\) at the output, where \(G\) is the circuit’s gain, set by \(R_1\) and \(R_2\).</p>
 
 
-<figure id="autoid-17" class="figure">
+<figure id="autoid-18" class="figure">
 
-<p><span id="lateximage12" class="lateximagesource">
+<p><span id="lateximage28" class="lateximagesource">
 <!--
                         R1
               v−             i
@@ -633,12 +714,11 @@ signal to become \(-1 \cdot G\) at the output, where \(G\) is the circuit’s ga
      −                           vo
 vI   +              +
 -->
-<img src="lateximages\lateximage-12.svg" alt="image" style="" class="lateximage"></span></p>
+<img src="lateximages\lateximage-28.svg" alt="image" style="" class="lateximage"></span></p>
 
 
 <figcaption>
-
-<p><a id="autoid-17"></a>Figure 5.7:&nbsp;Inverting amplifier</p>
+<p>Figure 5.7:&nbsp;Inverting amplifier</p>
 
 
 
@@ -699,13 +779,13 @@ from the input voltage source, is</p>
 
 <p>Thus, as \(A \to \infty \) (or just becomes “very large”), the first term is generally irrelevant, and we can say that
 \(R_i \approx R_2\).</p>
-<p><span class="paragraph" id="autosec-84"> Op amp subtractor</span><a id="autopage-84"></a> Let’s analyze this
+<p><span class="paragraph" id="autosec-119"> Op amp subtractor</span><a id="autopage-119"></a> Let’s analyze this
 circuit:</p>
 
 
-<figure id="autoid-18" class="figure">
+<figure id="autoid-19" class="figure">
 
-<p><span id="lateximage13" class="lateximagesource">
+<p><span id="lateximage29" class="lateximagesource">
 <!--
                                   R2
                         v−             i
@@ -721,12 +801,11 @@ v2   +                        +
               −
          v1   +         R2
 -->
-<img src="lateximages\lateximage-13.svg" alt="image" style="" class="lateximage"></span></p>
+<img src="lateximages\lateximage-29.svg" alt="image" style="" class="lateximage"></span></p>
 
 
 <figcaption>
-
-<p><a id="autoid-18"></a>Figure 5.8:&nbsp;Op Amp subtractor</p>
+<p>Figure 5.8:&nbsp;Op Amp subtractor</p>
 
 
 
@@ -812,14 +891,14 @@ the left”, \(v_o\) will be \(v_-\) <em>minus</em> the drop across \(R_2\):</p>
 
 <p>As promised in the section title, this is an op amp <em>subtractor</em> circuit. It calculates \(v_1 - v_2\), scaled by
 the ratio of \(R_2\) to \(R_1\).</p>
-<p><span class="paragraph" id="autosec-87"> Summing amplifier</span><a id="autopage-87"></a> Since the previous
+<p><span class="paragraph" id="autosec-122"> Summing amplifier</span><a id="autopage-122"></a> Since the previous
 section covered an op amp subtractor, let’s cover an adder, usually called a <em>summing amplifier</em>:<br />
 </p>
 
 
-<figure id="autoid-19" class="figure">
+<figure id="autoid-20" class="figure">
 
-<p><span id="lateximage14" class="lateximagesource">
+<p><span id="lateximage30" class="lateximagesource">
 <!--
                                      RF
                             v−
@@ -831,12 +910,11 @@ section covered an op amp subtractor, let’s cover an adder, usually called a <
      −        −   RI
 v1   +   v2   +
 -->
-<img src="lateximages\lateximage-14.svg" alt="image" style="" class="lateximage"></span></p>
+<img src="lateximages\lateximage-30.svg" alt="image" style="" class="lateximage"></span></p>
 
 
 <figcaption>
-
-<p><a id="autoid-19"></a>Figure 5.9:&nbsp;Summing amplifier</p>
+<p>Figure 5.9:&nbsp;Summing amplifier</p>
 
 
 
@@ -916,14 +994,14 @@ up a node equation for \(v_-\):</p>
 
 
 <p>We’re done! We can also easily see that if we set \(R_F = R_S\), the output is simply \(v_o = v_1 + v_2\).</p>
-<p><span class="paragraph" id="autosec-90"> Op amp integrator</span><a id="autopage-90"></a> Due to some magic of
+<p><span class="paragraph" id="autosec-125"> Op amp integrator</span><a id="autopage-125"></a> Due to some magic of
 capacitors, we can use op amps to create circuits that integrate and differentiate signals (with respect to time). Here’s an
 integrator circuit:</p>
 
 
-<figure id="autoid-20" class="figure">
+<figure id="autoid-21" class="figure">
 
-<p><span id="lateximage15" class="lateximagesource">
+<p><span id="lateximage31" class="lateximagesource">
 <!--
                      C
                           i
@@ -935,12 +1013,11 @@ integrator circuit:</p>
 vI   +
                  +
 -->
-<img src="lateximages\lateximage-15.svg" alt="image" style="" class="lateximage"></span></p>
+<img src="lateximages\lateximage-31.svg" alt="image" style="" class="lateximage"></span></p>
 
 
 <figcaption>
-
-<p><a id="autoid-20"></a>Figure 5.10:&nbsp;Op amp integrator</p>
+<p>Figure 5.10:&nbsp;Op amp integrator</p>
 
 
 
@@ -994,12 +1071,12 @@ describes \(v_o\) for a step input is of the same form as we’ve seen in regula
 <p>... where V is the voltage of the step input.<br />
 Thus, for short time scales (short compared to \((1 + A)RC\)), this circuit is a very good approximation of an ideal
 integrator.</p>
-<p><span class="paragraph" id="autosec-93"> Op amp differentiator</span><a id="autopage-93"></a></p>
+<p><span class="paragraph" id="autosec-128"> Op amp differentiator</span><a id="autopage-128"></a></p>
 
 
-<figure id="autoid-21" class="figure">
+<figure id="autoid-22" class="figure">
 
-<p><span id="lateximage16" class="lateximagesource">
+<p><span id="lateximage32" class="lateximagesource">
 <!--
                      R
                           i
@@ -1010,12 +1087,11 @@ integrator.</p>
 vI   +
                  +
 -->
-<img src="lateximages\lateximage-16.svg" alt="image" style="" class="lateximage"></span></p>
+<img src="lateximages\lateximage-32.svg" alt="image" style="" class="lateximage"></span></p>
 
 
 <figcaption>
-
-<p><a id="autoid-21"></a>Figure 5.11:&nbsp;Op amp differentiator</p>
+<p>Figure 5.11:&nbsp;Op amp differentiator</p>
 
 
 
@@ -1054,26 +1130,25 @@ the resistor:</p>
 
 <p>So, as with the previous circuit, this one also inverts. And, again, we could pass it through an inverting buffer op amp
 to get rid of the inversion.</p>
-<p><span class="paragraph" id="autosec-96"> Buffered filters</span><a id="autopage-96"></a> Consider a basic passive RC
-filter:<br />
+<p><span class="paragraph" id="autosec-131"> Buffered filters</span><a id="autopage-131"></a> Consider a basic passive
+RC filter:<br />
 </p>
 
 
-<figure id="autoid-22" class="figure">
+<figure id="autoid-23" class="figure">
 
-<p><span id="lateximage17" class="lateximagesource">
+<p><span id="lateximage33" class="lateximagesource">
 <!--
      R
  +          +
 Vi       C Vo
  −          −
 -->
-<img src="lateximages\lateximage-17.svg" alt="image" style="" class="lateximage"></span></p>
+<img src="lateximages\lateximage-33.svg" alt="image" style="" class="lateximage"></span></p>
 
 
 <figcaption>
-
-<p><a id="autoid-22"></a>Figure 5.12:&nbsp;Buffered filters</p>
+<p>Figure 5.12:&nbsp;Buffered filters</p>
 
 
 
@@ -1088,9 +1163,9 @@ attach a Thevenin equivalent source and a resistive load (perhaps a speaker):<br
 </p>
 
 
-<figure id="autoid-23" class="figure">
+<figure id="autoid-24" class="figure">
 
-<p><span id="lateximage18" class="lateximagesource">
+<p><span id="lateximage34" class="lateximagesource">
 <!--
            RT H   R
                            +
@@ -1098,12 +1173,11 @@ attach a Thevenin equivalent source and a resistive load (perhaps a speaker):<br
 VT H   +              C   Vo   RL
                            −
 -->
-<img src="lateximages\lateximage-18.svg" alt="image" style="" class="lateximage"></span></p>
+<img src="lateximages\lateximage-34.svg" alt="image" style="" class="lateximage"></span></p>
 
 
 <figcaption>
-
-<p><a id="autoid-23"></a>Figure 5.13:&nbsp;Buffered filters with Thevenin equivalent source</p>
+<p>Figure 5.13:&nbsp;Buffered filters with Thevenin equivalent source</p>
 
 
 
@@ -1130,9 +1204,9 @@ and output of the filter:<br />
 </p>
 
 
-<figure id="autoid-24" class="figure">
+<figure id="autoid-25" class="figure">
 
-<p><span id="lateximage19" class="lateximagesource">
+<p><span id="lateximage35" class="lateximagesource">
 <!--
            RT H
                   +   R       +
@@ -1141,7 +1215,7 @@ and output of the filter:<br />
 VT H   +
                           C       RL
 -->
-<img src="lateximages\lateximage-19.svg" alt="image" style="" class="lateximage"></span></p>
+<img src="lateximages\lateximage-35.svg" alt="image" style="" class="lateximage"></span></p>
 
 
 </figure>
@@ -1153,16 +1227,16 @@ Likewise, the output op amp will make sure virtually no current is drawn from th
 doesn’t affect the transfer function.<br />
 Assuming ideal op amps, this filter should behave as a passive filter does when there is no load (infinite load resistance) and
 0 source resistance. This filter also has (with ideal op amps) infinite input impedance and 0 output impedance!</p>
-<p><span class="paragraph" id="autosec-103"> Op amp current source</span><a id="autopage-103"></a></p>
+<p><span class="paragraph" id="autosec-138"> Op amp current source</span><a id="autopage-138"></a></p>
 
 
 <p>We can use op amps to make very precise current sources. Here’s one of several ways to do so:<br />
 </p>
 
 
-<figure id="autoid-25" class="figure">
+<figure id="autoid-26" class="figure">
 
-<p><span id="lateximage20" class="lateximagesource">
+<p><span id="lateximage36" class="lateximagesource">
 <!--
           +
         v+
@@ -1174,12 +1248,11 @@ Assuming ideal op amps, this filter should behave as a passive filter does when 
 
                RSET
 -->
-<img src="lateximages\lateximage-20.svg" alt="image" style="" class="lateximage"></span></p>
+<img src="lateximages\lateximage-36.svg" alt="image" style="" class="lateximage"></span></p>
 
 
 <figcaption>
-
-<p><a id="autoid-25"></a>Figure 5.14:&nbsp;Op amp current source</p>
+<p>Figure 5.14:&nbsp;Op amp current source</p>
 
 
 
@@ -1207,7 +1280,7 @@ currents (a few mA, almost certainly less than 40 or so) or when using power op 
 current can clearly never be larger than the supply voltage divided by \(R_{SET} + R_L\), since the supply voltage is
 the maximum the op amp can have on its output - in theory, in practice the actual maximum output voltage will always be
 slightly lower than the supply voltage.</p>
-<p><span class="paragraph" id="autosec-106"> Exponential amplifier</span><a id="autopage-106"></a></p>
+<p><span class="paragraph" id="autosec-141"> Exponential amplifier</span><a id="autopage-141"></a></p>
 
 
 <p>The inverting amplifier topology is extremely versatile, as we’ve already seen with the integrator and differentiator
@@ -1215,9 +1288,9 @@ configurations. We can do more, however! Lets see what happens with a diode in t
 </p>
 
 
-<figure id="autoid-26" class="figure">
+<figure id="autoid-27" class="figure">
 
-<p><span id="lateximage21" class="lateximagesource">
+<p><span id="lateximage37" class="lateximagesource">
 <!--
                             R1
                   v−             i
@@ -1228,12 +1301,11 @@ configurations. We can do more, however! Lets see what happens with a diode in t
      −                               vo
 vI   +                  +
 -->
-<img src="lateximages\lateximage-21.svg" alt="image" style="" class="lateximage"></span></p>
+<img src="lateximages\lateximage-37.svg" alt="image" style="" class="lateximage"></span></p>
 
 
 <figcaption>
-
-<p><a id="autoid-26"></a>Figure 5.15:&nbsp;Exponential amplifier</p>
+<p>Figure 5.15:&nbsp;Exponential amplifier</p>
 
 
 
@@ -1280,16 +1352,16 @@ silicon diode at room temperature, with \(R_1 = 1000 \Omega \), we can estimate(
 Though the \(10^{-11}\) term looks like it might dominate, it does not; the exponential increases extremely fast, and the
 output voltage goes below \(-100 V\) (remember that it’s an inverting amplifier) when the input is still as low as 0.75 volts.
 Of course, the op amp will saturate if the power supply voltage doesn’t reach that low.</p>
-<p><span class="paragraph" id="autosec-109"> Logarithmic amplifier</span><a id="autopage-109"></a></p>
+<p><span class="paragraph" id="autosec-144"> Logarithmic amplifier</span><a id="autopage-144"></a></p>
 
 
 <p>By swapping the position of the diode and resistor in the exponential amplifier, we get this schematic:<br />
 </p>
 
 
-<figure id="autoid-27" class="figure">
+<figure id="autoid-28" class="figure">
 
-<p><span id="lateximage22" class="lateximagesource">
+<p><span id="lateximage38" class="lateximagesource">
 <!--
               v−            i
                    +        −
@@ -1299,12 +1371,11 @@ Of course, the op amp will saturate if the power supply voltage doesn’t reach 
      −                          vo
 vI   +             +
 -->
-<img src="lateximages\lateximage-22.svg" alt="image" style="" class="lateximage"></span></p>
+<img src="lateximages\lateximage-38.svg" alt="image" style="" class="lateximage"></span></p>
 
 
 <figcaption>
-
-<p><a id="autoid-27"></a>Figure 5.16:&nbsp;Logarithmic amplifier</p>
+<p>Figure 5.16:&nbsp;Logarithmic amplifier</p>
 
 
 
@@ -1369,16 +1440,16 @@ for \(v_D\). Let’s start by distributing the \(I_S\), and getting the exponent
 
 
 <p>And we are done! This is indeed a logarithmic amplifier.</p>
-<p><span class="paragraph" id="autosec-112"> Active RC filters</span><a id="autopage-112"></a> We can also construct
+<p><span class="paragraph" id="autosec-147"> Active RC filters</span><a id="autopage-147"></a> We can also construct
 filters that use op amps as part of the actual circuitry, rather than just having them as input/output buffer. Such filters are
 called <em>active filters</em>, and they come in various topologies, where the op amp’s function differs.<br />
 Here’s an example for an active RC filter that we’ll analyze in this section:<br />
 </p>
 
 
-<figure id="autoid-28" class="figure">
+<figure id="autoid-29" class="figure">
 
-<p><span id="lateximage23" class="lateximagesource">
+<p><span id="lateximage39" class="lateximagesource">
 <!--
                              C2
 
@@ -1391,12 +1462,11 @@ Here’s an example for an active RC filter that we’ll analyze in this section
      −                            +
 Vi   +
 -->
-<img src="lateximages\lateximage-23.svg" alt="image" style="" class="lateximage"></span></p>
+<img src="lateximages\lateximage-39.svg" alt="image" style="" class="lateximage"></span></p>
 
 
 <figcaption>
-
-<p><a id="autoid-28"></a>Figure 5.17:&nbsp;Active RC filters</p>
+<p>Figure 5.17:&nbsp;Active RC filters</p>
 
 
 
@@ -1447,16 +1517,16 @@ simply \(\displaystyle \frac {V_o}{V_i}\):</p>
 
 <p>\[ H(j\omega ) = - \frac {j \omega C_1 R_2}{-\omega ^2 + \frac {j\omega (C_1 + C_2)}{C_1 C_2 R_2} + \frac
 {1}{C_1 C_2 R_1 R_2}} \]</p>
-<p><span class="paragraph" id="autosec-115"> Positive feedback</span><a id="autopage-115"></a> Positive feedback was
+<p><span class="paragraph" id="autosec-150"> Positive feedback</span><a id="autopage-150"></a> Positive feedback was
 briefly touched upon in the section on <em>negative</em> feedback, but deserves more study. Let’s see what happens if we
 make a connection similar to the inverting amplifier, but connect the feedback and input to the <em>positive</em> terminal,
 and ground the <em>negative</em> terminal.<br />
 </p>
 
 
-<figure id="autoid-29" class="figure">
+<figure id="autoid-30" class="figure">
 
-<p><span id="lateximage24" class="lateximagesource">
+<p><span id="lateximage40" class="lateximagesource">
 <!--
                         R1
               v+             i
@@ -1468,12 +1538,11 @@ vI
      −
      +              −
 -->
-<img src="lateximages\lateximage-24.svg" alt="image" style="" class="lateximage"></span></p>
+<img src="lateximages\lateximage-40.svg" alt="image" style="" class="lateximage"></span></p>
 
 
 <figcaption>
-
-<p><a id="autoid-29"></a>Figure 5.18:&nbsp;Positive feedback</p>
+<p>Figure 5.18:&nbsp;Positive feedback</p>
 
 
 
@@ -1504,7 +1573,7 @@ op amp equation, we have \(v_o = A(-0.5 - 0)\), so the op amp will try to force 
 value of A is very, very large, the op amp wants \(v_o\) to be much less than the supply voltage that might be on the
 order of \(-12\) volts).<br />
 </p>
-<p><span class="paragraph" id="autosec-118"> Op amp comparator</span><a id="autopage-118"></a></p>
+<p><span class="paragraph" id="autosec-153"> Op amp comparator</span><a id="autopage-153"></a></p>
 
 
 <p>Let’s try to build a circuit that exploits the positive feedback phenomenon, where the output voltage is virtually always
@@ -1512,9 +1581,9 @@ either \(+V_S\) or \(-V_S\). We can use such a circuit as a comparator:<br />
 </p>
 
 
-<figure id="autoid-30" class="figure">
+<figure id="autoid-31" class="figure">
 
-<p><span id="lateximage25" class="lateximagesource">
+<p><span id="lateximage41" class="lateximagesource">
 <!--
          +
              vo
@@ -1522,12 +1591,11 @@ vI
      −
      +   −
 -->
-<img src="lateximages\lateximage-25.svg" alt="image" style="" class="lateximage"></span></p>
+<img src="lateximages\lateximage-41.svg" alt="image" style="" class="lateximage"></span></p>
 
 
 <figcaption>
-
-<p><a id="autoid-30"></a>Figure 5.19:&nbsp;Op amp comparator</p>
+<p>Figure 5.19:&nbsp;Op amp comparator</p>
 
 
 
@@ -1558,7 +1626,7 @@ multiple times due to noise, so the output is not a clean square wave:</p>
 output. This example is obviously exaggerated, but we still want a better solution. If we could move the threshold from 0 to
 some positive/negative voltage pair, so that the noise doesn’t cross those thresholds very easily, this could be avoided.<br />
 Let’s see (in the next section) what would happen to this transfer function if we add positive feedback.</p>
-<p><span class="paragraph" id="autosec-121"> Schmitt trigger</span><a id="autopage-121"></a></p>
+<p><span class="paragraph" id="autosec-156"> Schmitt trigger</span><a id="autopage-156"></a></p>
 
 
 <p>If we change the circuit slightly from the previous comparator to add positive feedback, and at the same time provide
@@ -1566,9 +1634,9 @@ the input to the inverting input, we get this circuit:<br />
 </p>
 
 
-<figure id="autoid-31" class="figure">
+<figure id="autoid-32" class="figure">
 
-<p><span id="lateximage26" class="lateximagesource">
+<p><span id="lateximage42" class="lateximagesource">
 <!--
       v− −
                          vo
@@ -1581,12 +1649,11 @@ the input to the inverting input, we get this circuit:<br />
                     2
              R2
 -->
-<img src="lateximages\lateximage-26.svg" alt="image" style="" class="lateximage"></span></p>
+<img src="lateximages\lateximage-42.svg" alt="image" style="" class="lateximage"></span></p>
 
 
 <figcaption>
-
-<p><a id="autoid-31"></a>Figure 5.20:&nbsp;Schmitt trigger</p>
+<p>Figure 5.20:&nbsp;Schmitt trigger</p>
 
 
 
@@ -1675,14 +1742,14 @@ Schmitt triggers.<br />
 
 
 <p>... where \(R_2\) is the resistor between \(v_+\) and ground.</p>
-<p><span class="paragraph" id="autosec-124"> Relaxation oscillator</span><a id="autopage-124"></a> We can use the
+<p><span class="paragraph" id="autosec-159"> Relaxation oscillator</span><a id="autopage-159"></a> We can use the
 inverting Schmitt trigger to make an op amp oscillator, by allowing a capacitor to control the \(v_-\) voltage. The
 capacitor is then charged/discharged through a resistor connected to \(v_o\), like this:</p>
 
 
-<figure id="autoid-32" class="figure">
+<figure id="autoid-33" class="figure">
 
-<p><span id="lateximage27" class="lateximagesource">
+<p><span id="lateximage43" class="lateximagesource">
 <!--
            R
 
@@ -1699,7 +1766,7 @@ C
                       2
                R1
 -->
-<img src="lateximages\lateximage-27.svg" alt="image" style="" class="lateximage"></span></p>
+<img src="lateximages\lateximage-43.svg" alt="image" style="" class="lateximage"></span></p>
 
 
 </figure>
@@ -1726,7 +1793,7 @@ in theory - a perfect square wave, with a 50% duty cycle (i.e. the “on time”
 
 <p>Now, let’s turn to calculating the oscillation frequency of this circuit. The way we do this is to calculate the rise time
 and the fall time for the RC circuit at the inverting input, and use that information to find the frequency.</p>
-<h5 id="autosec-127"> <span class="sectionnumber">5.0.1&#x2001;</span>Rise time</h5><a id="autopage-127"></a>
+<h5 id="autosec-162"> <span class="sectionnumber">5.0.1&#x2001;</span>Rise time</h5><a id="autopage-162"></a>
 
 <p>To calculate the rise time, let us define \(t = 0\) such that the capacitor voltage is as low as it ever gets, i.e.
 \(-V_S/2\). We can then use our old trusty formula \(v_C = V_S + (V_0 - V_S)e^{-t/RC}\), and set that equal to the
@@ -1799,7 +1866,7 @@ target voltage, \(V_S/2\):</p>
 
 
 <p>Ah, finally: we know the rise time. Next up: fall time.</p>
-<h5 id="autosec-128"> <span class="sectionnumber">5.0.2&#x2001;</span>Fall time</h5><a id="autopage-128"></a>
+<h5 id="autosec-163"> <span class="sectionnumber">5.0.2&#x2001;</span>Fall time</h5><a id="autopage-163"></a>
 
 <p>For the fall time, we use the same equation \(v_C = V_S + (V_0 - V_S)e^{-t/RC}\), but plug in other values for the
 variables, and then set it equal to the target value of \(-V_S/2\). Remember that the “supply” that is “charging” the
@@ -1823,7 +1890,7 @@ which means the answer must also be the same!</p>
 
 
 <p>\[ t_f = t_r = RC \ln {(3)} \]</p>
-<h5 id="autosec-129"> <span class="sectionnumber">5.0.3&#x2001;</span>Frequency</h5><a id="autopage-129"></a>
+<h5 id="autosec-164"> <span class="sectionnumber">5.0.3&#x2001;</span>Frequency</h5><a id="autopage-164"></a>
 
 <p>Frequency is the inverse of cycle time, and \(t_r + t_f\) make up one full cycle. Therefore,</p>
 
@@ -1832,7 +1899,7 @@ which means the answer must also be the same!</p>
 
 
 <p>If the negative supply is not equal to exactly \(-V_S\), the formula above (and its derivation) becomes quite a bit more
-complex. We will not worry about that case, as having equal supplies to within a small margin of error is common. </p>
+complex. We will not worry about that case, as having equal supplies to within a small margin of error is common.     </p>
 
 
 </section>

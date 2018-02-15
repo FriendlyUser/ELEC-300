@@ -1,0 +1,752 @@
+
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<meta charset="UTF-8" />
+<meta name="author" content="David Li" />
+<meta name="generator" content="LaTeX lwarp package" />
+<meta name="description" content="A list of cheatsheets some diagrams" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<!--[if lt IE 9]>
+<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+<title>ELEC 300 Notes — Resonance Circuits</title>
+<link rel="stylesheet" type="text/css" href="lwarp.css" />
+<!-- https://groups.google.com/forum/#!topic/
+                               mathjax-users/jUtewUcE2bY -->
+<script type="text/x-mathjax-config">
+MathJax.Hub.Register.StartupHook("TeX AMSmath Ready",function () {
+    var seteqsectionDefault = {name: "", num: 0};
+    var seteqsections = {}, seteqsection = seteqsectionDefault;
+    var TEX = MathJax.InputJax.TeX, PARSE = TEX.Parse;
+    var AMS = MathJax.Extension["TeX/AMSmath"];
+    TEX.Definitions.Add({
+    macros: {
+        seteqsection: "mySection",
+        seteqnumber: "mySetEqNumber"
+    }
+    });
+
+    PARSE.Augment({
+    mySection: function (name) {
+        seteqsection.num = AMS.number;
+        var n = this.GetArgument(name);
+        if (n === "") {
+        seteqsection = seteqsectionDefault;
+        } else {
+        if (!seteqsections["_"+n])
+            seteqsections["_"+n] = {name:n, num:0};
+        seteqsection = seteqsections["_"+n];
+        }
+        AMS.number = seteqsection.num;
+    },
+    mySetEqNumber: function (name) {
+        var n = this.GetArgument(name);
+        if (!n || !n.match(/^ *[0-9]+ *$/))
+            n = ""; else n = parseInt(n)-1;
+        <!-- $ syntax highlighting -->
+        if (n === "" || n < 1)
+            TEX.Error
+            ("Argument to "+name+" should be a positive integer");
+        AMS.number = n;
+    }
+    });
+    MathJax.Hub.Config({
+    TeX: {
+        equationNumbers: {
+        formatTag: function (n)
+            {return "("+(seteqsection.name+"."+n).replace(/^\./,"")+")"},
+        formatID: function (n) {
+            n = (seteqsection.name+'.'+n).replace
+                 (/[:"'<>&]/g,"").replace(/^\./,"");
+            return 'mjx-eqn-' + n;
+        }
+        }
+    }
+    });
+});
+</script>
+
+<!-- http://docs.mathjax.org/en/latest/options/ThirdParty.html -->
+<script type="text/x-mathjax-config">
+  MathJax.Ajax.config.path["Contrib"] =
+    "https://cdn.mathjax.org/mathjax/contrib";
+</script>
+
+<!-- https://github.com/burnpanck/MathJax-siunitx -->
+
+<script type="text/x-mathjax-config">
+ MathJax.Hub.Config({
+   extensions: ["tex2jax.js","[siunitx]/siunitx.js"],
+   jax: ["input/TeX","output/HTML-CSS"],
+   tex2jax: {
+        inlineMath: [["$","$"],["\\(","\\)"]] ,
+        processClass: "tabbing|verse"
+     },
+   TeX: {extensions: ["AMSmath.js","AMSsymbols.js", "sinuitx.js"]}
+ });
+ MathJax.Ajax.config.path['siunitx'] = 'http://rawgit.com/burnpanck/MathJax-siunitx/master/';
+ </script>
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    TeX: {
+    equationNumbers: {
+        autoNumber: "AMS"
+    }
+    }
+});
+</script>
+
+<!-- Alternative CDN provider: -->
+<script type="text/javascript" async
+src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS_HTML-full">
+</script>
+
+<!-- No longer supported after April 30, 2017: -->
+<!--
+<script
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML-full">
+</script>
+-->
+
+
+</head>
+<body>
+
+
+<nav class="topnavigation"><a href="index.html" class="linkhome"
+>Home</a></nav>
+
+<header>
+
+</header>
+
+<h1>ELEC 300 Notes</h1>
+<nav class="sidetoc">
+
+<div class="sidetoctitle">
+
+<p>Contents</p>
+
+
+</div>
+
+<div class="sidetoccontents">
+
+<p><a href="index.html" class="linkhome"
+>Home</a></p>
+
+
+<p><a href="Tables-Units.html#autosec-13" class="tocchapter"
+><span class="sectionnumber">1</span>&#x2001;Tables and Units</a></p>
+
+
+<p><a href="Course-Information.html#autosec-59" class="tocchapter"
+><span class="sectionnumber">2</span>&#x2001;Course Information</a></p>
+
+
+<p><a href="Course-Information.html#autosec-66" class="tocsection"
+><span class="sectionnumber">2.1</span>&#x2001;Expectations</a></p>
+
+
+<p><a href="Concepts-Review.html#autosec-70" class="tocchapter"
+><span class="sectionnumber">3</span>&#x2001;Concepts to Review</a></p>
+
+
+<p><a href="Concepts-Review.html#autosec-71" class="tocsection"
+><span class="sectionnumber">3.1</span>&#x2001;Components in series and parallel</a></p>
+
+
+<p><a href="Concepts-Review.html#autosec-72" class="tocsection"
+><span class="sectionnumber">3.2</span>&#x2001;State devices / energy storage devices</a></p>
+
+
+<p><a href="Concepts-Review.html#autosec-75" class="tocsection"
+><span class="sectionnumber">3.3</span>&#x2001;First order circuits</a></p>
+
+
+<p><a href="Concepts-Review.html#autosec-76" class="tocsection"
+><span class="sectionnumber">3.4</span>&#x2001;Second order circuits, impedance, filters</a></p>
+
+
+<p><a href="Circuit-analysis.html#autosec-84" class="tocchapter"
+><span class="sectionnumber">4</span>&#x2001;Circuit analysis</a></p>
+
+
+<p><a href="Circuit-analysis.html#autosec-85" class="tocsection"
+><span class="sectionnumber">4.1</span>&#x2001;Thevenin equivalent circuits</a></p>
+
+
+<p><a href="Circuit-analysis.html#autosec-94" class="tocsection"
+><span class="sectionnumber">4.2</span>&#x2001;Norton equivalent circuits</a></p>
+
+
+<p><a href="Operational-Amplifiers.html#autosec-98" class="tocchapter"
+><span class="sectionnumber">5</span>&#x2001;Operational Amplifiers</a></p>
+
+
+<p><a href="Testing-Lwarp.html#autosec-166" class="tocchapter"
+><span class="sectionnumber">6</span>&#x2001;Testing Lwarp</a></p>
+
+
+<p><a href="BODE-DIAGRAMS.html#autosec-172" class="tocchapter"
+><span class="sectionnumber">7</span>&#x2001;BODE DIAGRAMS</a></p>
+
+
+<p><a href="BODE-DIAGRAMS.html#autosec-177" class="tocsection"
+><span class="sectionnumber">7.1</span>&#x2001;PHASE AND GAIN MARGINS</a></p>
+
+
+<p><a href="Resonance-Circuits.html#autosec-179" class="tocchapter"
+><span class="sectionnumber">8</span>&#x2001;Resonance Circuits</a></p>
+
+
+<p><a href="Resonance-Circuits.html#autosec-180" class="tocsection"
+><span class="sectionnumber">8.1</span>&#x2001;Resonance</a></p>
+
+
+<p><a href="Resonance-Circuits.html#autosec-181" class="tocsection"
+><span class="sectionnumber">8.2</span>&#x2001;Series Resonance</a></p>
+
+
+<p><a href="Resonance-Circuits.html#autosec-182" class="tocsection"
+><span class="sectionnumber">8.3</span>&#x2001;Selectivity and Q of a Circuit</a></p>
+
+
+<p><a href="Resonance-Circuits.html#autosec-184" class="tocsection"
+><span class="sectionnumber">8.4</span>&#x2001;Power in a Series Resonant Circuit</a></p>
+
+
+<p><a href="Resonance-Circuits.html#autosec-186" class="tocsection"
+><span class="sectionnumber">8.5</span>&#x2001;Testing out images</a></p>
+
+
+<p><a href="References.html#autosec-205" class="tocchapter"
+><span class="sectionnumber">9</span>&#x2001;References</a></p>
+
+
+</div>
+
+</nav>
+
+<section class="textbody">
+
+<h3 id="autosec-179"> <span class="sectionnumber">8&#x2001;</span>Resonance Circuits</h3><a id="autopage-179"></a>
+
+<a id="c1"></a>
+<h4 id="autosec-180"> <span class="sectionnumber">8.1&#x2001;</span>Resonance</h4><a id="autopage-180"></a>
+
+<a id="resonance"></a>
+
+<p>Resonance in AC circuits implies a special frequency determined by the values of the <a
+href="http://hyperphysics.phy-astr.gsu.edu/hbase/electric/acres.html\#c1" target="_blank"
+>resistance</a> , <a href="http://hyperphysics.phy-astr.gsu.edu/hbase/electric/accap.html\#c1" target="_blank"
+>capacitance</a> , and <a href="http://hyperphysics.phy-astr.gsu.edu/hbase/electric/acind.html\#c1" target="_blank"
+>inductance</a> . For <a href="http://hyperphysics.phy-astr.gsu.edu/hbase/electric/serres.html\#c2" target="_blank"
+>series resonance</a> the condition of resonance is straightforward and it is characterized by minimum impedance and zero
+phase. <a href="http://hyperphysics.phy-astr.gsu.edu/hbase/electric/parres.html\#c1" target="_blank"
+>Parallel resonance</a> , which is more common in electronic practice, requires a more careful definition.</p>
+
+
+<p>
+<a href="othertexfiles/./resonant-rlc-circuits_files/acres.png" target="_blank"
+><img src="othertexfiles/./resonant-rlc-circuits_files/acres.png"
+class="inlineimage"
+></a></p>
+
+
+<a id="c2"></a>
+<h4 id="autosec-181"> <span class="sectionnumber">8.2&#x2001;</span>Series Resonance</h4><a id="autopage-181"></a>
+
+<a id="series-resonance"></a>
+
+<p>The <a href="http://hyperphysics.phy-astr.gsu.edu/hbase/electric/serres.html\#c1" target="_blank"
+>resonance</a> of a series <a href="http://hyperphysics.phy-astr.gsu.edu/hbase/electric/rlcser.html\#c1"
+target="_blank"
+>RLC circuit</a> occurs when the <a href="http://hyperphysics.phy-astr.gsu.edu/hbase/electric/acind.html\#c1"
+target="_blank"
+>inductive</a> and <a href="http://hyperphysics.phy-astr.gsu.edu/hbase/electric/accap.html\#c1" target="_blank"
+>capacitive</a> reactances are equal in magnitude but cancel each other because they are 180 degrees apart in <a
+href="http://hyperphysics.phy-astr.gsu.edu/hbase/electric/phase.html\#c1" target="_blank"
+>phase</a>. The sharp minimum in <a href="http://hyperphysics.phy-astr.gsu.edu/hbase/electric/imped.html\#c1"
+target="_blank"
+>impedance</a> which occurs is useful in tuning applications. The <a
+href="http://hyperphysics.phy-astr.gsu.edu/hbase/electric/serres.html\#c3" target="_blank"
+>sharpness</a> of the minimum depends on the value of R and is characterized by the “Q” of the circuit.</p>
+
+
+<p>
+<a href="othertexfiles/./resonant-rlc-circuits_files/acres2.png" target="_blank"
+><img src="othertexfiles/./resonant-rlc-circuits_files/acres2.png"
+class="inlineimage"
+></a></p>
+
+
+<p>
+<a href="othertexfiles/./resonant-rlc-circuits_files/acres3.png" target="_blank"
+><img src="othertexfiles/./resonant-rlc-circuits_files/acres3.png"
+class="inlineimage"
+></a></p>
+
+
+<p><a href="http://hyperphysics.phy-astr.gsu.edu/hbase/electric/rlcser.html\#c1" target="_blank"
+>Detailed expressions</a> <a href="http://hyperphysics.phy-astr.gsu.edu/hbase/electric/rlcser.html\#c2"
+target="_blank"
+>Calculation</a></td>
+</tr>
+</p>
+
+
+<p><a href="http://hyperphysics.phy-astr.gsu.edu/hbase/hframe.html" target="_blank"
+>Index</a><br />
+<a href="http://hyperphysics.phy-astr.gsu.edu/hbase/electric/accircon.html\#c1" target="_blank"
+>AC Circuits</a></p>
+
+
+<p><a href="http://hyperphysics.phy-astr.gsu.edu/hbase/hph.html" target="_blank"
+>HyperPhysics</a>*****<a href="http://hyperphysics.phy-astr.gsu.edu/hbase/emcon.html\#emcon" target="_blank"
+>Electricity and Magnetism</a> <em>R Nave</em></p>
+
+
+<a id="c3"></a>
+<h4 id="autosec-182"> <span class="sectionnumber">8.3&#x2001;</span>Selectivity and Q of a Circuit</h4><a
+id="autopage-182"></a>
+
+<a id="selectivity-and-q-of-a-circuit"></a>
+
+<p>Resonant circuits are used to respond selectively to signals of a given frequency while discriminating against signals of
+different frequencies. If the response of the circuit is more narrowly peaked around the chosen frequency, we say that the
+circuit has higher “selectivity”. A “quality factor” Q, as described below, is a measure of that selectivity, and we speak of a
+circuit having a “high Q” if it is more narrowly selective.</p>
+
+
+<p>
+<a href="othertexfiles/./resonant-rlc-circuits_files/qamrad.png" target="_blank"
+><img src="othertexfiles/./resonant-rlc-circuits_files/qamrad.png"
+class="inlineimage"
+></a>An example of the application of resonant circuits is the selection of <a
+href="http://hyperphysics.phy-astr.gsu.edu/hbase/audio/radio.html\#c1" target="_blank"
+>AM radio</a> stations by the radio receiver. The selectivity of the tuning must be high enough to discriminate strongly
+against stations above and below in carrier frequency, but not so high as to discriminate against the "<a
+href="http://hyperphysics.phy-astr.gsu.edu/hbase/audio/sumdif.html\#c2" target="_blank"
+>sidebands</a>" created by the imposition of the signal by amplitude modulation.</p>
+
+
+<p>The selectivity of a circuit is dependent upon the amount of resistance in the circuit. The variations on a <a
+href="http://hyperphysics.phy-astr.gsu.edu/hbase/electric/serres.html\#c2" target="_blank"
+>series resonant circuit</a> at right follow an example in Serway &amp; Beichner. The smaller the resistance, the higher
+the “Q” for given values of L and C. The <a href="http://hyperphysics.phy-astr.gsu.edu/hbase/electric/parres.html\#c1"
+target="_blank"
+>parallel resonant circuit</a> is more commonly used in electronics, but the algebra necessary to characterize the resonance
+is much more involved.
+<a href="othertexfiles/./resonant-rlc-circuits_files/qresi.png" target="_blank"
+><img src="othertexfiles/./resonant-rlc-circuits_files/qresi.png"
+class="inlineimage"
+></a></p>
+
+
+<p>
+<a href="othertexfiles/./resonant-rlc-circuits_files/qpow.png" target="_blank"
+><img src="othertexfiles/./resonant-rlc-circuits_files/qpow.png"
+class="inlineimage"
+></a>Using the same circuit parameters, the illustration at left shows the <a
+href="http://hyperphysics.phy-astr.gsu.edu/hbase/electric/serres.html\#c4" target="_blank"
+>power dissipated</a> in the circuit as a function of frequency. Since this power depends upon the square of the current,
+these resonant curves appear steeper and narrower than the resonance peaks for current above.</p>
+
+
+<p>The quality factor Q is defined by<br />
+</p>
+
+
+<p>
+<a href="othertexfiles/./resonant-rlc-circuits_files/qdef.png" target="_blank"
+><img src="othertexfiles/./resonant-rlc-circuits_files/qdef.png"
+class="inlineimage"
+></a></p>
+
+
+<p>where \(\delta \omega \) is the width of the resonant power curve at half maximum.</p>
+
+
+<p>Since that width turns out to be \(\delta \omega =R/L\), the value of Q can also be expressed as</p>
+
+
+<p>
+<a href="othertexfiles/./resonant-rlc-circuits_files/qdef2.png" target="_blank"
+><img src="othertexfiles/./resonant-rlc-circuits_files/qdef2.png"
+class="inlineimage"
+></a></p>
+
+
+<p>The Q is a commonly used parameter in electronics, with values usually in the range of Q=10 to 100 for circuit
+applications.<a href="http://hyperphysics.phy-astr.gsu.edu/hbase/hframe.html" target="_blank"
+>Index</a><br />
+<a href="http://hyperphysics.phy-astr.gsu.edu/hbase/electric/accircon.html\#c1" target="_blank"
+>AC Circuits</a><br />
+Reference<br />
+<a href="http://hyperphysics.phy-astr.gsu.edu/hbase/electric/eleref.html\#c1" target="_blank"
+>Serway &amp; Beichner</a><br />
+Ch 33</p>
+
+
+<p><a href="http://hyperphysics.phy-astr.gsu.edu/hbase/hph.html" target="_blank"
+>HyperPhysics</a>*****<a href="http://hyperphysics.phy-astr.gsu.edu/hbase/emcon.html\#emcon" target="_blank"
+>Electricity and Magnetism</a> <em>R Nave</em></p>
+
+
+<p><a href="Javascript:history.go(-1)" target="_blank"
+>Go Back</a></p>
+
+
+<a id="c4"></a>
+<h4 id="autosec-184"> <span class="sectionnumber">8.4&#x2001;</span>Power in a Series Resonant Circuit</h4><a
+id="autopage-184"></a>
+
+<a id="power-in-a-series-resonant-circuit"></a>
+
+<p>The average power dissipated in a <a href="http://hyperphysics.phy-astr.gsu.edu/hbase/electric/serres.html\#c2"
+target="_blank"
+>series resonant circuit</a> can be expressed in terms of the <a
+href="http://hyperphysics.phy-astr.gsu.edu/hbase/electric/acres.html\#c2" target="_blank"
+>rms</a> voltage and current as follows:</p>
+
+
+<p>
+<a href="othertexfiles/./resonant-rlc-circuits_files/pser.png" target="_blank"
+><img src="othertexfiles/./resonant-rlc-circuits_files/pser.png"
+class="inlineimage"
+></a></p>
+
+
+<p>Using the forms of the inductive reactance and capacitive reactance, the term involving them can be expressed in terms
+of the frequency.</p>
+
+
+<p>
+<a href="othertexfiles/./resonant-rlc-circuits_files/pser2.png" target="_blank"
+><img src="othertexfiles/./resonant-rlc-circuits_files/pser2.png"
+class="inlineimage"
+></a></p>
+
+
+<p>where use has been made of the resonant frequency expression</p>
+
+
+<p>
+<a href="othertexfiles/./resonant-rlc-circuits_files/pser3.png" target="_blank"
+><img src="othertexfiles/./resonant-rlc-circuits_files/pser3.png"
+class="inlineimage"
+></a></p>
+
+
+<p>Substitution now gives the expression for average power as a function of frequency.</p>
+
+
+<p>
+<a href="othertexfiles/./resonant-rlc-circuits_files/pser4.png" target="_blank"
+><img src="othertexfiles/./resonant-rlc-circuits_files/pser4.png"
+class="inlineimage"
+></a></p>
+
+
+<p>
+<a href="othertexfiles/./resonant-rlc-circuits_files/qpow.png" target="_blank"
+><img src="othertexfiles/./resonant-rlc-circuits_files/qpow.png"
+class="inlineimage"
+></a></p>
+
+
+<p>This power distribution is plotted at left using the same circuit parameters as were used in the example on the <a
+href="http://hyperphysics.phy-astr.gsu.edu/hbase/electric/serres.html\#c3" target="_blank"
+>Q factor</a> of the series resonant circuit</p>
+
+
+<p>The average power at resonance is just<br />
+</p>
+
+
+<p>
+<a href="othertexfiles/./resonant-rlc-circuits_files/pser5.png" target="_blank"
+><img src="othertexfiles/./resonant-rlc-circuits_files/pser5.png"
+class="inlineimage"
+></a></p>
+
+
+<p>since at the resonant frequency \(\omega _0\) the reactive parts cancel so that the circuit appears as just the resistance
+R.</p>
+
+
+<p><a href="http://hyperphysics.phy-astr.gsu.edu/hbase/hframe.html" target="_blank"
+>Index</a><br />
+<a href="http://hyperphysics.phy-astr.gsu.edu/hbase/electric/accircon.html\#c1" target="_blank"
+>AC Circuits</a><br />
+Reference<br />
+<a href="http://hyperphysics.phy-astr.gsu.edu/hbase/electric/eleref.html\#c1" target="_blank"
+>Serway &amp; Beichner</a><br />
+Ch 33</p>
+
+
+<p><a href="http://hyperphysics.phy-astr.gsu.edu/hbase/hph.html" target="_blank"
+>HyperPhysics</a>*****<a href="http://hyperphysics.phy-astr.gsu.edu/hbase/emcon.html\#emcon" target="_blank"
+>Electricity and Magnetism</a> <em>R Nave</em></p>
+<h4 id="autosec-186"> <span class="sectionnumber">8.5&#x2001;</span>Testing out images</h4><a id="autopage-186"></a>
+
+<figure id="autoid-36" class="figure">
+
+<p><span id="lateximage46" class="lateximagesource">
+<!--
+Zref   s+pc               I    k    Z
+              KD s + KP
+   −   s+zc                   ms2
+-->
+<img src="lateximages\lateximage-46.svg" alt="image" style="" class="lateximage"></span></p>
+
+
+<figcaption>
+<p>Figure 8.1:&nbsp;Lag compensation in series with PD control.</p>
+
+
+
+
+</figcaption>
+
+</figure>
+
+<figcaption>
+
+
+</figcaption>
+<pre class="programlisting" >
+
+          % M - file : prob7_17 .m
+          % M - file create a plot of the i n d u c e d torque power
+          % c o n v e r t e d power out and e f f i c i e n c y of the i n d u c t i o n
+          % motor of P r o b l e m 7 -14 as a f u n c t i o n of slip .
+          % First , i n i t i a l i z e the values needed in this p r o g r a m .
+          r1 = 0.075; % Stator r e s i s t a n c e
+          x1 = 0.170; % Stator r e a c t a n c e
+          r2 = 0.065; % Rotor r e s i s t a n c e
+          x2 = 0.170; % Rotor r e a c t a n c e
+          xm = 7.2; % M a g n e t i z a t i o n branch r e a c t a n c e
+          v_phase = 440 / sqrt (3); % Phase voltage
+          n_sync = 3000; % Synchronous speed ( r / min )
+          w_sync = 314.2; % Synchronous speed ( rad / s )
+          p_mech = 1000; % Mechanical losses (W)
+          p_core = 1100; % Core losses (W)
+          p_misc = 150; % Miscellaneous losses (W)
+          % Calculate the Thevenin voltage and impedance from Equations
+          % 7 -41 a and 7 -43.
+          v_th = v _ p h a s e * ( xm / sqrt ( r1 ^2 + ( x1 + xm )^2) );
+          z_th = (( j * xm ) * ( r1 + j * x1 )) / ( r1 + j *( x1 + xm ));
+          r_th = real ( z_th );
+          x_th = imag ( z_th );
+</pre>
+<figcaption>
+
+</figcaption>
+
+<p>Another test</p>
+
+
+<figure id="autoid-37" class="figure">
+
+<p><span id="lateximage47" class="lateximagesource">
+<!--
+Zref   s+pc               I    k    Z
+              KD s + KP
+   −   s+zc                   ms2
+-->
+<img src="lateximages\lateximage-47.svg" alt="image" style="" class="lateximage"></span></p>
+
+
+<figcaption>
+<p>Figure 8.2:&nbsp;This will be a good image</p>
+
+
+
+
+</figcaption>
+
+</figure>
+
+<p>The references used for this course are listed in the next page.<br />
+</p>
+
+
+<p><span id="lateximage48" class="lateximagesource">
+<!--
+Matlab Output 8.1:
+
+</p>
+
+<pre class="programlisting" >
+
+       % M-file: prob7_17 .m
+       % M-file create a plot of the induced torque power
+       % converted power out and efficiency of the induction
+       % motor of Problem 7-14 as a function of slip.
+       % First , initialize the values needed in this
+          program.
+       r1 = 0.075; % Stator resistance
+       x1 = 0.170; % Stator reactance
+       r2 = 0.065; % Rotor resistance
+       x2 = 0.170; % Rotor reactance
+       xm = 7.2; % Magnetization branch reactance
+       v_phase = 440 / sqrt (3); % Phase voltage
+       n_sync = 3000; % Synchronous speed (r/min)
+       w_sync = 314.2; % Synchronous speed (rad/s)
+       p_mech = 1000; % Mechanical losses (W)
+       p_core = 1100; % Core losses (W)
+       p_misc = 150; % Miscellaneous losses (W)
+       % Calculate the Thevenin voltage and impedance from
+          Equations
+       % 7-41a and 7 -43.
+       v_th = v_phase * ( xm / sqrt(r1^2 + (x1 + xm)^2) );
+       z_th = ((j*xm) * (r1 + j*x1)) / (r1 + j*(x1 + xm));
+       r_th = real(z_th);
+       x_th = imag(z_th);
+</pre>
+-->
+<img src="lateximages\lateximage-48.svg" alt="image" style="" class="lateximage"></span></p>
+<div class="amsthmbodyplain">
+
+<ul style="list-style-type:none">
+
+
+<li>
+
+<p><span class="amsthmnameplain">Theorem</span><span class="amsthmnumberplain"> <span
+class="textup">8.5.1</span></span>.&nbsp; Testing out the theorems</p>
+
+
+</li>
+
+</ul>
+
+</div>
+pdflatex
+<pre     file
+     class="verbatim" >
+pdflatex file_html.tex
+lwarpmk limages
+lwarpmk html
+lwarpmk pdftohtml
+
+</pre>
+<div class="amsthmbodyremark">
+
+<ul style="list-style-type:none">
+
+
+<li>
+
+<p><span class="amsthmnameremark">Example</span><span class="amsthmnumberremark"> <span
+class="textup">8.5.1</span></span>.&nbsp; Testing out the examples</p>
+pdflatex
+<pre     file
+     class="verbatim" >
+pdflatex file_html.tex
+lwarpmk limages
+lwarpmk html
+lwarpmk pdftohtml
+
+</pre>
+
+</li>
+
+</ul>
+
+</div>
+<div class="amsthmbodyplain">
+
+<ul style="list-style-type:none">
+
+
+<li>
+
+<p><span class="amsthmnameplain">Theorem</span><span class="amsthmnumberplain"> <span
+class="textup">8.5.2</span></span>.&nbsp; Let \(f\) be a function whose derivative exists in every point, then \(f\) is a
+continuous function.</p>
+
+
+</li>
+
+</ul>
+
+</div>
+<div class="amsthmbodyplain">
+
+<ul style="list-style-type:none">
+
+
+<li>
+
+<p><span class="amsthmnameplain">Theorem</span><span class="amsthmnumberplain"> <span
+class="textup">8.5.3</span></span><span class="amsthmnoteplain"> (Pythagorean theorem)</span>.&nbsp; <a
+id="pythagorean"></a> This is a theorema about right triangles and can be summarised in the next equation </p>
+
+
+<p>\[ x^2 + y^2 = z^2 \]</p>
+
+
+<p></p>
+
+
+</li>
+
+</ul>
+
+</div>
+
+<p>And a consequence of theorem <a href="Resonance-Circuits.html#pythagorean">8.5.3</a> is the statement in the next
+corollary.</p>
+<div class="amsthmbodyplain">
+
+<ul style="list-style-type:none">
+
+
+<li>
+
+<p><span class="amsthmnameplain">Corollary</span><span class="amsthmnumberplain"> <span
+class="textup">8.5.3.1</span></span>.&nbsp; There’s no right rectangle whose sides measure 3cm, 4cm, and 6cm.</p>
+
+
+</li>
+
+</ul>
+
+</div>
+
+<p>You can reference theorems such as <a href="Resonance-Circuits.html#pythagorean">8.5.3</a> when a label is
+assigned.</p>
+<div class="amsthmbodydefinition">
+
+<ul style="list-style-type:none">
+
+
+<li>
+
+<p><span class="amsthmnamedefinition">Lemma</span><span class="amsthmnumberdefinition"> <span
+class="textup">8.5.4</span></span>.&nbsp; Given two line segments whose lengths are \(a\) and \(b\) respectively there
+is a real number \(r\) such that \(b=ra\).</p>
+
+
+</li>
+
+</ul>
+
+</div>
+
+</section>
+
+<footer>
+
+</footer>
+
+<nav class="botnavigation"><a href="index.html" class="linkhome"
+>Home</a></nav>
+
+</body>
+</html>

@@ -12,7 +12,6 @@
 <![endif]-->
 <title>ELEC 300 Notes — Course Information</title>
 <link rel="stylesheet" type="text/css" href="lwarp.css" />
-
 <!-- https://groups.google.com/forum/#!topic/
                                mathjax-users/jUtewUcE2bY -->
 <script type="text/x-mathjax-config">
@@ -80,7 +79,10 @@ MathJax.Hub.Register.StartupHook("TeX AMSmath Ready",function () {
  MathJax.Hub.Config({
    extensions: ["tex2jax.js","[siunitx]/siunitx.js"],
    jax: ["input/TeX","output/HTML-CSS"],
-   tex2jax: {inlineMath: [["$","$"],["\\(","\\)"]]},
+   tex2jax: {
+        inlineMath: [["$","$"],["\\(","\\)"]] ,
+        processClass: "tabbing|verse"
+     },
    TeX: {extensions: ["AMSmath.js","AMSsymbols.js", "sinuitx.js"]}
  });
  MathJax.Ajax.config.path['siunitx'] = 'http://rawgit.com/burnpanck/MathJax-siunitx/master/';
@@ -107,6 +109,7 @@ src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-
   src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML-full">
 </script>
 -->
+
 
 </head>
 <body>
@@ -135,7 +138,92 @@ src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-
 >Home</a></p>
 
 
-<p></p>
+<p><a href="Tables-Units.html#autosec-13" class="tocchapter"
+><span class="sectionnumber">1</span>&#x2001;Tables and Units</a></p>
+
+
+<p><a href="Course-Information.html#autosec-59" class="tocchapter"
+><span class="sectionnumber">2</span>&#x2001;Course Information</a></p>
+
+
+<p><a href="Course-Information.html#autosec-66" class="tocsection"
+><span class="sectionnumber">2.1</span>&#x2001;Expectations</a></p>
+
+
+<p><a href="Concepts-Review.html#autosec-70" class="tocchapter"
+><span class="sectionnumber">3</span>&#x2001;Concepts to Review</a></p>
+
+
+<p><a href="Concepts-Review.html#autosec-71" class="tocsection"
+><span class="sectionnumber">3.1</span>&#x2001;Components in series and parallel</a></p>
+
+
+<p><a href="Concepts-Review.html#autosec-72" class="tocsection"
+><span class="sectionnumber">3.2</span>&#x2001;State devices / energy storage devices</a></p>
+
+
+<p><a href="Concepts-Review.html#autosec-75" class="tocsection"
+><span class="sectionnumber">3.3</span>&#x2001;First order circuits</a></p>
+
+
+<p><a href="Concepts-Review.html#autosec-76" class="tocsection"
+><span class="sectionnumber">3.4</span>&#x2001;Second order circuits, impedance, filters</a></p>
+
+
+<p><a href="Circuit-analysis.html#autosec-84" class="tocchapter"
+><span class="sectionnumber">4</span>&#x2001;Circuit analysis</a></p>
+
+
+<p><a href="Circuit-analysis.html#autosec-85" class="tocsection"
+><span class="sectionnumber">4.1</span>&#x2001;Thevenin equivalent circuits</a></p>
+
+
+<p><a href="Circuit-analysis.html#autosec-94" class="tocsection"
+><span class="sectionnumber">4.2</span>&#x2001;Norton equivalent circuits</a></p>
+
+
+<p><a href="Operational-Amplifiers.html#autosec-98" class="tocchapter"
+><span class="sectionnumber">5</span>&#x2001;Operational Amplifiers</a></p>
+
+
+<p><a href="Testing-Lwarp.html#autosec-166" class="tocchapter"
+><span class="sectionnumber">6</span>&#x2001;Testing Lwarp</a></p>
+
+
+<p><a href="BODE-DIAGRAMS.html#autosec-172" class="tocchapter"
+><span class="sectionnumber">7</span>&#x2001;BODE DIAGRAMS</a></p>
+
+
+<p><a href="BODE-DIAGRAMS.html#autosec-177" class="tocsection"
+><span class="sectionnumber">7.1</span>&#x2001;PHASE AND GAIN MARGINS</a></p>
+
+
+<p><a href="Resonance-Circuits.html#autosec-179" class="tocchapter"
+><span class="sectionnumber">8</span>&#x2001;Resonance Circuits</a></p>
+
+
+<p><a href="Resonance-Circuits.html#autosec-180" class="tocsection"
+><span class="sectionnumber">8.1</span>&#x2001;Resonance</a></p>
+
+
+<p><a href="Resonance-Circuits.html#autosec-181" class="tocsection"
+><span class="sectionnumber">8.2</span>&#x2001;Series Resonance</a></p>
+
+
+<p><a href="Resonance-Circuits.html#autosec-182" class="tocsection"
+><span class="sectionnumber">8.3</span>&#x2001;Selectivity and Q of a Circuit</a></p>
+
+
+<p><a href="Resonance-Circuits.html#autosec-184" class="tocsection"
+><span class="sectionnumber">8.4</span>&#x2001;Power in a Series Resonant Circuit</a></p>
+
+
+<p><a href="Resonance-Circuits.html#autosec-186" class="tocsection"
+><span class="sectionnumber">8.5</span>&#x2001;Testing out images</a></p>
+
+
+<p><a href="References.html#autosec-205" class="tocchapter"
+><span class="sectionnumber">9</span>&#x2001;References</a></p>
 
 
 </div>
@@ -144,56 +232,86 @@ src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-
 
 <section class="textbody">
 
-<h3 id="autosec-24"> <span class="sectionnumber">2&#x2001;</span>Course Information</h3><a id="autopage-24"></a>
+<h3 id="autosec-59"> <span class="sectionnumber">2&#x2001;</span>Course Information</h3><a id="autopage-59"></a>
+<div class="amsthmbodyplain">
 
 <ul style="list-style-type:none">
-<div class="amsthmbodyplain">
-<p>    <span class="amsthmnameplain">Theorem</span><span class="amsthmnumberplain"> <span
-class="textup">2.0.1</span></span>.&nbsp; Testing my life </p>
 
 
-</div>
+<li>
+
+<p><span class="amsthmnameplain">Theorem</span><span class="amsthmnumberplain"> <span
+class="textup">2.0.1</span></span>.&nbsp;  Testing my life</p>
+
+
+</li>
 
 </ul>
 
-<ul style="list-style-type:none">
+</div>
 <div class="amsthmbodydefinition">
-<p>    <span class="amsthmnamedefinition">Definition</span><span class="amsthmnumberdefinition"> <span
-class="textup">2.0.1</span></span>.&nbsp; Another test </p>
+
+<ul style="list-style-type:none">
 
 
-</div>
+<li>
+
+<p><span class="amsthmnamedefinition">Definition</span><span class="amsthmnumberdefinition"> <span
+class="textup">2.0.1</span></span>.&nbsp;    Another test</p>
+
+
+</li>
 
 </ul>
 
-<ul style="list-style-type:none">
+</div>
 <div class="amsthmbodyremark">
-<p>    <span class="amsthmnameremark">Example</span><span class="amsthmnumberremark"> <span
-class="textup">2.0.1</span></span>.&nbsp; example </p>
+
+<ul style="list-style-type:none">
 
 
-</div>
+<li>
+
+<p><span class="amsthmnameremark">Example</span><span class="amsthmnumberremark"> <span
+class="textup">2.0.1</span></span>.&nbsp;  example</p>
+
+
+</li>
 
 </ul>
 
-<ul style="list-style-type:none">
+</div>
 <div class="amsthmbodyplain">
-<p>    <span class="amsthmnameplain">Corollary</span><span class="amsthmnumberplain"> <span
-class="textup">2.0.1.1</span></span>.&nbsp; More testing </p>
-
-
-</div>
-
-</ul>
 
 <ul style="list-style-type:none">
-<div class="amsthmbodyremark">
-<p> <span class="amsthmnameremark">Remark</span>.&nbsp;   Hopefully this course will not be too hard </p>
 
 
-</div>
+<li>
+
+<p><span class="amsthmnameplain">Corollary</span><span class="amsthmnumberplain"> <span
+class="textup">2.0.1.1</span></span>.&nbsp;   More testing</p>
+
+
+</li>
 
 </ul>
+
+</div>
+<div class="amsthmbodyremark">
+
+<ul style="list-style-type:none">
+
+
+<li>
+
+<p><span class="amsthmnameremark">Remark</span>.&nbsp;   Hopefully this course will not be too hard</p>
+
+
+</li>
+
+</ul>
+
+</div>
 <div class="amsthmproof">
 
 <ul style="list-style-type:none">
@@ -201,7 +319,7 @@ class="textup">2.0.1.1</span></span>.&nbsp; More testing </p>
 
 <li>
 
-<p>      <span class="amsthmproofname">Proof.</span>   </p>
+<p><span class="amsthmproofname">Proof.</span> </p>
 
 
 <p>\[Good at math.\]</p>
@@ -215,7 +333,7 @@ class="textup">2.0.1.1</span></span>.&nbsp; More testing </p>
 </ul>
 
 </div>
-<h4 id="autosec-31"> <span class="sectionnumber">2.1&#x2001;</span>Expectations</h4><a id="autopage-31"></a>
+<h4 id="autosec-66"> <span class="sectionnumber">2.1&#x2001;</span>Expectations</h4><a id="autopage-66"></a>
 
 <p><b>Course Objectives</b></p>
 
@@ -233,46 +351,43 @@ including the treatment of active circuits.</p>
 <ul style="list-style-type:none">
 
 <li>
-
-<p>                •     demonstrate functionality of circuits containing operational amplifiers</p>
-
-</li>
-<li>
-<p>                •     assess the performance of circuits that have time dependent responses</p>
+<p>• demonstrate functionality of circuits containing operational amplifiers</p>
 
 </li>
 <li>
-<p>                •     use Laplace transforms to find the response of linear circuits to time varying inputs</p>
+<p>• assess the performance of circuits that have time dependent responses</p>
 
 </li>
 <li>
-<p>                •     solve for zero input and forced response as a function of time using node or mesh analysis</p>
+<p>• use Laplace transforms to find the response of linear circuits to time varying inputs</p>
 
 </li>
 <li>
-<p>                •     design circuits which have specified transfer functions and meet other specified constraints</p>
+<p>• solve for zero input and forced response as a function of time using node or mesh analysis</p>
 
 </li>
 <li>
-<p>                •     evaluate the frequency response of linear circuits and make straight line Bode gain and phase
-plots</p>
+<p>• design circuits which have specified transfer functions and meet other specified constraints</p>
 
 </li>
 <li>
-<p>                •     design a cascade of active or passive filter circuits to achieve a desired transfer function</p>
+<p>• evaluate the frequency response of linear circuits and make straight line Bode gain and phase plots</p>
 
 </li>
 <li>
-<p>                •     analyze circuits containing coupled inductors and ideal transformers</p>
+<p>• design a cascade of active or passive filter circuits to achieve a desired transfer function</p>
 
 </li>
 <li>
-<p>                •     evaluate sinusoidal steady state response of linear circuits using phasors</p>
+<p>• analyze circuits containing coupled inductors and ideal transformers</p>
 
 </li>
 <li>
-<p>                •     evaluate two port parameters of linear circuits and find the response of two ports to external
-input</p>
+<p>• evaluate sinusoidal steady state response of linear circuits using phasors</p>
+
+</li>
+<li>
+<p>• evaluate two port parameters of linear circuits and find the response of two ports to external input</p>
 
 </li>
 </ul>
@@ -334,7 +449,7 @@ input</p>
 
 </blockquote>
 
-<figure id="autoid-5" class="table">
+<figure id="autoid-6" class="table">
 <table>
 <tr class="tbrule">
 <td class="tdat"></td>
@@ -375,20 +490,19 @@ input</p>
 <ul style="list-style-type:none">
 
 <li>
-
-<p>                —   <a href="References.html#ref-book:nilEC">Nilsson</a></p>
-
-</li>
-<li>
-<p>                —   <a href="References.html#ref-book:nilECSol">Nilsson ISM</a></p>
+<p>— <a href="References.html#ref-book:nilEC">Nilsson</a></p>
 
 </li>
 <li>
-<p>                —   <a href="References.html#ref-book:alexEC">Alexander</a></p>
+<p>— <a href="References.html#ref-book:nilECSol">Nilsson ISM</a></p>
 
 </li>
 <li>
-<p>                —   <a href="References.html#ref-book:alexECSol">Alexander ISM</a></p>
+<p>— <a href="References.html#ref-book:alexEC">Alexander</a></p>
+
+</li>
+<li>
+<p>— <a href="References.html#ref-book:alexECSol">Alexander ISM</a></p>
 
 </li>
 </ul>

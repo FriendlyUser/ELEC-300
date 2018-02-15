@@ -12,7 +12,6 @@
 <![endif]-->
 <title>ELEC 300 Notes — Tables and Units</title>
 <link rel="stylesheet" type="text/css" href="lwarp.css" />
-
 <!-- https://groups.google.com/forum/#!topic/
                                mathjax-users/jUtewUcE2bY -->
 <script type="text/x-mathjax-config">
@@ -80,7 +79,10 @@ MathJax.Hub.Register.StartupHook("TeX AMSmath Ready",function () {
  MathJax.Hub.Config({
    extensions: ["tex2jax.js","[siunitx]/siunitx.js"],
    jax: ["input/TeX","output/HTML-CSS"],
-   tex2jax: {inlineMath: [["$","$"],["\\(","\\)"]]},
+   tex2jax: {
+        inlineMath: [["$","$"],["\\(","\\)"]] ,
+        processClass: "tabbing|verse"
+     },
    TeX: {extensions: ["AMSmath.js","AMSsymbols.js", "sinuitx.js"]}
  });
  MathJax.Ajax.config.path['siunitx'] = 'http://rawgit.com/burnpanck/MathJax-siunitx/master/';
@@ -107,6 +109,7 @@ src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-
   src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML-full">
 </script>
 -->
+
 
 </head>
 <body>
@@ -135,7 +138,92 @@ src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-
 >Home</a></p>
 
 
-<p></p>
+<p><a href="Tables-Units.html#autosec-13" class="tocchapter"
+><span class="sectionnumber">1</span>&#x2001;Tables and Units</a></p>
+
+
+<p><a href="Course-Information.html#autosec-59" class="tocchapter"
+><span class="sectionnumber">2</span>&#x2001;Course Information</a></p>
+
+
+<p><a href="Course-Information.html#autosec-66" class="tocsection"
+><span class="sectionnumber">2.1</span>&#x2001;Expectations</a></p>
+
+
+<p><a href="Concepts-Review.html#autosec-70" class="tocchapter"
+><span class="sectionnumber">3</span>&#x2001;Concepts to Review</a></p>
+
+
+<p><a href="Concepts-Review.html#autosec-71" class="tocsection"
+><span class="sectionnumber">3.1</span>&#x2001;Components in series and parallel</a></p>
+
+
+<p><a href="Concepts-Review.html#autosec-72" class="tocsection"
+><span class="sectionnumber">3.2</span>&#x2001;State devices / energy storage devices</a></p>
+
+
+<p><a href="Concepts-Review.html#autosec-75" class="tocsection"
+><span class="sectionnumber">3.3</span>&#x2001;First order circuits</a></p>
+
+
+<p><a href="Concepts-Review.html#autosec-76" class="tocsection"
+><span class="sectionnumber">3.4</span>&#x2001;Second order circuits, impedance, filters</a></p>
+
+
+<p><a href="Circuit-analysis.html#autosec-84" class="tocchapter"
+><span class="sectionnumber">4</span>&#x2001;Circuit analysis</a></p>
+
+
+<p><a href="Circuit-analysis.html#autosec-85" class="tocsection"
+><span class="sectionnumber">4.1</span>&#x2001;Thevenin equivalent circuits</a></p>
+
+
+<p><a href="Circuit-analysis.html#autosec-94" class="tocsection"
+><span class="sectionnumber">4.2</span>&#x2001;Norton equivalent circuits</a></p>
+
+
+<p><a href="Operational-Amplifiers.html#autosec-98" class="tocchapter"
+><span class="sectionnumber">5</span>&#x2001;Operational Amplifiers</a></p>
+
+
+<p><a href="Testing-Lwarp.html#autosec-166" class="tocchapter"
+><span class="sectionnumber">6</span>&#x2001;Testing Lwarp</a></p>
+
+
+<p><a href="BODE-DIAGRAMS.html#autosec-172" class="tocchapter"
+><span class="sectionnumber">7</span>&#x2001;BODE DIAGRAMS</a></p>
+
+
+<p><a href="BODE-DIAGRAMS.html#autosec-177" class="tocsection"
+><span class="sectionnumber">7.1</span>&#x2001;PHASE AND GAIN MARGINS</a></p>
+
+
+<p><a href="Resonance-Circuits.html#autosec-179" class="tocchapter"
+><span class="sectionnumber">8</span>&#x2001;Resonance Circuits</a></p>
+
+
+<p><a href="Resonance-Circuits.html#autosec-180" class="tocsection"
+><span class="sectionnumber">8.1</span>&#x2001;Resonance</a></p>
+
+
+<p><a href="Resonance-Circuits.html#autosec-181" class="tocsection"
+><span class="sectionnumber">8.2</span>&#x2001;Series Resonance</a></p>
+
+
+<p><a href="Resonance-Circuits.html#autosec-182" class="tocsection"
+><span class="sectionnumber">8.3</span>&#x2001;Selectivity and Q of a Circuit</a></p>
+
+
+<p><a href="Resonance-Circuits.html#autosec-184" class="tocsection"
+><span class="sectionnumber">8.4</span>&#x2001;Power in a Series Resonant Circuit</a></p>
+
+
+<p><a href="Resonance-Circuits.html#autosec-186" class="tocsection"
+><span class="sectionnumber">8.5</span>&#x2001;Testing out images</a></p>
+
+
+<p><a href="References.html#autosec-205" class="tocchapter"
+><span class="sectionnumber">9</span>&#x2001;References</a></p>
 
 
 </div>
@@ -144,7 +232,7 @@ src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-
 
 <section class="textbody">
 
-<h3 id="autosec-12"> <span class="sectionnumber">1&#x2001;</span>Tables and Units</h3><a id="autopage-12"></a>
+<h3 id="autosec-13"> <span class="sectionnumber">1&#x2001;</span>Tables and Units</h3><a id="autopage-13"></a>
 
 <div class="mdsiderule"
 style="
@@ -152,15 +240,12 @@ background: #FFFFFF ;
 border: 0pt solid #000000 ;
 border-radius: 0pt ;
 box-shadow: none ;
-">    <ul style="list-style-type:none">
-
-<li>
-  <p><b>Note:</b> This meme note better work</p>
-
+">
+<p><b>Note:</b> This meme note better work</p>
 
 
 </div>
-<p><span class="paragraph" id="autosec-13"> Z Transforms</span><a id="autopage-13"></a> </p>
+<p><span class="paragraph" id="autosec-14"> Z Transforms</span><a id="autopage-14"></a> </p>
 <div class="center">
 <table>
 
@@ -189,15 +274,11 @@ box-shadow: none ;
 <td class="tdc tvertbarr">\(\displaystyle \frac {z}{z-r}\)</td>
 </tr>
 <tr>
-<td class="tdc tvertbarl tvertbarr">
-
-\(x_k = kr^{k-1}\)</td>
+<td class="tdc tvertbarl tvertbarr">\(x_k = kr^{k-1}\)</td>
 <td class="tdc tvertbarr">\(\displaystyle \frac {z}{(z-r)^2}\)</td>
 </tr>
-<tr>
-<td class="tdc tvertbarl tvertbarr">
-
-</td>
+<tr class="hline" >
+<td class="tdc"></td>
 <td class="tdc"></td>
 </tr>
 
@@ -461,8 +542,7 @@ box-shadow: none ;
 </table>
 
 <figcaption>
-
-<p><a id="autoid-1"></a>Table 1.1:&nbsp;Electric Quantities</p>
+<p>Table 1.1:&nbsp;Electric Quantities</p>
 
 
 
@@ -478,7 +558,7 @@ box-shadow: none ;
 
 <tr class="tbrule">
 <td rowspan="1" class="tdc"></td>
-<td colspan="2" class="tdc"> <td rowspan=" 2" class="tdc">I-V RELATIONSHIPS</td>
+<td colspan="2" class="tdc"><td rowspan=" 2" class="tdc">I-V RELATIONSHIPS</td>
 <td colspan="3" class="tdc">IMPENDENCE</td>
 </tr>
 <tr>
@@ -525,8 +605,7 @@ box-shadow: none ;
 </table>
 
 <figcaption>
-
-<p><a id="autoid-2"></a>Table 1.2:&nbsp;Basic Circuit Relations</p>
+<p>Table 1.2:&nbsp;Basic Circuit Relations</p>
 
 
 
@@ -788,8 +867,7 @@ _{k=1}^n 1/k-\ln (n)\right )=0.5772156649\)</td>
 </table>
 
 <figcaption>
-
-<p><a id="autoid-3"></a>Table 1.3:&nbsp;Physical Constants</p>
+<p>Table 1.3:&nbsp;Physical Constants</p>
 
 
 
@@ -797,20 +875,218 @@ _{k=1}^n 1/k-\ln (n)\right )=0.5772156649\)</td>
 
 </figure>
 
-<figure id="autoid-4" class="figure">
+<figure id="autoid-4" class="table">
+<div class="center">
+<table>
+
+<tr>
+<td class="tdc">Circuit</td>
+<td class="tdc">Block Diagram</td>
+<td class="tdc">Gains</td>
+</tr>
+<tr>
+<td class="tdc"><span id="lateximage1" class="lateximagesource">
+<!--
+v1   +
+                    vo
+     −
+
+
+
+Z1   Z1
+          Noninverter
+-->
+<img src="lateximages\lateximage-1.svg" alt="image" style="" class="lateximage"></span></td>
+<td class="tdc"><span id="lateximage2" class="lateximagesource">
+<!--
+v1   K   vo
+-->
+<img src="lateximages\lateximage-2.svg" alt="image" style="" class="lateximage"></span></td>
+<td class="tdc">\(K_1 = \dfrac {Z_1+Z_2}{Z_2} \)</td>
+</tr>
+<tr>
+<td class="tdc"><span id="lateximage3" class="lateximagesource">
+<!--
+     Z1   Z2
+v1                        vo
+          −
+
+          +
+               Inverter
+-->
+<img src="lateximages\lateximage-3.svg" alt="image" style="" class="lateximage"></span></td>
+<td class="tdc"><span id="lateximage4" class="lateximagesource">
+<!--
+v1   K   vo
+-->
+<img src="lateximages\lateximage-4.svg" alt="image" style="" class="lateximage"></span></td>
+<td class="tdc">\(K = -\dfrac {Z_2}{Z_1} \)</td>
+</tr>
+<tr>
+<td class="tdc"><span id="lateximage5" class="lateximagesource">
+<!--
+     Z1   ZF
+v1                         vo
+v2        −
+     Z2
+          +    Inverting
+                Summer
+-->
+<img src="lateximages\lateximage-5.svg" alt="image" style="" class="lateximage"></span></td>
+<td class="tdc"><span id="lateximage6" class="lateximagesource">
+<!--
+v1   K1
+          +   vo
+          +
+v2   K2
+-->
+<img src="lateximages\lateximage-6.svg" alt="image" style="" class="lateximage"></span></td>
+<td class="tdc">\(K_1 = -\dfrac {Z_F}{Z_1} \) \(K_2 = -\dfrac {Z_F}{Z_2} \)
+
+</td>
+</tr>
+<tr>
+<td class="tdc"><span id="lateximage7" class="lateximagesource">
+<!--
+     Z1        Z2
+v1                               vo
+               −
+
+v2             +
+     Z3             Subtractor
+          Z4
+-->
+<img src="lateximages\lateximage-7.svg" alt="image" style="" class="lateximage"></span></td>
+<td class="tdc"><span id="lateximage8" class="lateximagesource">
+<!--
+v1   K1
+          +   vo
+          +
+v2   K2
+-->
+<img src="lateximages\lateximage-8.svg" alt="image" style="" class="lateximage"></span></td>
+<td class="tdc">\(K_1 = -\dfrac {Z_2}{Z_1} \) \(K_2 = \left (\dfrac {Z_1+Z_2}{Z_1} \right ) \left (\dfrac
+{Z_4}{Z_3+Z_4} \right )\)
+
+</td>
+</tr>
+<tr>
+<td class="tdc"><span id="lateximage9" class="lateximagesource">
+<!--
+     R   C
+v1                        vo
+         −
+
+         +
+             Integrator
+-->
+<img src="lateximages\lateximage-9.svg" alt="image" style="" class="lateximage"></span></td>
+<td class="tdc"><span id="lateximage10" class="lateximagesource">
+<!--
+         R
+v1   K       vo
+-->
+<img src="lateximages\lateximage-10.svg" alt="image" style="" class="lateximage"></span></td>
+<td class="tdc">\(K = -\dfrac {1}{RC} \)</td>
+</tr>
+<tr>
+<td class="tdc"><span id="lateximage11" class="lateximagesource">
+<!--
+     C
+         R
+v1                       vo
+         −
+
+         +
+             Differentiator
+-->
+<img src="lateximages\lateximage-11.svg" alt="image" style="" class="lateximage"></span></td>
+<td class="tdc"><span id="lateximage12" class="lateximagesource">
+<!--
+v1   K   ∂∂t   vo
+-->
+<img src="lateximages\lateximage-12.svg" alt="image" style="" class="lateximage"></span></td>
+<td class="tdc">
+
+\[ K = -RC \]
+
+</td>
+</tr>
+<tr>
+<td class="tdc"><span id="lateximage13" class="lateximagesource">
+<!--
+     Z1
+v1                        vo
+v2          +            RA
+     Z2
+            −
+                         RB
+
+
+
+          Noninverting Summer
+-->
+<img src="lateximages\lateximage-13.svg" alt="image" style="" class="lateximage"></span></td>
+<td class="tdc"><span id="lateximage14" class="lateximagesource">
+<!--
+v1   K1
+          +   KAM P   vo
+          +
+v2   K2
+-->
+<img src="lateximages\lateximage-14.svg" alt="image" style="" class="lateximage"></span></td>
+<td class="tdc">\(K_1 = -\dfrac {Z_2}{Z_1+Z_2} \) \(K_2 = -\dfrac {Z_1}{Z_1+Z_2} \) \(K_{AMP} = \dfrac
+{R_A+R_B}{R_B} \)</td>
+</tr>
+<tr>
+<td class="tdc"> <span id="lateximage15" class="lateximagesource">
+<!--
+     −
+                v0
+v1   +
+         Follower
+-->
+<img src="lateximages\lateximage-15.svg" alt="image" style="" class="lateximage"></span>
+
+</td>
+<td class="tdc"> <span id="lateximage16" class="lateximagesource">
+<!--
+v1   K   vo
+-->
+<img src="lateximages\lateximage-16.svg" alt="image" style="" class="lateximage"></span></td>
+<td class="tdc">K = 1</td>
+</tr>
+<tr class="tbrule">
+<td class="tdc"></td>
+<td class="tdc"></td>
+<td class="tdc"></td>
+</tr>
+
+</table>
+
+<figcaption>
+<p>Table 1.4:&nbsp;Basic Op Amp Modules</p>
+
+
+
+</figcaption>
+
+</div>
+
+</figure>
+
+<figure id="autoid-5" class="figure">
 
 <p>
 <a href="Inkscape/electricCircuit.png" target="_blank"
 ><img src="Inkscape/electricCircuit.png"
-alt="[electricCircuit]"
 style="width:434pt;"
 class="inlineimage"
 ></a></p>
 
 
 <figcaption>
-
-<p><a id="autoid-4"></a>Figure 1.1:&nbsp;Electric Circuit generated using InkScape</p>
+<p>Figure 1.1:&nbsp;Electric Circuit generated using InkScape</p>
 
 
 

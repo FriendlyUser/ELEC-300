@@ -19,9 +19,11 @@ if os.path.isfile(input_tex_file):
 else:
     print('Check the file name again \n')
     
-cmd_str1 = ' '.join(['pdflatex',
+#cmd_str1 = ' '.join(['pdflatex',
+#                    input_tex_file])
+cmd_str1 = ' '.join(['latexmk',
+					'-pdf',
                     input_tex_file])
-
 try:
     subprocess.check_call(cmd_str1)
     print('Calling: ' + cmd_str1)

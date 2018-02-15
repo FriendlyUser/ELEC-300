@@ -1,0 +1,57 @@
+\contentsline {chapter}{\numberline {1}{\ignorespaces Tables and Units\relax }}{13}
+\contentsline {paragraph}{Z Transforms}{14}
+\contentsline {chapter}{\numberline {2}{\ignorespaces Course Information\relax }}{59}
+\contentsline {section}{\numberline {2.1}{\ignorespaces Expectations\relax }}{66}
+\contentsline {chapter}{\numberline {3}{\ignorespaces Concepts to Review\relax }}{70}
+\contentsline {section}{\numberline {3.1}{\ignorespaces Components in series and parallel\relax }}{71}
+\contentsline {section}{\numberline {3.2}{\ignorespaces State devices / energy storage devices\relax }}{72}
+\contentsline {subsection}{\numberline {3.2.1}{\ignorespaces Capacitors\relax }}{73}
+\contentsline {subsection}{\numberline {3.2.2}{\ignorespaces Inductors\relax }}{74}
+\contentsline {section}{\numberline {3.3}{\ignorespaces First order circuits\relax }}{75}
+\contentsline {section}{\numberline {3.4}{\ignorespaces Second order circuits, impedance, filters\relax }}{76}
+\contentsline {subsection}{\numberline {3.4.1}{\ignorespaces For all LC and RLC circuits:\relax }}{77}
+\contentsline {subsection}{\numberline {3.4.2}{\ignorespaces Series RLC circuits\relax }}{78}
+\contentsline {subsection}{\numberline {3.4.3}{\ignorespaces Parallel RLC circuits\relax }}{79}
+\contentsline {subsection}{\numberline {3.4.4}{\ignorespaces Frequency- to time-domain conversion\relax }}{80}
+\contentsline {subsection}{\numberline {3.4.5}{\ignorespaces Complex algebra\relax }}{81}
+\contentsline {subsection}{\numberline {3.4.6}{\ignorespaces Impedances\relax }}{82}
+\contentsline {chapter}{\numberline {4}{\ignorespaces Circuit analysis\relax }}{84}
+\contentsline {section}{\numberline {4.1}{\ignorespaces Thevenin equivalent circuits\relax }}{85}
+\contentsline {section}{\numberline {4.2}{\ignorespaces Norton equivalent circuits\relax }}{94}
+\contentsline {chapter}{\numberline {5}{\ignorespaces Operational Amplifiers\relax }}{98}
+\contentsline {paragraph}{Intro}{99}
+\contentsline {paragraph}{Noninverting amplifier}{106}
+\contentsline {paragraph}{Negative feedback}{109}
+\contentsline {paragraph}{Virtual short/virtual ground}{112}
+\contentsline {paragraph}{Op amps as buffers}{113}
+\contentsline {paragraph}{Inverting amplifier}{116}
+\contentsline {paragraph}{Op amp subtractor}{119}
+\contentsline {paragraph}{Summing amplifier}{122}
+\contentsline {paragraph}{Op amp integrator}{125}
+\contentsline {paragraph}{Op amp differentiator}{128}
+\contentsline {paragraph}{Buffered filters}{131}
+\contentsline {paragraph}{Op amp current source}{138}
+\contentsline {paragraph}{Exponential amplifier}{141}
+\contentsline {paragraph}{Logarithmic amplifier}{144}
+\contentsline {paragraph}{Active RC filters}{147}
+\contentsline {paragraph}{Positive feedback}{150}
+\contentsline {paragraph}{Op amp comparator}{153}
+\contentsline {paragraph}{Schmitt trigger}{156}
+\contentsline {subsection}{\numberline {5.0.1}{\ignorespaces Rise time\relax }}{162}
+\contentsline {subsection}{\numberline {5.0.2}{\ignorespaces Fall time\relax }}{163}
+\contentsline {subsection}{\numberline {5.0.3}{\ignorespaces Frequency\relax }}{164}
+\contentsline {chapter}{\numberline {6}{\ignorespaces Testing Lwarp\relax }}{166}
+\contentsline {chapter}{\numberline {7}{\ignorespaces BODE DIAGRAMS\relax }}{172}
+\contentsline {subsection}{\numberline {7.0.1}{\ignorespaces 1. Gain Factor K:\relax }}{173}
+\contentsline {subsection}{\numberline {7.0.2}{\ignorespaces 2. Integral or derivative factors\relax }}{174}
+\contentsline {subsection}{\numberline {7.0.3}{\ignorespaces 3. First Order Factors\relax }}{175}
+\contentsline {subsection}{\numberline {7.0.4}{\ignorespaces 4. Quadratic Factors\relax }}{176}
+\contentsline {section}{\numberline {7.1}{\ignorespaces PHASE AND GAIN MARGINS\relax }}{177}
+\contentsline {chapter}{\numberline {8}{\ignorespaces Resonance Circuits\relax }}{179}
+\contentsline {section}{\numberline {8.1}{\ignorespaces Resonance\relax }}{180}
+\contentsline {section}{\numberline {8.2}{\ignorespaces Series Resonance\relax }}{181}
+\contentsline {section}{\numberline {8.3}{\ignorespaces Selectivity and Q of a Circuit\relax }}{182}
+\contentsline {section}{\numberline {8.4}{\ignorespaces Power in a Series Resonant Circuit\relax }}{184}
+\contentsline {section}{\numberline {8.5}{\ignorespaces Testing out images\relax }}{186}
+\contentsline {chapter}{\numberline {9}{\ignorespaces References\relax }}{205}
+

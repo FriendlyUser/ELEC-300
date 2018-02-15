@@ -11,7 +11,6 @@
 <![endif]-->
 <title>ELEC 300 Notes</title>
 <link rel="stylesheet" type="text/css" href="lwarp.css" />
-
 <!-- https://groups.google.com/forum/#!topic/
                                mathjax-users/jUtewUcE2bY -->
 <script type="text/x-mathjax-config">
@@ -79,7 +78,10 @@ MathJax.Hub.Register.StartupHook("TeX AMSmath Ready",function () {
  MathJax.Hub.Config({
    extensions: ["tex2jax.js","[siunitx]/siunitx.js"],
    jax: ["input/TeX","output/HTML-CSS"],
-   tex2jax: {inlineMath: [["$","$"],["\\(","\\)"]]},
+   tex2jax: {
+        inlineMath: [["$","$"],["\\(","\\)"]] ,
+        processClass: "tabbing|verse"
+     },
    TeX: {extensions: ["AMSmath.js","AMSsymbols.js", "sinuitx.js"]}
  });
  MathJax.Ajax.config.path['siunitx'] = 'http://rawgit.com/burnpanck/MathJax-siunitx/master/';
@@ -107,6 +109,7 @@ src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-
 </script>
 -->
 
+
 </head>
 <body>
 <header>
@@ -127,7 +130,7 @@ src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-
 <b>Term</b> 3A<br />
 <i>Discipline:</i> Computer Engineering<br />
 <i>Email:</i> <a href="mailto:lidavid@uvic.ca" target="_blank"
->lidavid@uvic.ca</a> </p>
+>lidavid@uvic.ca</a></p>
 
 
 </div>
@@ -159,7 +162,8 @@ Instructor — <i>Dr. Jens Bornemann</i><br />
 </p>
 <div class="minipage" style="vertical-align:bottom ; justify-content:flex-start ; width:440pt ; ">
 <div class="flushright">
-<p><i>Course Website</i> <a href="http://www.ece.uvic.ca/&nbsp;jbornema/300-LinCircII-S2018.html" target="_blank"
+
+<p><i>Course Website</i> <a href="http://www.ece.uvic.ca/~jbornema/300-LinCircII-S2018.html" target="_blank"
 >ELEC 300</a></p>
 
 <p><span class="textsc"><b>Course Assessment:</b></span></p>
@@ -173,18 +177,21 @@ Instructor — <i>Dr. Jens Bornemann</i><br />
 <p>Final Exam 50 %</p>
 
 </div>
+
 </div>
 <div class="minipage" style="vertical-align:bottom ; justify-content:flex-start ; width:33pt ; ">
+
 <span style="background:black; width:1pt ; height:110pt ;
 -ms-transform: translate(0pt,0pt);
 -webkit-transform: translate(0pt,0pt);
 transform: translate(0pt,0pt);
 display:inline-block;"></span>
+
 </div>
 
 
 <p><br />
-<span class="textsc">January 6, 2018</span><br />
+<span class="textsc">January 29, 2018</span><br />
 <span class="textsc">In partial fulfillment of the academic requirements of this course.<br />
 </span> </p>
 
@@ -192,241 +199,285 @@ display:inline-block;"></span>
 </div>
 
 </div>
-<h3 id="autosec-7"> Contents</h3><a id="autopage-7"></a>
+<h3 id="autosec-8"> Contents</h3><a id="autopage-8"></a>
 
 <nav class="toc">
 
-<p><a href="Tables-Units.html#autosec-12" class="tocchapter"
+<p><a href="Tables-Units.html#autosec-13" class="tocchapter"
 ><span class="sectionnumber">1</span>&#x2001;Tables and Units</a></p>
 
 
-<p><a href="Course-Information.html#autosec-24" class="tocchapter"
+<p><a href="Course-Information.html#autosec-59" class="tocchapter"
 ><span class="sectionnumber">2</span>&#x2001;Course Information</a></p>
 
 
-<p><a href="Course-Information.html#autosec-31" class="tocsection"
+<p><a href="Course-Information.html#autosec-66" class="tocsection"
 ><span class="sectionnumber">2.1</span>&#x2001;Expectations</a></p>
 
 
-<p><a href="Concepts-Review.html#autosec-35" class="tocchapter"
+<p><a href="Concepts-Review.html#autosec-70" class="tocchapter"
 ><span class="sectionnumber">3</span>&#x2001;Concepts to Review</a></p>
 
 
-<p><a href="Concepts-Review.html#autosec-36" class="tocsection"
+<p><a href="Concepts-Review.html#autosec-71" class="tocsection"
 ><span class="sectionnumber">3.1</span>&#x2001;Components in series and parallel</a></p>
 
 
-<p><a href="Concepts-Review.html#autosec-37" class="tocsection"
+<p><a href="Concepts-Review.html#autosec-72" class="tocsection"
 ><span class="sectionnumber">3.2</span>&#x2001;State devices / energy storage devices</a></p>
 
 
-<p><a href="Concepts-Review.html#autosec-38" class="tocsubsection"
+<p><a href="Concepts-Review.html#autosec-73" class="tocsubsection"
 ><span class="sectionnumber">3.2.1</span>&#x2001;Capacitors</a></p>
 
 
-<p><a href="Concepts-Review.html#autosec-39" class="tocsubsection"
+<p><a href="Concepts-Review.html#autosec-74" class="tocsubsection"
 ><span class="sectionnumber">3.2.2</span>&#x2001;Inductors</a></p>
 
 
-<p><a href="Concepts-Review.html#autosec-40" class="tocsection"
+<p><a href="Concepts-Review.html#autosec-75" class="tocsection"
 ><span class="sectionnumber">3.3</span>&#x2001;First order circuits</a></p>
 
 
-<p><a href="Concepts-Review.html#autosec-41" class="tocsection"
+<p><a href="Concepts-Review.html#autosec-76" class="tocsection"
 ><span class="sectionnumber">3.4</span>&#x2001;Second order circuits, impedance, filters</a></p>
 
 
-<p><a href="Concepts-Review.html#autosec-42" class="tocsubsection"
+<p><a href="Concepts-Review.html#autosec-77" class="tocsubsection"
 ><span class="sectionnumber">3.4.1</span>&#x2001;For all LC and RLC circuits:</a></p>
 
 
-<p><a href="Concepts-Review.html#autosec-43" class="tocsubsection"
+<p><a href="Concepts-Review.html#autosec-78" class="tocsubsection"
 ><span class="sectionnumber">3.4.2</span>&#x2001;Series RLC circuits</a></p>
 
 
-<p><a href="Concepts-Review.html#autosec-44" class="tocsubsection"
+<p><a href="Concepts-Review.html#autosec-79" class="tocsubsection"
 ><span class="sectionnumber">3.4.3</span>&#x2001;Parallel RLC circuits</a></p>
 
 
-<p><a href="Concepts-Review.html#autosec-45" class="tocsubsection"
+<p><a href="Concepts-Review.html#autosec-80" class="tocsubsection"
 ><span class="sectionnumber">3.4.4</span>&#x2001;Frequency- to time-domain conversion</a></p>
 
 
-<p><a href="Concepts-Review.html#autosec-46" class="tocsubsection"
+<p><a href="Concepts-Review.html#autosec-81" class="tocsubsection"
 ><span class="sectionnumber">3.4.5</span>&#x2001;Complex algebra</a></p>
 
 
-<p><a href="Concepts-Review.html#autosec-47" class="tocsubsection"
+<p><a href="Concepts-Review.html#autosec-82" class="tocsubsection"
 ><span class="sectionnumber">3.4.6</span>&#x2001;Impedances</a></p>
 
 
-<p><a href="Circuit-analysis.html#autosec-49" class="tocchapter"
+<p><a href="Circuit-analysis.html#autosec-84" class="tocchapter"
 ><span class="sectionnumber">4</span>&#x2001;Circuit analysis</a></p>
 
 
-<p><a href="Circuit-analysis.html#autosec-50" class="tocsection"
+<p><a href="Circuit-analysis.html#autosec-85" class="tocsection"
 ><span class="sectionnumber">4.1</span>&#x2001;Thevenin equivalent circuits</a></p>
 
 
-<p><a href="Circuit-analysis.html#autosec-59" class="tocsection"
+<p><a href="Circuit-analysis.html#autosec-94" class="tocsection"
 ><span class="sectionnumber">4.2</span>&#x2001;Norton equivalent circuits</a></p>
 
 
-<p><a href="Operational-Amplifiers.html#autosec-63" class="tocchapter"
+<p><a href="Operational-Amplifiers.html#autosec-98" class="tocchapter"
 ><span class="sectionnumber">5</span>&#x2001;Operational Amplifiers</a></p>
 
 
-<p><a href="Operational-Amplifiers.html#autosec-127" class="tocsubsection"
+<p><a href="Operational-Amplifiers.html#autosec-162" class="tocsubsection"
 ><span class="sectionnumber">5.0.1</span>&#x2001;Rise time</a></p>
 
 
-<p><a href="Operational-Amplifiers.html#autosec-128" class="tocsubsection"
+<p><a href="Operational-Amplifiers.html#autosec-163" class="tocsubsection"
 ><span class="sectionnumber">5.0.2</span>&#x2001;Fall time</a></p>
 
 
-<p><a href="Operational-Amplifiers.html#autosec-129" class="tocsubsection"
+<p><a href="Operational-Amplifiers.html#autosec-164" class="tocsubsection"
 ><span class="sectionnumber">5.0.3</span>&#x2001;Frequency</a></p>
 
 
-<p><a href="Testing-Lwarp.html#autosec-131" class="tocchapter"
+<p><a href="Testing-Lwarp.html#autosec-166" class="tocchapter"
 ><span class="sectionnumber">6</span>&#x2001;Testing Lwarp</a></p>
 
 
-<p><a href="Testing-Lwarp.html#autosec-136" class="tocsection"
-><span class="sectionnumber">6.1</span>&#x2001;Testing out images</a></p>
+<p><a href="BODE-DIAGRAMS.html#autosec-172" class="tocchapter"
+><span class="sectionnumber">7</span>&#x2001;BODE DIAGRAMS</a></p>
 
 
-<p><a href="References.html#autosec-153" class="tocchapter"
-><span class="sectionnumber">7</span>&#x2001;References</a></p>
+<p><a href="BODE-DIAGRAMS.html#autosec-173" class="tocsubsection"
+><span class="sectionnumber">7.0.1</span>&#x2001;1. Gain Factor K:</a></p>
+
+
+<p><a href="BODE-DIAGRAMS.html#autosec-174" class="tocsubsection"
+><span class="sectionnumber">7.0.2</span>&#x2001;2. Integral or derivative factors</a></p>
+
+
+<p><a href="BODE-DIAGRAMS.html#autosec-175" class="tocsubsection"
+><span class="sectionnumber">7.0.3</span>&#x2001;3. First Order Factors</a></p>
+
+
+<p><a href="BODE-DIAGRAMS.html#autosec-176" class="tocsubsection"
+><span class="sectionnumber">7.0.4</span>&#x2001;4. Quadratic Factors</a></p>
+
+
+<p><a href="BODE-DIAGRAMS.html#autosec-177" class="tocsection"
+><span class="sectionnumber">7.1</span>&#x2001;PHASE AND GAIN MARGINS</a></p>
+
+
+<p><a href="Resonance-Circuits.html#autosec-179" class="tocchapter"
+><span class="sectionnumber">8</span>&#x2001;Resonance Circuits</a></p>
+
+
+<p><a href="Resonance-Circuits.html#autosec-180" class="tocsection"
+><span class="sectionnumber">8.1</span>&#x2001;Resonance</a></p>
+
+
+<p><a href="Resonance-Circuits.html#autosec-181" class="tocsection"
+><span class="sectionnumber">8.2</span>&#x2001;Series Resonance</a></p>
+
+
+<p><a href="Resonance-Circuits.html#autosec-182" class="tocsection"
+><span class="sectionnumber">8.3</span>&#x2001;Selectivity and Q of a Circuit</a></p>
+
+
+<p><a href="Resonance-Circuits.html#autosec-184" class="tocsection"
+><span class="sectionnumber">8.4</span>&#x2001;Power in a Series Resonant Circuit</a></p>
+
+
+<p><a href="Resonance-Circuits.html#autosec-186" class="tocsection"
+><span class="sectionnumber">8.5</span>&#x2001;Testing out images</a></p>
+
+
+<p><a href="References.html#autosec-205" class="tocchapter"
+><span class="sectionnumber">9</span>&#x2001;References</a></p>
 
 
 </nav>
-<h3 id="autosec-8"> List of Figures</h3><a id="autopage-8"></a>
+<h3 id="autosec-9"> List of Figures</h3><a id="autopage-9"></a>
 
 <nav class="lof">
 
-<p><a href="Tables-Units.html#autoid-4" class="tocfigure"
+<p><a href="Tables-Units.html#autoid-5" class="tocfigure"
 ><span class="sectionnumber">1.1</span>&#x2001;Electric Circuit generated using InkScape</a></p>
 
 
-<p><a href="Circuit-analysis.html#autoid-6" class="tocfigure"
+<p><a href="Circuit-analysis.html#autoid-7" class="tocfigure"
 ><span class="sectionnumber">4.1</span>&#x2001;Capacitor Circuit</a></p>
 
 
-<p><a href="Circuit-analysis.html#autoid-7" class="tocfigure"
+<p><a href="Circuit-analysis.html#autoid-8" class="tocfigure"
 ><span class="sectionnumber">4.2</span>&#x2001;Thevenin Equivalent</a></p>
 
 
-<p><a href="Circuit-analysis.html#autoid-8" class="tocfigure"
+<p><a href="Circuit-analysis.html#autoid-9" class="tocfigure"
 ><span class="sectionnumber">4.3</span>&#x2001;Thevenin Equivalent II</a></p>
 
 
-<p><a href="Circuit-analysis.html#autoid-9" class="tocfigure"
+<p><a href="Circuit-analysis.html#autoid-10" class="tocfigure"
 ><span class="sectionnumber">4.4</span>&#x2001;Thevenin Equivalent III</a></p>
 
 
-<p><a href="Circuit-analysis.html#autoid-10" class="tocfigure"
+<p><a href="Circuit-analysis.html#autoid-11" class="tocfigure"
 ><span class="sectionnumber">4.5</span>&#x2001;Norton Circuit</a></p>
 
 
-<p><a href="Operational-Amplifiers.html#autoid-11" class="tocfigure"
+<p><a href="Operational-Amplifiers.html#autoid-12" class="tocfigure"
 ><span class="sectionnumber">5.1</span>&#x2001;Basic Op Amp</a></p>
 
 
-<p><a href="Operational-Amplifiers.html#autoid-12" class="tocfigure"
+<p><a href="Operational-Amplifiers.html#autoid-13" class="tocfigure"
 ><span class="sectionnumber">5.2</span>&#x2001;Annotated Op Amp</a></p>
 
 
-<p><a href="Operational-Amplifiers.html#autoid-13" class="tocfigure"
+<p><a href="Operational-Amplifiers.html#autoid-14" class="tocfigure"
 ><span class="sectionnumber">5.3</span>&#x2001;Op Amp with VCVS</a></p>
 
 
-<p><a href="Operational-Amplifiers.html#autoid-14" class="tocfigure"
+<p><a href="Operational-Amplifiers.html#autoid-15" class="tocfigure"
 ><span class="sectionnumber">5.4</span>&#x2001;Noninverting Op Amp</a></p>
 
 
-<p><a href="Operational-Amplifiers.html#autoid-15" class="tocfigure"
+<p><a href="Operational-Amplifiers.html#autoid-16" class="tocfigure"
 ><span class="sectionnumber">5.5</span>&#x2001;Negative feedback Op Amp</a></p>
 
 
-<p><a href="Operational-Amplifiers.html#autoid-16" class="tocfigure"
+<p><a href="Operational-Amplifiers.html#autoid-17" class="tocfigure"
 ><span class="sectionnumber">5.6</span>&#x2001;Op Amps Voltage Divider</a></p>
 
 
-<p><a href="Operational-Amplifiers.html#autoid-17" class="tocfigure"
+<p><a href="Operational-Amplifiers.html#autoid-18" class="tocfigure"
 ><span class="sectionnumber">5.7</span>&#x2001;Inverting amplifier</a></p>
 
 
-<p><a href="Operational-Amplifiers.html#autoid-18" class="tocfigure"
+<p><a href="Operational-Amplifiers.html#autoid-19" class="tocfigure"
 ><span class="sectionnumber">5.8</span>&#x2001;Op Amp subtractor</a></p>
 
 
-<p><a href="Operational-Amplifiers.html#autoid-19" class="tocfigure"
+<p><a href="Operational-Amplifiers.html#autoid-20" class="tocfigure"
 ><span class="sectionnumber">5.9</span>&#x2001;Summing amplifier</a></p>
 
 
-<p><a href="Operational-Amplifiers.html#autoid-20" class="tocfigure"
+<p><a href="Operational-Amplifiers.html#autoid-21" class="tocfigure"
 ><span class="sectionnumber">5.10</span>&#x2001;Op amp integrator</a></p>
 
 
-<p><a href="Operational-Amplifiers.html#autoid-21" class="tocfigure"
+<p><a href="Operational-Amplifiers.html#autoid-22" class="tocfigure"
 ><span class="sectionnumber">5.11</span>&#x2001;Op amp differentiator</a></p>
 
 
-<p><a href="Operational-Amplifiers.html#autoid-22" class="tocfigure"
+<p><a href="Operational-Amplifiers.html#autoid-23" class="tocfigure"
 ><span class="sectionnumber">5.12</span>&#x2001;Buffered filters</a></p>
 
 
-<p><a href="Operational-Amplifiers.html#autoid-23" class="tocfigure"
+<p><a href="Operational-Amplifiers.html#autoid-24" class="tocfigure"
 ><span class="sectionnumber">5.13</span>&#x2001;Buffered filters with Thevenin equivalent source</a></p>
 
 
-<p><a href="Operational-Amplifiers.html#autoid-25" class="tocfigure"
+<p><a href="Operational-Amplifiers.html#autoid-26" class="tocfigure"
 ><span class="sectionnumber">5.14</span>&#x2001;Op amp current source</a></p>
 
 
-<p><a href="Operational-Amplifiers.html#autoid-26" class="tocfigure"
+<p><a href="Operational-Amplifiers.html#autoid-27" class="tocfigure"
 ><span class="sectionnumber">5.15</span>&#x2001;Exponential amplifier</a></p>
 
 
-<p><a href="Operational-Amplifiers.html#autoid-27" class="tocfigure"
+<p><a href="Operational-Amplifiers.html#autoid-28" class="tocfigure"
 ><span class="sectionnumber">5.16</span>&#x2001;Logarithmic amplifier</a></p>
 
 
-<p><a href="Operational-Amplifiers.html#autoid-28" class="tocfigure"
+<p><a href="Operational-Amplifiers.html#autoid-29" class="tocfigure"
 ><span class="sectionnumber">5.17</span>&#x2001;Active RC filters</a></p>
 
 
-<p><a href="Operational-Amplifiers.html#autoid-29" class="tocfigure"
+<p><a href="Operational-Amplifiers.html#autoid-30" class="tocfigure"
 ><span class="sectionnumber">5.18</span>&#x2001;Positive feedback</a></p>
 
 
-<p><a href="Operational-Amplifiers.html#autoid-30" class="tocfigure"
+<p><a href="Operational-Amplifiers.html#autoid-31" class="tocfigure"
 ><span class="sectionnumber">5.19</span>&#x2001;Op amp comparator</a></p>
 
 
-<p><a href="Operational-Amplifiers.html#autoid-31" class="tocfigure"
+<p><a href="Operational-Amplifiers.html#autoid-32" class="tocfigure"
 ><span class="sectionnumber">5.20</span>&#x2001;Schmitt trigger</a></p>
 
 
-<p><a href="Testing-Lwarp.html#autoid-33" class="tocfigure"
+<p><a href="Testing-Lwarp.html#autoid-34" class="tocfigure"
 ><span class="sectionnumber">6.1</span>&#x2001;Electric Circuits</a></p>
 
 
-<p><a href="Testing-Lwarp.html#autoid-34" class="tocfigure"
+<p><a href="Testing-Lwarp.html#autoid-35" class="tocfigure"
 ><span class="sectionnumber">6.2</span>&#x2001;Proportional-derivative control.</a></p>
 
 
-<p><a href="Testing-Lwarp.html#autoid-35" class="tocfigure"
-><span class="sectionnumber">6.3</span>&#x2001;Lag compensation in series with PD control.</a></p>
+<p><a href="Resonance-Circuits.html#autoid-36" class="tocfigure"
+><span class="sectionnumber">8.1</span>&#x2001;Lag compensation in series with PD control.</a></p>
 
 
-<p><a href="Testing-Lwarp.html#autoid-36" class="tocfigure"
-><span class="sectionnumber">6.4</span>&#x2001;This will be a good image</a></p>
+<p><a href="Resonance-Circuits.html#autoid-37" class="tocfigure"
+><span class="sectionnumber">8.2</span>&#x2001;This will be a good image</a></p>
 
 
 </nav>
-<h3 id="autosec-9"> List of Tables</h3><a id="autopage-9"></a>
+<h3 id="autosec-10"> List of Tables</h3><a id="autopage-10"></a>
 
 <nav class="lot">
 
@@ -442,8 +493,12 @@ display:inline-block;"></span>
 ><span class="sectionnumber">1.3</span>&#x2001;Physical Constants</a></p>
 
 
+<p><a href="Tables-Units.html#autoid-4" class="toctable"
+><span class="sectionnumber">1.4</span>&#x2001;Basic Op Amp Modules</a></p>
+
+
 </nav>
-<h3 id="autosec-10"> Listings</h3><a id="autopage-10"></a>
+<h3 id="autosec-11"> Listings</h3><a id="autopage-11"></a>
 
 <nav class="lol">
 

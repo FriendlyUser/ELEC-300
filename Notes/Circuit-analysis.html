@@ -12,7 +12,6 @@
 <![endif]-->
 <title>ELEC 300 Notes — Circuit analysis</title>
 <link rel="stylesheet" type="text/css" href="lwarp.css" />
-
 <!-- https://groups.google.com/forum/#!topic/
                                mathjax-users/jUtewUcE2bY -->
 <script type="text/x-mathjax-config">
@@ -80,7 +79,10 @@ MathJax.Hub.Register.StartupHook("TeX AMSmath Ready",function () {
  MathJax.Hub.Config({
    extensions: ["tex2jax.js","[siunitx]/siunitx.js"],
    jax: ["input/TeX","output/HTML-CSS"],
-   tex2jax: {inlineMath: [["$","$"],["\\(","\\)"]]},
+   tex2jax: {
+        inlineMath: [["$","$"],["\\(","\\)"]] ,
+        processClass: "tabbing|verse"
+     },
    TeX: {extensions: ["AMSmath.js","AMSsymbols.js", "sinuitx.js"]}
  });
  MathJax.Ajax.config.path['siunitx'] = 'http://rawgit.com/burnpanck/MathJax-siunitx/master/';
@@ -107,6 +109,7 @@ src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-
   src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML-full">
 </script>
 -->
+
 
 </head>
 <body>
@@ -135,7 +138,92 @@ src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-
 >Home</a></p>
 
 
-<p></p>
+<p><a href="Tables-Units.html#autosec-13" class="tocchapter"
+><span class="sectionnumber">1</span>&#x2001;Tables and Units</a></p>
+
+
+<p><a href="Course-Information.html#autosec-59" class="tocchapter"
+><span class="sectionnumber">2</span>&#x2001;Course Information</a></p>
+
+
+<p><a href="Course-Information.html#autosec-66" class="tocsection"
+><span class="sectionnumber">2.1</span>&#x2001;Expectations</a></p>
+
+
+<p><a href="Concepts-Review.html#autosec-70" class="tocchapter"
+><span class="sectionnumber">3</span>&#x2001;Concepts to Review</a></p>
+
+
+<p><a href="Concepts-Review.html#autosec-71" class="tocsection"
+><span class="sectionnumber">3.1</span>&#x2001;Components in series and parallel</a></p>
+
+
+<p><a href="Concepts-Review.html#autosec-72" class="tocsection"
+><span class="sectionnumber">3.2</span>&#x2001;State devices / energy storage devices</a></p>
+
+
+<p><a href="Concepts-Review.html#autosec-75" class="tocsection"
+><span class="sectionnumber">3.3</span>&#x2001;First order circuits</a></p>
+
+
+<p><a href="Concepts-Review.html#autosec-76" class="tocsection"
+><span class="sectionnumber">3.4</span>&#x2001;Second order circuits, impedance, filters</a></p>
+
+
+<p><a href="Circuit-analysis.html#autosec-84" class="tocchapter"
+><span class="sectionnumber">4</span>&#x2001;Circuit analysis</a></p>
+
+
+<p><a href="Circuit-analysis.html#autosec-85" class="tocsection"
+><span class="sectionnumber">4.1</span>&#x2001;Thevenin equivalent circuits</a></p>
+
+
+<p><a href="Circuit-analysis.html#autosec-94" class="tocsection"
+><span class="sectionnumber">4.2</span>&#x2001;Norton equivalent circuits</a></p>
+
+
+<p><a href="Operational-Amplifiers.html#autosec-98" class="tocchapter"
+><span class="sectionnumber">5</span>&#x2001;Operational Amplifiers</a></p>
+
+
+<p><a href="Testing-Lwarp.html#autosec-166" class="tocchapter"
+><span class="sectionnumber">6</span>&#x2001;Testing Lwarp</a></p>
+
+
+<p><a href="BODE-DIAGRAMS.html#autosec-172" class="tocchapter"
+><span class="sectionnumber">7</span>&#x2001;BODE DIAGRAMS</a></p>
+
+
+<p><a href="BODE-DIAGRAMS.html#autosec-177" class="tocsection"
+><span class="sectionnumber">7.1</span>&#x2001;PHASE AND GAIN MARGINS</a></p>
+
+
+<p><a href="Resonance-Circuits.html#autosec-179" class="tocchapter"
+><span class="sectionnumber">8</span>&#x2001;Resonance Circuits</a></p>
+
+
+<p><a href="Resonance-Circuits.html#autosec-180" class="tocsection"
+><span class="sectionnumber">8.1</span>&#x2001;Resonance</a></p>
+
+
+<p><a href="Resonance-Circuits.html#autosec-181" class="tocsection"
+><span class="sectionnumber">8.2</span>&#x2001;Series Resonance</a></p>
+
+
+<p><a href="Resonance-Circuits.html#autosec-182" class="tocsection"
+><span class="sectionnumber">8.3</span>&#x2001;Selectivity and Q of a Circuit</a></p>
+
+
+<p><a href="Resonance-Circuits.html#autosec-184" class="tocsection"
+><span class="sectionnumber">8.4</span>&#x2001;Power in a Series Resonant Circuit</a></p>
+
+
+<p><a href="Resonance-Circuits.html#autosec-186" class="tocsection"
+><span class="sectionnumber">8.5</span>&#x2001;Testing out images</a></p>
+
+
+<p><a href="References.html#autosec-205" class="tocchapter"
+><span class="sectionnumber">9</span>&#x2001;References</a></p>
 
 
 </div>
@@ -144,16 +232,16 @@ src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-
 
 <section class="textbody">
 
-<h3 id="autosec-49"> <span class="sectionnumber">4&#x2001;</span>Circuit analysis</h3><a id="autopage-49"></a>
-<h4 id="autosec-50"> <span class="sectionnumber">4.1&#x2001;</span>Thevenin equivalent circuits</h4><a
-id="autopage-50"></a>
+<h3 id="autosec-84"> <span class="sectionnumber">4&#x2001;</span>Circuit analysis</h3><a id="autopage-84"></a>
+<h4 id="autosec-85"> <span class="sectionnumber">4.1&#x2001;</span>Thevenin equivalent circuits</h4><a
+id="autopage-85"></a>
 
 <p>Say we have an capacitor circuit to analyze:</p>
 
 
-<figure id="autoid-6" class="figure">
+<figure id="autoid-7" class="figure">
 
-<p><span id="lateximage1" class="lateximagesource">
+<p><span id="lateximage17" class="lateximagesource">
 <!--
          R1        R2
 
@@ -164,12 +252,11 @@ VS   +        R3        vC       C
 
                              −
 -->
-<img src="lateximages\lateximage-1.svg" alt="image" style="" class="lateximage"></span></p>
+<img src="lateximages\lateximage-17.svg" alt="image" style="" class="lateximage"></span></p>
 
 
 <figcaption>
-
-<p><a id="autoid-6"></a>Figure 4.1:&nbsp;Capacitor Circuit</p>
+<p>Figure 4.1:&nbsp;Capacitor Circuit</p>
 
 
 
@@ -181,9 +268,9 @@ VS   +        R3        vC       C
 as seen from the port where the capacitor is attached:</p>
 
 
-<figure id="autoid-7" class="figure">
+<figure id="autoid-8" class="figure">
 
-<p><span id="lateximage2" class="lateximagesource">
+<p><span id="lateximage18" class="lateximagesource">
 <!--
          R1        R2
 
@@ -195,12 +282,11 @@ VS   +        R3        VT H
 
                         +
 -->
-<img src="lateximages\lateximage-2.svg" alt="image" style="" class="lateximage"></span></p>
+<img src="lateximages\lateximage-18.svg" alt="image" style="" class="lateximage"></span></p>
 
 
 <figcaption>
-
-<p><a id="autoid-7"></a>Figure 4.2:&nbsp;Thevenin Equivalent</p>
+<p>Figure 4.2:&nbsp;Thevenin Equivalent</p>
 
 
 
@@ -223,9 +309,9 @@ do this, we turn off all <em>independant</em> voltage and current sources, by re
 Leave dependant sources in the circuit!</p>
 
 
-<figure id="autoid-8" class="figure">
+<figure id="autoid-9" class="figure">
 
-<p><span id="lateximage3" class="lateximagesource">
+<p><span id="lateximage19" class="lateximagesource">
 <!--
 R1        R2
 
@@ -234,12 +320,11 @@ R1        R2
 
      R3
 -->
-<img src="lateximages\lateximage-3.svg" alt="image" style="" class="lateximage"></span></p>
+<img src="lateximages\lateximage-19.svg" alt="image" style="" class="lateximage"></span></p>
 
 
 <figcaption>
-
-<p><a id="autoid-8"></a>Figure 4.3:&nbsp;Thevenin Equivalent II</p>
+<p>Figure 4.3:&nbsp;Thevenin Equivalent II</p>
 
 
 
@@ -255,9 +340,9 @@ circuit with a voltage source of voltage \(V_{TH}\) volts in series with a resis
 capacitor back into the circuit:</p>
 
 
-<figure id="autoid-9" class="figure">
+<figure id="autoid-10" class="figure">
 
-<p><span id="lateximage4" class="lateximagesource">
+<p><span id="lateximage20" class="lateximagesource">
 <!--
            RT H
 
@@ -268,12 +353,11 @@ VT H   +          vC       C
 
                        −
 -->
-<img src="lateximages\lateximage-4.svg" alt="image" style="" class="lateximage"></span></p>
+<img src="lateximages\lateximage-20.svg" alt="image" style="" class="lateximage"></span></p>
 
 
 <figcaption>
-
-<p><a id="autoid-9"></a>Figure 4.4:&nbsp;Thevenin Equivalent III</p>
+<p>Figure 4.4:&nbsp;Thevenin Equivalent III</p>
 
 
 
@@ -301,8 +385,8 @@ but leave dependant sources intact<br />
 \(\bullet \) Calculate/measure the resistance \(R_{TH}\) at the port terminal pair<br />
 \(\bullet \) Replace the original circuit with a series circuit of a voltage source (voltage \(V_{TH}\) volts), a resistor
 (resistance \(R_{TH}\) ohm) and the element you want to analyze.</p>
-<h4 id="autosec-59"> <span class="sectionnumber">4.2&#x2001;</span>Norton equivalent circuits</h4><a
-id="autopage-59"></a>
+<h4 id="autosec-94"> <span class="sectionnumber">4.2&#x2001;</span>Norton equivalent circuits</h4><a
+id="autopage-94"></a>
 
 <p>Nortan equivalent circuits are very similar to Thevenin equivalents, but use a <em>current source</em> in
 <em>parallel</em> with a resistor rather than a <em>voltage source</em> in <em>series</em> with a resistor.</p>
@@ -321,9 +405,9 @@ but leave dependant sources intact.<br />
 </p>
 
 
-<figure id="autoid-10" class="figure">
+<figure id="autoid-11" class="figure">
 
-<p><span id="lateximage5" class="lateximagesource">
+<p><span id="lateximage21" class="lateximagesource">
 <!--
 IN             +
 
@@ -331,12 +415,11 @@ IN             +
 
                −
 -->
-<img src="lateximages\lateximage-5.svg" alt="image" style="" class="lateximage"></span></p>
+<img src="lateximages\lateximage-21.svg" alt="image" style="" class="lateximage"></span></p>
 
 
 <figcaption>
-
-<p><a id="autoid-10"></a>Figure 4.5:&nbsp;Norton Circuit</p>
+<p>Figure 4.5:&nbsp;Norton Circuit</p>
 
 
 
