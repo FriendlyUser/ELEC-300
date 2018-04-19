@@ -1,0 +1,665 @@
+<html>
+                 <head>
+                   <style id="style">
+@font-face {
+  font-family: 'Lato';
+  src: url('file://C:\Users\wu\AppData\Local\boost\app-0.10.0\resources\app/resources/fonts/Lato-Regular.woff2') format('woff2'), /* Modern Browsers */
+       url('file://C:\Users\wu\AppData\Local\boost\app-0.10.0\resources\app/resources/fonts/Lato-Regular.woff') format('woff'), /* Modern Browsers */
+       url('file://C:\Users\wu\AppData\Local\boost\app-0.10.0\resources\app/resources/fonts/Lato-Regular.ttf') format('truetype');
+  font-style: normal;
+  font-weight: normal;
+  text-rendering: optimizeLegibility;
+}
+@font-face {
+  font-family: 'Lato';
+  src: url('file://C:\Users\wu\AppData\Local\boost\app-0.10.0\resources\app/resources/fonts/Lato-Black.woff2') format('woff2'), /* Modern Browsers */
+       url('file://C:\Users\wu\AppData\Local\boost\app-0.10.0\resources\app/resources/fonts/Lato-Black.woff') format('woff'), /* Modern Browsers */
+       url('file://C:\Users\wu\AppData\Local\boost\app-0.10.0\resources\app/resources/fonts/Lato-Black.ttf') format('truetype');
+  font-style: normal;
+  font-weight: 700;
+  text-rendering: optimizeLegibility;
+}
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  font-weight: inherit;
+  font-style: inherit;
+  font-family: inherit;
+  font-size: 100%;
+  vertical-align: baseline;
+}
+body {
+  line-height: 1;
+  color: #000;
+  background: #fff;
+}
+ol,
+ul {
+  list-style: none;
+}
+table {
+  border-collapse: separate;
+  border-spacing: 0;
+  vertical-align: middle;
+}
+caption,
+th,
+td {
+  text-align: left;
+  font-weight: normal;
+  vertical-align: middle;
+}
+a img {
+  border: none;
+}
+body {
+  font-size: 16px;
+  padding: 15px;
+  font-family: helvetica, arial, sans-serif;
+  line-height: 1.6;
+  overflow-x: hidden;
+  background-color: #fff;
+}
+body .katex {
+  font: 400 1.2em 'KaTeX_Main';
+  line-height: 1.2em;
+  white-space: nowrap;
+  text-indent: 0;
+}
+body .katex .mfrac>.vlist>span:nth-child(2) {
+  top: 0 !important;
+}
+body .katex-error {
+  background-color: #f2dede;
+  color: #a64444;
+  padding: 5px;
+  margin: -5px;
+  border-radius: 5px;
+}
+body .flowchart-error,
+body .sequence-error {
+  background-color: #f2dede;
+  color: #a64444;
+  padding: 5px;
+  border-radius: 5px;
+  -webkit-box-pack: left;
+  -moz-box-pack: left;
+  -o-box-pack: left;
+  -ms-flex-pack: left;
+  -webkit-justify-content: left;
+  justify-content: left;
+}
+li label.taskListItem {
+  margin-left: -1.8em;
+}
+li label.taskListItem.checked {
+  text-decoration: line-through;
+  opacity: 0.5;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=50)";
+  filter: alpha(opacity=50);
+}
+div.math-rendered {
+  text-align: center;
+}
+.math-failed {
+  background-color: rgba(255,0,0,0.1);
+  color: #d90000;
+  padding: 5px;
+  margin: 5px 0;
+  border-radius: 5px;
+}
+sup {
+  position: relative;
+  top: -0.4em;
+  font-size: 0.8em;
+  vertical-align: top;
+}
+sub {
+  position: relative;
+  bottom: -0.4em;
+  font-size: 0.8em;
+  vertical-align: top;
+}
+a {
+  color: #2bac8f;
+  text-decoration: none;
+  padding: 5px;
+  border-radius: 5px;
+  margin: -5px;
+  -webkit-transition: 0.1s;
+  -moz-transition: 0.1s;
+  -o-transition: 0.1s;
+  -ms-transition: 0.1s;
+  transition: 0.1s;
+}
+a img {
+  vertical-align: sub;
+}
+a:hover {
+  color: #2eb899;
+  text-decoration: underline;
+  background-color: rgba(255,201,92,0.3);
+}
+a:visited {
+  color: #2bac8f;
+}
+hr {
+  border-top: none;
+  border-bottom: solid 1px #d0d0d0;
+  margin: 15px 0;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: bold;
+  word-wrap: break-word;
+}
+h1 {
+  font-size: 2.55em;
+  padding-bottom: 0.3em;
+  line-height: 1.2em;
+  border-bottom: solid 1px #d0d0d0;
+  margin: 1em 0 0.44em;
+}
+h1:first-child {
+  margin-top: 0;
+}
+h2 {
+  font-size: 1.75em;
+  padding-bottom: 0.3em;
+  line-height: 1.225em;
+  border-bottom: solid 1px #d0d0d0;
+  margin: 1em 0 0.57em;
+}
+h2:first-child {
+  margin-top: 0;
+}
+h3 {
+  font-size: 1.5em;
+  line-height: 1.43em;
+  margin: 1em 0 0.66em;
+}
+h4 {
+  font-size: 1.25em;
+  line-height: 1.4em;
+  margin: 1em 0 0.8em;
+}
+h5 {
+  font-size: 1em;
+  line-height: 1.4em;
+  margin: 1em 0 1em;
+}
+h6 {
+  font-size: 1em;
+  line-height: 1.4em;
+  margin: 1em 0 1em;
+  color: #777;
+}
+p {
+  line-height: 1.6em;
+  margin: 0 0 1em;
+  white-space: pre-line;
+  word-wrap: break-word;
+}
+img {
+  max-width: 100%;
+}
+strong,
+b {
+  font-weight: bold;
+}
+em,
+i {
+  font-style: italic;
+}
+s,
+del,
+strike {
+  text-decoration: line-through;
+}
+u {
+  text-decoration: underline;
+}
+blockquote {
+  border-left: solid 4px #3fb399;
+  margin: 0 0 1em;
+  padding: 0 25px;
+}
+ul {
+  list-style-type: disc;
+  padding-left: 2em;
+  margin-bottom: 1em;
+}
+ul li {
+  display: list-item;
+}
+ul li.taskListItem {
+  list-style: none;
+}
+ul li p {
+  margin: 0;
+}
+ul>li>ul,
+ul>li>ol {
+  margin: 0;
+}
+ul>li>ul {
+  list-style-type: circle;
+}
+ul>li>ul>li>ul {
+  list-style-type: square;
+}
+ol {
+  list-style-type: decimal;
+  padding-left: 2em;
+  margin-bottom: 1em;
+}
+ol li {
+  display: list-item;
+}
+ol li p {
+  margin: 0;
+}
+ol>li>ul,
+ol>li>ol {
+  margin: 0;
+}
+code {
+  color: #cc305f;
+  padding: 0.2em 0.4em;
+  background-color: #f7f7f7;
+  border-radius: 3px;
+  font-size: 1em;
+  text-decoration: none;
+  margin-right: 2px;
+}
+pre {
+  padding: 0.5em !important;
+  border: solid 1px #d1d1d1;
+  border-radius: 5px;
+  overflow-x: auto;
+  margin: 0 0 1em;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: box;
+  display: flex;
+  line-height: 1.4em;
+}
+pre.flowchart,
+pre.sequence {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: box;
+  display: flex;
+  -webkit-box-pack: center;
+  -moz-box-pack: center;
+  -o-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  background-color: #fff;
+}
+pre.CodeMirror {
+  height: initial;
+  -webkit-box-lines: multiple;
+  -moz-box-lines: multiple;
+  -o-box-lines: multiple;
+  -webkit-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+}
+pre.CodeMirror>code {
+  -webkit-box-flex: 1;
+  -moz-box-flex: 1;
+  -o-box-flex: 1;
+  box-flex: 1;
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  overflow-x: auto;
+}
+pre code {
+  background-color: inherit;
+  margin: 0;
+  padding: 0;
+  border: none;
+  border-radius: 0;
+}
+pre>span.filename {
+  width: 100%;
+  border-radius: 5px 0px 0px 0px;
+  margin: -8px 100% 8px -8px;
+  padding: 0px 6px;
+  background-color: #777;
+  color: #fff;
+}
+pre>span.lineNumber {
+  display: none;
+  font-size: 1em;
+  padding: 0.5em 0;
+  margin: -0.5em 0.5em -0.5em -0.5em;
+  border-right: 1px solid;
+  text-align: right;
+  border-top-left-radius: 4px;
+  border-bottom-left-radius: 4px;
+}
+pre>span.lineNumber.CodeMirror-gutters {
+  position: initial;
+  top: initial;
+  left: initial;
+  min-height: 0 !important;
+}
+pre>span.lineNumber>span {
+  display: block;
+  padding: 0 0.5em 0;
+}
+table {
+  display: block;
+  width: 100%;
+  margin: 0 0 1em;
+}
+table thead tr {
+  background-color: #fff;
+}
+table thead th {
+  border-style: solid;
+  padding: 6px 13px;
+  line-height: 1.6;
+  border-width: 1px 0 2px 1px;
+  border-color: #d0d0d0;
+  font-weight: bold;
+}
+table thead th:last-child {
+  border-right: solid 1px #d0d0d0;
+}
+table tbody tr:nth-child(2n + 1) {
+  background-color: #f9f9f9;
+}
+table tbody tr:nth-child(2n) {
+  background-color: #fff;
+}
+table tbody td {
+  border-style: solid;
+  padding: 6px 13px;
+  line-height: 1.6;
+  border-width: 0 0 1px 1px;
+  border-color: #d0d0d0;
+}
+table tbody td:last-child {
+  border-right: solid 1px #d0d0d0;
+}
+kbd {
+  background-color: #fafbfc;
+  border: solid 1px #d0d0d0;
+  border-bottom-color: #888;
+  border-radius: 3px;
+  -webkit-box-shadow: inset 0 -1px 0 #959da5;
+  box-shadow: inset 0 -1px 0 #959da5;
+  display: inline-block;
+  font-size: 0.8em;
+  line-height: 1;
+  padding: 3px 5px;
+}
+body[data-theme="dark"] {
+  color: #f9f9f9;
+  border-color: #444b59;
+  background-color: #2c3033;
+}
+body[data-theme="dark"] a:hover {
+  background-color: rgba(90,214,186,0.2) !important;
+}
+body[data-theme="dark"] code {
+  color: #ea6730;
+  border-color: #3d4450;
+  background-color: #363a3e;
+}
+body[data-theme="dark"] pre {
+  border-color: #474f5c;
+}
+body[data-theme="dark"] pre code {
+  background-color: transparent;
+}
+body[data-theme="dark"] label.taskListItem {
+  background-color: #2c3033;
+}
+body[data-theme="dark"] table thead tr {
+  background-color: #282b2e;
+}
+body[data-theme="dark"] table thead th {
+  border-color: #444b59;
+}
+body[data-theme="dark"] table thead th:last-child {
+  border-right: solid 1px #444b59;
+}
+body[data-theme="dark"] table tbody tr:nth-child(2n + 1) {
+  background-color: #2c3033;
+}
+body[data-theme="dark"] table tbody tr:nth-child(2n) {
+  background-color: #282b2e;
+}
+body[data-theme="dark"] table tbody td {
+  border-color: #444b59;
+}
+body[data-theme="dark"] table tbody td:last-child {
+  border-right: solid 1px #444b59;
+}
+body[data-theme="dark"] kbd {
+  background-color: #444b59;
+  color: #f9f9f9;
+}
+body[data-theme="solarized-dark"] {
+  color: #93a1a1;
+  border-color: #444b59;
+  background-color: #073642;
+}
+body[data-theme="solarized-dark"] table thead tr {
+  background-color: #06313b;
+}
+body[data-theme="solarized-dark"] table thead th {
+  border-color: #444b59;
+}
+body[data-theme="solarized-dark"] table thead th:last-child {
+  border-right: solid 1px #444b59;
+}
+body[data-theme="solarized-dark"] table tbody tr:nth-child(2n + 1) {
+  background-color: #073642;
+}
+body[data-theme="solarized-dark"] table tbody tr:nth-child(2n) {
+  background-color: #06313b;
+}
+body[data-theme="solarized-dark"] table tbody td {
+  border-color: #444b59;
+}
+body[data-theme="solarized-dark"] table tbody td:last-child {
+  border-right: solid 1px #444b59;
+}
+/*# sourceMappingURL=browser/components/markdown.css.map */
+body {
+  font-family: 'Segoe UI','meiryo','Microsoft YaHei','helvetica','arial','sans-serif';
+  font-size: 14px;
+  padding-bottom: 90vh;
+}
+code {
+  font-family: 'Segoe UI','Monaco','Menlo','Ubuntu Mono','Consolas','source-code-pro','monospace';
+  background-color: rgba(0,0,0,0.04);
+}
+.lineNumber {
+  false
+  font-family: 'Segoe UI','Monaco','Menlo','Ubuntu Mono','Consolas','source-code-pro','monospace';
+}
+
+.clipboardButton {
+  color: rgba(147,147,149,0.8);;
+  fill: rgba(147,147,149,1);;
+  border-radius: 50%;
+  margin: 0px 10px;
+  border: none;
+  background-color: transparent;
+  outline: none;
+  height: 15px;
+  width: 15px;
+  cursor: pointer;
+}
+
+.clipboardButton:hover {
+  transition: 0.2s;
+  color: #939395;
+  fill: #939395;
+  background-color: rgba(0,0,0,0.1);
+}
+
+h1, h2 {
+  border: none;
+}
+
+h1 {
+  padding-bottom: 4px;
+  margin: 1em 0 8px;
+}
+
+h2 {
+  padding-bottom: 0.2em;
+  margin: 1em 0 0.37em;
+}
+
+body p {
+  white-space: normal;
+}
+</style>
+                   <link rel="stylesheet" href="css/xq-light.css"><link rel="stylesheet" href="css/katex.min.css"><link rel="stylesheet" href="css/codemirror.css">
+                 </head>
+                 <body><h3 data-line="0" id="Sierra-Wireless">Sierra Wireless</h3>
+<ul>
+<li><a href="https://en.wikipedia.org/wiki/OSI_model#Layer_7:_Application_Layer">https://en.wikipedia.org/wiki/OSI_model#Layer_7:_Application_Layer</a></li>
+<li><a href="https://en.wikipedia.org/wiki/3GPP">https://en.wikipedia.org/wiki/3GPP</a></li>
+<li><a href="https://mayaposch.wordpress.com/2011/10/03/design-your-own-protocol-in-five-minutes/">https://mayaposch.wordpress.com/2011/10/03/design-your-own-protocol-in-five-minutes/</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Radio_frequency">https://en.wikipedia.org/wiki/Radio_frequency</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Real-time_computing">https://en.wikipedia.org/wiki/Real-time_computing</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Global_Positioning_System">https://en.wikipedia.org/wiki/Global_Positioning_System</a></li>
+<li><a href="https://en.wikipedia.org/wiki/LTE_(telecommunication)">https://en.wikipedia.org/wiki/LTE_(telecommunication)</a></li>
+<li><a href="https://en.wikipedia.org/wiki/UMTS">https://en.wikipedia.org/wiki/UMTS</a></li>
+<li><a href="http://searchmobilecomputing.techtarget.com/definition/UMTS">http://searchmobilecomputing.techtarget.com/definition/UMTS</a></li>
+</ul>
+<h4 data-line="13" id="Real-time-Programming-concepts">Real-time Programming concepts</h4>
+<ul>
+<li>Exposure to scheduling, operating systems</li>
+<li>Scheduling algorithms (FCFS, Round Robin)</li>
+</ul>
+<h4 data-line="18" id="C-programming-language">C programming language</h4>
+<ul>
+<li>CSC 111, CENG 255, CENG 355, CENG 299</li>
+<li>Systemic debugging skills (debuggers Eclipse)</li>
+</ul>
+<h5 data-line="21" id="Good-Things-to-talk-about">Good Things to talk about</h5>
+<h6 data-line="23" id="Web-Development">Web Development</h6>
+<p data-line="24"><strong>Pirates Games</strong></p>
+<p data-line="26">For one of my academic courses, I needed to implement a simple networked game with a client-server archeitecutre. To accomplish this task I used open-source JavaScript libraries such as Express to serve files, Phaser and <a href="http://Socket.io">Socket.io</a> for real-time networking.</p>
+<p data-line="28">In order to accomplish this I broke down into smaller sub-modules<br />
+<img src=":storage%5C0.2wn8dgyzd0q.png" alt="ClientServer.png" /></p>
+<p data-line="31">Talk about old website hardcoded, how I used bootstrap, vanilla javascript for old music player,</p>
+<p data-line="33">New website</p>
+<ul>
+<li>web application framework (flask)</li>
+<li>some experience working with selenium (useful to visit pages for web scrapping, and then extract data of interest using beautiful soup)</li>
+<li>Node.js (package managers (yarn, and npm))</li>
+</ul>
+<p data-line="38">Electron</p>
+<ul>
+<li>Currently, I use some electron applications (Discord, Boosnote)</li>
+</ul>
+<p data-line="41">Knowledge of version control</p>
+<h6 data-line="42" id="Tell-me-about-yourself">Tell me about yourself</h6>
+<p data-line="43">I am a third-year computer engineering student at the university of victoria, familiar with programming with C and C++ through academic projects, such as a maze solving robot that tracks electrical tape and a simple embedded system for pulse width modulating.</p>
+<p data-line="45">I am familiar with dynamically typed scripting languages such as python. For example,  (I have scripts to convert all pdfs in a folder to pngs, merge individual pdfs files into a single pdf and created my personal website using a python web framework.).</p>
+<p data-line="48"><strong>Pulse Width Modulation System</strong><br />
+The simple embedded system can be subdivided into independent modules:</p>
+<ul>
+<li>Using a STM Microcontroller, standard electric equipment (multi-meters and oscilloscope), my partner and I created a system that displays updated frequencies and resistances when the potentiometer is changed.</li>
+<li>TIM2 (unit) — given an analog signal, compute and display the frequency on the Eclipse debugger</li>
+<li>ADC (unit) — take an analog signal and convert it to a digital one, so the STM Microcontroller can process it and compute the frequency</li>
+<li>DAC (unit) — take the converted digital signal and output the analog signal again</li>
+<li>SPI — Library that Interfaces with a LCD device to display the resistance and frequency</li>
+</ul>
+<p data-line="58"><strong>Maze Solving Robot</strong><br />
+For this project, I worked with other engineering students to build the robot, design and create the maze-solving algorithm and troubleshoot the electrical and software components. My role in this project involved creating submodules for the robot to turn left or right if it detects a 90 angle, move straight and u-turn when a dead end is detected. Luckily, since several IR sensors are available, detecting when to turn and move straight is based on a weighted average of sensor values obtained experimental.</p>
+<h6 data-line="61" id="Verbal-Communication">Verbal Communication</h6>
+<p data-line="62">I have demonstrated my strong communication skills, both verbal and wrriten throughout my education and on my co-op terms. While working for the provincal government, it was my responsiblity to centralize documentation for critical systems in a wiki. In order to find all the documentation, I asked senior employees where I should look. Also, I wrote weekly reports to my supervisor describing the tasks (JIRA Issues) I was working on that week, additionally, during code reviews, he ocassionally asked about the reasonable behind changes I committed for the projects I was working on.</p>
+<h6 data-line="64" id="Interest-In-Telecommunications">Interest In Telecommunications</h6>
+<p data-line="66">When I was younger, my family used dial-up which is slow, so when I tried to runescape on my PC, it would take forever to load. I still remember being frustrated with the slow internet, that’s why I want to improve existing telecommunication devices to benefit myself and others.</p>
+<h6 data-line="67" id="Conflict">Conflict</h6>
+<p data-line="68">I was working a group 4, including myself to build a maze-solving robot for an academic course. When one of my teammates failed to attend a scheduled meeting, without notifiying anyone, I messaged him and asked what was going on. My teammate was sick, and decided to stay home for the day, so for that particular week I picked up the slack and did more work on the robot.</p>
+<h6 data-line="70" id="Debugging">Debugging</h6>
+<p data-line="72">During my previous co-op, I was tasked with testing the subscription server for a web application, an highly important user could not subscribe to the system. So, I created three seperate email addresses and manually subscribed, however, for the first two subscribed caused no problems at all. For the final attempt, I tried something that had not been tested before, but there was a good chance people would do in a live application. After I subscribed to the service, I instantly unsubscribed because I had “changed my mind”, when I tried to resubscribe, an error had occured.</p>
+<p data-line="74">Afterwards, I noticed the techincal lead for that application, a few hours little the bug was removed and all parties were satified.</p>
+<h6 data-line="76" id="Scripting">Scripting</h6>
+<p data-line="78">At my previous co-op, I created two useful scripts that automate tedious tasks.</p>
+<p data-line="80">The first script I worked on was a change advisory board script, that extracted information on request for changes from a spreadsheet, filtered, sorted  request for changes impacting the minstry, highlighted keywords of interest and neatly the subset of request of changes in a word document. This is really important and when I got it working, my supervisor was really happy, and other business units could know when their servers would be down for scheduled updates/changes.</p>
+<p data-line="82">The second one is a server to application list, that takes in a list of server as (command line arguments), using regular expressions to check if the application matches any inputted servers and output a clean list that can be forwarded to the respectively business owners of the applications.</p>
+<p data-line="84">Orginally, this sort of task was delegated to co-op students such as  myself, and would take 3 hours because the list had 200 applications and my employer manages a large number of servers.</p>
+</body>
+              </html>

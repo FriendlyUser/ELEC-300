@@ -1,0 +1,21 @@
+\documentclass[a4paper]{standalone}
+\usepackage{amsmath}
+\usepackage[american,siunitx]{circuitikz}
+
+\begin{document}
+
+%\begin{figure}
+    %\centering
+    \begin{circuitikz}
+        \draw
+        (0, 0) node[op amp] (opamp) {}
+        (opamp.-) to[R] (-3, 0.5)
+        (opamp.-) |-  (-1, 2) to[C] (1, 2) -| (opamp.out)
+        ;
+    \draw  (opamp.-) to[short,*-] ++(0,0);    
+    \draw  (opamp.out) to[short,*-] ++(0,0);   
+    %\draw  (opamp.+) to [short, *-] ++ (-3,0)  to [V<=84<\volt>] (-4.25,-2);
+    \end{circuitikz}
+%\end{figure}
+
+\end{document}

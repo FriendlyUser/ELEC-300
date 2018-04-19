@@ -1,0 +1,66 @@
+<hr />
+<p><span><strong>Name:</strong> David Li <strong>Student Number:</strong></span>  V00818631<br />
+<span><strong>Due Date:</strong> Monday, 22 January 2018, 11:30 AM <strong>Assignment:</strong> Number 2</span><br />
+</p>
+<hr />
+<h4 id="problem-1">Problem 1</h4>
+<p>Assume the op amp is ideal.</p>
+<ol>
+<li><p>Calculate the power delivered to the <span class="math inline">\(16 k\Omega\)</span> resistor.</p></li>
+<li><p>Repeat a) with the op amp removed from the circuit, i.e., the load is directly connected to the <span class="math inline">\(48 k\Omega\)</span> resistor.</p></li>
+</ol>
+<div class="figure">
+<img src="images/P1Nillson10thQ540.png" alt="Nillson 10th edition Q 5—40" />
+<p class="caption">Nillson 10th edition Q 5—40<span data-label="fig:p1nillson10thq54"></span></p>
+</div>
+<p>In an ideal op amp, the voltage between the positive and negative terminal is the same. Since no voltage is at the ground point, all the voltage must be dropped across the <span class="math inline">\(16 k \Omega\)</span> resistor. Therefore, since <span class="math inline">\(P=I^2R=V^2/R= (320 \times 10 ^{-3} V)^2 / 16 \times 10^3 \Omega = 6.4 \mu W\)</span>.</p>
+<p>For part b) the answer is found using voltage division <span class="math inline">\(v_{16 k \Omega} =\frac{16}{64}(320)=80 m V\)</span>, <span class="math inline">\(p_{16 k \Omega}=\frac{(80 \times 10^{-3})^2}{16 \times 10^3}= 0.4 \mu W\)</span></p>
+<h4 id="problem-2">Problem 2</h4>
+<ol>
+<li><p>Find <span class="math inline">\(v_0\)</span> if <span class="math inline">\(v_a = 1V\)</span>, <span class="math inline">\(v_b =1.5V\)</span>, and if <span class="math inline">\(v_c = -4V\)</span></p>
+<p><span class="math display">\[\begin{aligned}
+    &amp; \frac{v_o}{220} + \frac{v_a}{44}+\frac{v_b}{27.5} + \frac{v_c}{80}=0\\
+    &amp; v_o = -6 V
+    \end{aligned}\]</span></p></li>
+<li><p>The voltages <span class="math inline">\(v_a\)</span> and <span class="math inline">\(v_c\)</span> remain at <span class="math inline">\(1V\)</span> and <span class="math inline">\(-4V\)</span>, respectively. What are the limits on <span class="math inline">\(v_b\)</span> for the op amp to operate in its linear region?</p>
+<p><span class="math display">\[\begin{aligned}
+    &amp; v_o -6 V - 220/27.5 v_b = \pm 10 V \\
+    &amp; v_b = \frac{(10+6)V \times 27.5}{220}= 2V, \quad v_b = \frac{-(10-6)}{8}=-0.5 V \\
+    -0.5V \leq v_b \leq 2V
+    \end{aligned}\]</span></p></li>
+</ol>
+<div class="figure">
+<img src="images/P2Nillson10thQ5_12_513.png" alt="Nillson 10th Edition Q 5-12 or 5-13" />
+<p class="caption">Nillson 10th Edition Q 5-12 or 5-13<span data-label="fig:p2nillson10thq512513"></span></p>
+</div>
+<h4 id="problem-3">Problem 3</h4>
+<p>Select the values of <span class="math inline">\(R_b\)</span> and <span class="math inline">\(R_f\)</span> such that <span class="math inline">\(v_o = 8000 \Omega(i_b- i_a)\)</span>.</p>
+<div class="figure">
+<img src="images/P3Nillson10thQ5_31.png" alt="Nillson 10th Edition Q 5—31" />
+<p class="caption">Nillson 10th Edition Q 5—31<span data-label="fig:p3nillson10thq531"></span></p>
+</div>
+<p><span class="math display">\[\begin{aligned}
+&amp; v_b=R_bi_b=v_a \quad  \frac{R_bi_b}{2000}+\frac{v_a-v_o}{R_f}-i_a=0 \\
+&amp; \frac{R_bi_b}{2000}+\frac{R_bi_b-v_o}{R_f}-i_a=0 \quad R_bi_b \left(\frac{1}{2000}+\frac{1}{R_f}\right)-i_a=\frac{v_o}{R_f} \\
+&amp; R_f = 8000 k \Omega \quad R_b=1.6 k \Omega \end{aligned}\]</span></p>
+<h4 id="problem-4">Problem 4</h4>
+<p>Determine the output voltage <span class="math inline">\(v_o\)</span>.</p>
+<p>First convert the current source to voltage source <span class="math inline">\(2 \times 10^{-3}\times 5\times 10^3=10V\)</span></p>
+<div class="figure">
+<img src="images/P4Alexander6thQ5_14.png" alt="Alexander 6th edition Q 5—14" />
+<p class="caption">Alexander 6th edition Q 5—14<span data-label="fig:p4alexander6thq514"></span></p>
+</div>
+<p><span class="math display">\[\begin{aligned}
+&amp; \frac{10-v_1}{5}=\frac{v_1-v_2}{20}+\frac{v_1-v_o}{10} \quad v_2=v_b=0\\
+&amp; \frac{10-v_1}{5}=\frac{v_1}{20}+\frac{v_1-v_o}{10} \\
+&amp; v_1=-2v_o \quad 0.35v_1 -0.1v_o=2 \quad v_o=-2.5V\end{aligned}\]</span></p>
+<h4 id="problem-5">Problem 5</h4>
+<p>Determine the voltage gain <span class="math inline">\(v_o/v_i\)</span> of the bridge amplifier</p>
+<div class="figure">
+<img src="images/P5Alexander6thQ5_92.png" alt="Alexander 6th edition Question 5—92" />
+<p class="caption">Alexander 6th edition Question 5—92<span data-label="fig:p5alexander6thq592"></span></p>
+</div>
+<p><span class="math display">\[\begin{aligned}
+&amp; v_1 = (1+\frac{90}{30})v_i=4v_i\\
+&amp; v_2 = -(50 / 20)v_i=-2.5v_i \\
+&amp; v_o = v_1 -v_2 = 6.5 v_i \quad v_o / v_i = 6.5 v_i / v_i = 6.5\end{aligned}\]</span></p>
